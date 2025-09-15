@@ -1,0 +1,84 @@
+.footer {
+  background-color: #1a2526;
+  color: white;
+  padding: 2rem 0;
+
+  .footer-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    @media (min-width: 992px) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  .footer-column {
+    flex: 1;
+    min-width: 200px;
+
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 0.5rem;
+
+        a {
+          color: white;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    p {
+      margin: 0.5rem 0;
+      a {
+        color: white;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+
+    .icon {
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      background-color: white; // Placeholder; replace with Icomoon classes
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #007bff; // Adjust based on Netmatters hover color
+      }
+    }
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
