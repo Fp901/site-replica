@@ -13,8 +13,8 @@
     </main>
     <footer class="footer">
         <div class="container">
-            <div class="footer-row">
-                <div class="footer-menu">
+            <div class="footer-row">  <!-- Parent flex container (renamed from footer-columns) -->
+                <div class="footer-menu">  <!-- First child: Logo/Social -->
                     <div class="footer-logo">
                         <img src="assets/netmatters-logo-white.png" alt="Netmatters Logo">
                     </div>
@@ -26,7 +26,7 @@
                         <a href="#" class="icon-btn"><i class="icon-instagram"></i></a>
                     </div>
                 </div>
-                <div class="footer-column">
+                <div class="footer-menu">  <!-- Second child: About -->
                     <h3>About Netmatters</h3>
                     <ul>
                         <li><a href="#">News</a></li>
@@ -43,7 +43,7 @@
                         <li><a href="#">Terms & Conditions</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div class="footer-menu">  <!-- Third child: Services -->
                     <h3>Our Services</h3>
                     <ul>
                         <li><a href="#">Bespoke Software</a></li>
@@ -55,7 +55,7 @@
                         <li><a href="#">Developer Training</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div class="footer-menu">  <!-- Fourth child: Industries -->
                     <h3>Our Industries</h3>
                     <ul>
                         <li><a href="#">Financial Services</a></li>
@@ -69,7 +69,7 @@
                         <li><a href="#">Manufacturing & Offshore</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div class="footer-menu">  <!-- Fifth child: Locations -->
                     <h3>Locations</h3>
                     <ul>
                         <li><a href="#">Cambridge Office</a></li>
@@ -79,7 +79,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Netmatters. All rights reserved.</p>
+                <div class="footer-bottom-content"><p>&copy; 2025 Netmatters. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>

@@ -17,10 +17,10 @@ body {
   }
 
   @media (min-width: 992px) {
-    max-width: 570px;
+    max-width: 1400px; // Increased to 1400px for 5 columns + padding + gaps
   }
 
   @media (min-width: 1260px) {
-    max-width: 1200px;
+    max-width: 1400px;
   }
 }

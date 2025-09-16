@@ -1,109 +1,142 @@
 .footer {
-  background-color: #323544; // Match Netmatters dark footer (use ColorZilla)
+  background-color: #323544; // Match Netmatters dark footer
   color: #fff;
   padding: 30px 0 0;
-  position: relative;
+  position: relative; // Positioning context
 
   .footer-row {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; // Allow wrapping on mobile/tablet
 
     .footer-menu {
-      flex: 100%;
+      flex: 100%; // Full width on mobile
       margin-bottom: 30px;
-    }
+      padding: 0 10px; // Internal padding
 
-    @media (min-width: 768px) {
-      flex: 50%;
-    }
+      &:first-child { // Target the first .footer-menu (logo/social)
+        margin-right: 2rem; // Base spacing
 
-    @media (min-width: 992px) {
-      flex: 25%;
-    }
+        @media (min-width: 768px) {
+          margin-right: 3rem; // Increase on tablet
+        }
 
-    @media (min-width: 1260px) {
-      margin-bottom: 40px;
-    }
-
-    h4 {
-      text-transform: uppercase;
-      font-size: 1rem;
-      margin-bottom: 26px;
-    }
-    
-
-    h3 {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-
-      li {
-        margin-bottom: 0.5rem;
-        a {
-          color: white;
-          text-decoration: none;
-          &:hover { text-decoration: underline; }
+        @media (min-width: 992px) {
+          margin-right: 4rem; // Increase on desktop
         }
       }
-    }
 
-    .footer-logo {
-      margin-bottom: 1rem;
-      img {
-        max-width: 150px; // Adjust based on Netmatters logo
-        height: auto;
+      @media (min-width: 768px) {
+        flex: 50%; // Two columns on tablet
       }
-    }
 
-    .footer-social {
-      display: flex;
-      flex-direction: row; // Horizontal row of four boxes
-      gap: 1rem; // Space between icons
-      justify-content: center; // Center the row
-      margin: 1rem 0;
+      @media (min-width: 992px) {
+        flex: 0 0 calc(20% - 20px); // 20% minus padding on both sides
+        margin-bottom: 0; // Remove margin on desktop
+      }
 
-      .icon-btn {
-        width: 60px; // Square button size
-        height: 60px;
-        border-radius: 0; // Square instead of circular
+      @media (min-width: 1260px) {
+        margin-bottom: 40px; // Restore margin if needed
+      }
+
+      h3, h4 {
+        text-transform: uppercase;
+        font-size: 1rem;
+        margin-bottom: 26px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 0.5rem;
+          a {
+            color: white;
+            text-decoration: none;
+            &:hover { text-decoration: underline; }
+          }
+        }
+      }
+
+      .footer-logo {
+        margin-bottom: 1rem;
+        img {
+          max-width: 150px;
+          height: auto;
+        }
+      }
+
+      .footer-social {
         display: flex;
-        align-items: center;
+        flex-wrap: wrap; // Allow wrapping on mobile
+        gap: 1rem; 
         justify-content: center;
-        background: none;
-        border: none;
-        transition: all 0.3s ease;
-        background-color: #212330;
+        margin: 1rem 0;
 
-        .icon {
-          font-size: 24px; // Mobile size
-          color: white;
+        @media (min-width: 768px) {
+          flex-wrap: nowrap; // No wrap on tablet+
+          gap: 1rem; // Restore original gap
+        }
+
+        .icon-btn {
+          width: 80px; // Slightly larger button on mobile for touch
+          height: 80px;
+          border-radius: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #212330;
+          transition: all 0.3s ease;
 
           @media (min-width: 768px) {
-            font-size: 28px; // iPad
+            width: 60px; // Slightly smaller on tablet
+            height: 60px;
           }
 
           @media (min-width: 1200px) {
-            font-size: 32px; // Desktop
+            width: 60px; // Larger on desktop
+            height: 60px;
+          }
+
+          .icon {
+            font-size: 32px; // Increased size on mobile for visibility
+
+            @media (min-width: 768px) {
+              font-size: 32px; // Slightly smaller on tablet
+            }
+
+            @media (min-width: 1200px) {
+              font-size: 32px; // Larger on desktop
+            }
+          }
+
+          &:hover {
+            background-color: #003087;
+            border-color: #003087;
           }
         }
-
-        &:hover {
-          background-color: #003087; // Netmatters blue
-          border-color: none;
-          .icon { color: white; }
-        }
       }
+    }
+
+    @media (min-width: 992px) {
+      flex-wrap: nowrap; // Force single row on desktop
     }
   }
 
   .footer-bottom {
     background-color: #212330;
-    text-align: justify;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100vw; // Full viewport width
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+
+    .footer-bottom-content {
+      max-width: 1400px; // Match .container max-width
+      margin: 0 auto; // Center content horizontally
+      padding: 1rem 15px; // Match .container padding
+      text-align: left; // Left-align text
+    }
   }
 }

@@ -40,14 +40,14 @@ body {
 @media (min-width: 992px) {
   /* line 9, ../../../Desktop/Netmatters/site-replica/scss/_layout.scss */
   .container {
-    max-width: 570px;
+    max-width: 1400px;
   }
 }
 
 @media (min-width: 1260px) {
   /* line 9, ../../../Desktop/Netmatters/site-replica/scss/_layout.scss */
   .container {
-    max-width: 1200px;
+    max-width: 1400px;
   }
 }
 
@@ -69,135 +69,184 @@ body {
 .footer .footer-row .footer-menu {
   flex: 100%;
   margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+/* line 16, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu:first-child {
+  margin-right: 2rem;
 }
 
 @media (min-width: 768px) {
-  /* line 7, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-  .footer .footer-row {
+  /* line 16, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  .footer .footer-row .footer-menu:first-child {
+    margin-right: 3rem;
+  }
+}
+
+@media (min-width: 992px) {
+  /* line 16, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  .footer .footer-row .footer-menu:first-child {
+    margin-right: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  /* line 11, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  .footer .footer-row .footer-menu {
     flex: 50%;
   }
 }
 
 @media (min-width: 992px) {
-  /* line 7, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-  .footer .footer-row {
-    flex: 25%;
+  /* line 11, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  .footer .footer-row .footer-menu {
+    flex: 0 0 calc(20% - 20px);
+    margin-bottom: 0;
   }
 }
 
 @media (min-width: 1260px) {
-  /* line 7, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-  .footer .footer-row {
+  /* line 11, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  .footer .footer-row .footer-menu {
     margin-bottom: 40px;
   }
 }
 
-/* line 28, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row h4 {
+/* line 41, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu h3, .footer .footer-row .footer-menu h4 {
   text-transform: uppercase;
   font-size: 1rem;
   margin-bottom: 26px;
 }
 
-/* line 35, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-/* line 40, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row ul {
+/* line 47, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu ul {
   list-style: none;
   padding: 0;
 }
 
-/* line 44, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row ul li {
+/* line 51, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu ul li {
   margin-bottom: 0.5rem;
 }
 
-/* line 46, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row ul li a {
+/* line 53, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu ul li a {
   color: white;
   text-decoration: none;
 }
 
-/* line 49, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row ul li a:hover {
+/* line 56, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu ul li a:hover {
   text-decoration: underline;
 }
 
-/* line 54, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row .footer-logo {
+/* line 61, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-logo {
   margin-bottom: 1rem;
 }
 
-/* line 56, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row .footer-logo img {
+/* line 63, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-logo img {
   max-width: 150px;
   height: auto;
 }
 
-/* line 62, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row .footer-social {
+/* line 69, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-social {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
   margin: 1rem 0;
 }
 
-/* line 69, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row .footer-social .icon-btn {
-  width: 60px;
-  height: 60px;
+@media (min-width: 768px) {
+  /* line 69, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  .footer .footer-row .footer-menu .footer-social {
+    flex-wrap: nowrap;
+    gap: 1rem;
+  }
+}
+
+/* line 81, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-social .icon-btn {
+  width: 80px;
+  height: 80px;
   border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
-  border: none;
-  transition: all 0.3s ease;
   background-color: #212330;
-}
-
-/* line 81, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row .footer-social .icon-btn .icon {
-  font-size: 24px;
-  color: white;
+  transition: all 0.3s ease;
 }
 
 @media (min-width: 768px) {
   /* line 81, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-  .footer .footer-row .footer-social .icon-btn .icon {
-    font-size: 28px;
+  .footer .footer-row .footer-menu .footer-social .icon-btn {
+    width: 60px;
+    height: 60px;
   }
 }
 
 @media (min-width: 1200px) {
   /* line 81, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-  .footer .footer-row .footer-social .icon-btn .icon {
+  .footer .footer-row .footer-menu .footer-social .icon-btn {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* line 101, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-social .icon-btn .icon {
+  font-size: 32px;
+}
+
+@media (min-width: 768px) {
+  /* line 101, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  .footer .footer-row .footer-menu .footer-social .icon-btn .icon {
     font-size: 32px;
   }
 }
 
-/* line 94, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row .footer-social .icon-btn:hover {
+@media (min-width: 1200px) {
+  /* line 101, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  .footer .footer-row .footer-menu .footer-social .icon-btn .icon {
+    font-size: 32px;
+  }
+}
+
+/* line 113, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-social .icon-btn:hover {
   background-color: #003087;
-  border-color: none;
+  border-color: #003087;
 }
 
-/* line 97, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
-.footer .footer-row .footer-social .icon-btn:hover .icon {
-  color: white;
+@media (min-width: 992px) {
+  /* line 7, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  .footer .footer-row {
+    flex-wrap: nowrap;
+  }
 }
 
-/* line 103, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 126, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-bottom {
   background-color: #212330;
-  text-align: justify;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* line 135, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-bottom .footer-bottom-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 15px;
+  text-align: left;
 }
 
 /* line 7, ../../../Desktop/Netmatters/site-replica/scss/main.scss */
