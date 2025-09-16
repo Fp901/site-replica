@@ -1,0 +1,137 @@
+@use 'base' as *;
+@use 'mixins' as *;
+@use 'components' as *;
+
+.welcome-section {
+  background-color: $bg-color-footer;
+  color: #fff;
+  padding: 30px 0 0;
+  position: relative;
+  font-family: $primary-font;
+
+  .welcome-bg {
+    @include full-width($bg-color-footer);
+
+    .container {
+      .welcome-grid {
+        display: grid;
+        grid-template-columns: 1fr; // Single column on mobile
+        gap: 10px;
+        padding: 0;
+
+        .welcome-content,
+        .client-thoughts {
+          margin-bottom: 30px;
+
+          h2, h3, h4 {
+            text-transform: uppercase;
+            font-size: 1rem;
+            margin-bottom: 26px;
+          }
+
+          p {
+            font-size: 1rem;
+            color: #fff;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+          }
+
+          .welcome-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+
+            @media (min-width: 768px) {
+              flex-wrap: nowrap;
+              justify-content: flex-start;
+            }
+
+            .btn {
+              @include button($bg-color: $bg-color-footer-dark, $text-color: #fff);
+              width: 80px;
+              height: 80px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 0;
+              font-size: 0.9rem;
+              text-transform: uppercase;
+              transition: all 0.3s ease;
+
+              @media (min-width: 768px) {
+                width: 60px;
+                height: 60px;
+              }
+
+              @media (min-width: 1200px) {
+                width: 60px;
+                height: 60px;
+              }
+
+              &:hover {
+                background-color: #003087;
+              }
+
+              &.btn-google {
+                @include button($bg-color: #4285F4, $text-color: #fff);
+              }
+
+              &.btn-trustpilot {
+                @include button($bg-color: #00b67a, $text-color: #fff);
+              }
+            }
+          }
+
+          .testimonial {
+            .stars {
+              margin-bottom: 0.5rem;
+
+              i.icon-star {
+                color: #f5a623;
+                font-size: 1rem;
+              }
+            }
+
+            p {
+              font-size: 0.9rem;
+              color: #fff;
+              text-align: left;
+              margin-bottom: 0.5rem;
+            }
+
+            .author {
+              font-size: 0.9rem;
+              color: #fff;
+              text-align: left;
+              font-style: italic;
+
+              a.company-link {
+                color: #fff;
+                text-decoration: none;
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+
+        @media (min-width: 768px) {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+
+        @media (min-width: 992px) {
+          gap: 30px;
+        }
+
+        @media (min-width: 1260px) {
+          gap: 40px;
+        }
+      }
+    }
+  }
+}
