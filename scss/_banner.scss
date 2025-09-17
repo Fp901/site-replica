@@ -1,4 +1,4 @@
-.banner { 
+.banner {  
   width: 100%;
   position: relative;
 
@@ -12,7 +12,8 @@
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    align-items: center;
+    flex-direction: column; // vertical layout for content + dots
+    justify-content: center;
     position: relative;
 
     &:before {
@@ -21,7 +22,7 @@
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.2); // optional: overall dark overlay
+      background: rgba(0,0,0,0.2); // overall dark overlay
       z-index: 1;
     }
 
@@ -35,23 +36,22 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 550px;
+      min-height: 450px; // leave space at bottom for dots
       text-align: left;
       align-items: flex-start;
 
       @media (min-width: 1200px) {
-        padding-left: 30px; // align with site edges
+        padding-left: 30px;
       }
 
       h1 {
         font-family: 'Poppins', sans-serif;
         font-size: 64px;
         line-height: 80px;
-        font-weight: 600; // Regular
+        font-weight: 400;
         letter-spacing: 0.4px;
         color: #ffffff;
         margin-bottom: 1rem;
-        text-transform: none;
 
         @media (max-width: 991px) {
           font-size: 36px;
@@ -77,13 +77,13 @@
         display: inline-block;
         width: 224.891px;
         height: 62px;
-        padding: 0; // remove default padding to fix exact height
+        padding: 0;
         line-height: 62px;
         border-radius: 3px;
         background-color: #E80A42;
         color: #ffffff;
         text-decoration: none;
-        font-size: clamp(16px, 2vw, 20px); // grows/shrinks with viewport
+        font-size: clamp(16px, 2vw, 20px);
         font-weight: 500;
         text-align: center;
         transition: background-color 0.3s ease;
@@ -98,6 +98,55 @@
       @media (max-width: 991px) {
         align-items: center;
         text-align: center;
+      }
+    }
+
+    // Owl Carousel dots with spacing
+    .owl-dots {
+      position: absolute;
+      bottom: 51px; // default spacing below content/button
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 3;
+
+      .owl-dot {
+        span {
+          display: block;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background-color: #869791;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+
+          &.active {
+            background-color: #fff;
+            border: 2px solid #869791;
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        bottom: 20px;
+        gap: 6px;
+
+        .owl-dot span {
+          width: 10px;
+          height: 10px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        bottom: 20px;
+        gap: 4px;
+
+        .owl-dot span {
+          width: 8px;
+          height: 8px;
+        }
       }
     }
   }

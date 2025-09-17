@@ -570,11 +570,12 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
 }
 
-/* line 18, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+/* line 19, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
 .banner .banner-slide:before {
   content: '';
   position: absolute;
@@ -586,7 +587,7 @@ body {
   z-index: 1;
 }
 
-/* line 28, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+/* line 29, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
 .banner .banner-slide .container {
   max-width: 1400px;
   width: 100%;
@@ -597,32 +598,31 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 550px;
+  min-height: 450px;
   text-align: left;
   align-items: flex-start;
 }
 
 @media (min-width: 1200px) {
-  /* line 28, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  /* line 29, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
   .banner .banner-slide .container {
     padding-left: 30px;
   }
 }
 
-/* line 46, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+/* line 47, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
 .banner .banner-slide .container h1 {
   font-family: 'Poppins', sans-serif;
   font-size: 64px;
   line-height: 80px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.4px;
   color: #ffffff;
   margin-bottom: 1rem;
-  text-transform: none;
 }
 
 @media (max-width: 991px) {
-  /* line 46, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  /* line 47, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
   .banner .banner-slide .container h1 {
     font-size: 36px;
     line-height: 44px;
@@ -677,10 +677,65 @@ body {
 }
 
 @media (max-width: 991px) {
-  /* line 28, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  /* line 29, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
   .banner .banner-slide .container {
     align-items: center;
     text-align: center;
+  }
+}
+
+/* line 105, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+.banner .banner-slide .owl-dots {
+  position: absolute;
+  bottom: 51px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  z-index: 3;
+}
+
+/* line 116, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+.banner .banner-slide .owl-dots .owl-dot span {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #869791;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+/* line 125, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+.banner .banner-slide .owl-dots .owl-dot span.active {
+  background-color: #fff;
+  border: 2px solid #869791;
+}
+
+@media (max-width: 768px) {
+  /* line 105, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  .banner .banner-slide .owl-dots {
+    bottom: 20px;
+    gap: 6px;
+  }
+  /* line 136, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  .banner .banner-slide .owl-dots .owl-dot span {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* line 105, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  .banner .banner-slide .owl-dots {
+    bottom: 20px;
+    gap: 4px;
+  }
+  /* line 146, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  .banner .banner-slide .owl-dots .owl-dot span {
+    width: 8px;
+    height: 8px;
   }
 }
 
