@@ -2,6 +2,9 @@
 @use 'mixins' as *;
 @use 'components' as *;
 
+// ======================================
+// WELCOME SECTION STYLES
+// ======================================
 .welcome-section {
   background-color: $bg-color-footer;
   color: #fff;
@@ -10,33 +13,43 @@
   font-family: $primary-font;
 
   .welcome-bg {
+    // Full width background wrapper
     @include full-width($bg-color-footer);
 
     .container {
       .welcome-grid {
-        display: grid;
-        grid-template-columns: 1fr; // Single column on mobile
-        gap: 10px;
-        padding: 0;
+        // Responsive grid: 1 column on mobile, 2 on tablet/desktop
+        @include two-column-grid(10px, 20px, 30px, 40px);
 
+        // ======================================
+        // WELCOME CONTENT & CLIENT THOUGHTS
+        // ======================================
         .welcome-content,
         .client-thoughts {
           margin-bottom: 30px;
 
-          h2, h3, h4 {
-            text-transform: uppercase;
-            font-size: 1rem;
+          // Headings
+          h2,
+          h3,
+          h4 {
+            font-size: 2rem;
+            font-weight: 600;
             margin-bottom: 26px;
+            line-height: 1.2;
           }
 
+          // Paragraph text
           p {
             font-size: 1rem;
             color: #fff;
-            line-height: 1.5;
-            margin-bottom: 0.5rem;
+            line-height: 2.0;
+            margin-bottom: 1.2rem;
             font-weight: normal;
           }
 
+          // ======================================
+          // BUTTONS (Google / TrustPilot)
+          // ======================================
           .welcome-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -51,85 +64,79 @@
 
             .btn {
               @include button($bg-color: $bg-color-footer-dark, $text-color: #fff);
-              width: 80px;
-              height: 80px;
+              width: auto; // fit text width
+              padding: 0.75rem 1.5rem; // spacing inside button
               display: flex;
               align-items: center;
               justify-content: center;
               border-radius: 0;
-              font-size: 0.9rem;
-              text-transform: uppercase;
+
+              // Typography adjustments
+              font-family: 'Poppins', sans-serif;
+              font-size: 20px;
+              line-height: 35px;
+              font-weight: 400;
+              letter-spacing: 0.4px;
+              text-transform: none; // remove uppercase
               transition: all 0.3s ease;
 
-              @media (min-width: 768px) {
-                width: 60px;
-                height: 60px;
-              }
-
-              @media (min-width: 1200px) {
-                width: 60px;
-                height: 60px;
-              }
-
+              // Hover effect
               &:hover {
-                background-color: #003087;
+                background-color: darken($bg-color-footer-dark, 10%);
               }
 
+              // Google button style
               &.btn-google {
                 @include button($bg-color: #4285F4, $text-color: #fff);
               }
 
+              // Trustpilot button style
               &.btn-trustpilot {
                 @include button($bg-color: #00b67a, $text-color: #fff);
               }
             }
           }
 
+          // ======================================
+          // TESTIMONIAL STYLES
+          // ======================================
           .testimonial {
             .stars {
               margin-bottom: 0.5rem;
 
               i.icon-star {
-                color: #f5a623;
+                color: #f5a623; // Gold star color
                 font-size: 1rem;
               }
             }
 
+            // Testimonial text
             p {
-              font-size: 0.9rem;
+              font-size: 1.2rem;
+              font-style: italic;
+              font-weight: 600;
               color: #fff;
               text-align: left;
               margin-bottom: 0.5rem;
             }
 
+            // Author attribution
             .author {
-              font-size: 0.9rem;
-              color: #fff;
+              font-style: normal;
+              font-size: 1.1rem;
+              color: #A3A8AC;
               text-align: left;
-              font-style: italic;
 
               a.company-link {
                 color: #fff;
                 text-decoration: none;
+
                 &:hover {
                   text-decoration: underline;
                 }
               }
             }
           }
-        }
-
-        @media (min-width: 768px) {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
-        }
-
-        @media (min-width: 992px) {
-          gap: 30px;
-        }
-
-        @media (min-width: 1260px) {
-          gap: 40px;
         }
       }
     }

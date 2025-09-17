@@ -1,43 +1,46 @@
 .footer {
-  background-color: #323544; // Match Netmatters dark footer
+  background-color: $bg-color-footer; // Match Netmatters dark footer background
   color: #fff;
   padding: 30px 0 0;
-  position: relative; // Positioning context
+  position: relative; // Positioning context for children
 
   .footer-row {
     display: grid;
     grid-template-columns: 1fr; // Single column on mobile
-    gap: 20px; // Space between grid items
+    gap: 20px; // Space between footer sections
 
     .footer-menu {
       margin-bottom: 30px;
-      padding: 0 10px; // Internal padding
+      padding: 0 10px; // Internal spacing for consistency
 
-      &:first-child { // Target the first .footer-menu (logo/social)
-        margin-right: 2rem; // Base spacing
+      // Special styling for the first footer menu (logo/social area)
+      &:first-child { 
+        margin-right: 2rem; // Base spacing for logo/social
 
         @media (min-width: 768px) {
-          margin-right: 3rem; // Increase on tablet
+          margin-right: 3rem; // Increase spacing on tablet
         }
 
         @media (min-width: 992px) {
-          margin-right: 4rem; // Increase on desktop
+          margin-right: 4rem; // Increase spacing on desktop
         }
       }
 
+      // Grid layout changes on larger screens
       @media (min-width: 768px) {
         grid-template-columns: repeat(2, 1fr); // Two columns on tablet
       }
 
       @media (min-width: 992px) {
         grid-template-columns: repeat(5, 1fr); // Five columns on desktop
-        margin-bottom: 0; // Remove margin on desktop
+        margin-bottom: 0; // Remove bottom margin on desktop
       }
 
       @media (min-width: 1260px) {
-        margin-bottom: 40px; // Restore margin if needed
+        margin-bottom: 40px; // Restore margin for large screens
       }
 
+      // Footer headings
       h3, h4 {
         text-transform: uppercase;
         font-weight: 500;
@@ -45,48 +48,57 @@
         margin-bottom: 30px;
       }
 
+      // Footer navigation list
       ul {
         list-style: none;
         padding: 0;
 
         li {
           margin-bottom: 0.5rem;
+
           a {
             color: white;
             text-decoration: none;
-            &:hover { text-decoration: underline; }
+
+            &:hover { 
+              text-decoration: underline; // Underline links on hover
+            }
           }
         }
       }
 
+      // Logo block
       .footer-logo {
         margin-bottom: 1rem;
+
         img {
           max-width: 150px;
           height: auto;
         }
       }
 
+      // Social media icons container
       .footer-social {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); // Responsive grid for social icons
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); // Flexible grid for icons
         gap: 1rem; 
-        justify-items: center;
+        justify-items: center; // Center icons horizontally
         margin: 1rem 0;
 
         @media (min-width: 768px) {
           grid-template-columns: repeat(4, 1fr); // Fixed 4 columns on tablet+
-          gap: 1rem; // Restore original gap
+          gap: 1rem; // Restore gap
         }
 
+        // Individual social button
         .icon-btn {
-          width: 100px; // Slightly larger button on mobile for touch
+          width: 100px; // Large on mobile
           height: 100px;
           border-radius: 0;
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: #212330;
+          background-color: #212330; // Dark button background
           transition: all 0.3s ease;
 
           @media (min-width: 768px) {
@@ -95,12 +107,13 @@
           }
 
           @media (min-width: 1200px) {
-            width: 80px; // Larger on desktop
+            width: 80px; // Smaller on desktop
             height: 80px;
           }
 
+          // Icon styling inside the button
           .icon {
-            font-size: 45px; // Increased size on mobile for visibility
+            font-size: 45px; // Big icons on mobile
             color: #fff;
 
             @media (min-width: 768px) {
@@ -108,26 +121,28 @@
             }
 
             @media (min-width: 1200px) {
-              font-size: 35px; // Larger on desktop
+              font-size: 35px; // Smaller on desktop
             }
           }
 
           &:hover {
-            background-color: #003087;
+            background-color: #003087; // Blue hover background
             border-color: #003087;
           }
         }
       }
     }
 
+    // Desktop-wide layout for footer menus
     @media (min-width: 992px) {
-      grid-template-columns: repeat(5, 1fr); // Five columns on desktop
+      grid-template-columns: repeat(5, 1fr); // Five evenly spaced columns
     }
   }
 
+  // Footer bottom strip
   .footer-bottom {
-    background-color: #212330;
-    width: 100vw; // Full viewport width
+    background-color: $bg-color-footer-dark;
+    width: 100vw; // Full width strip
     position: relative;
     left: 50%;
     right: 50%;
@@ -135,10 +150,10 @@
     margin-right: -50vw;
 
     .footer-bottom-content {
-      max-width: 1400px; // Match .container max-width
-      margin: 0 auto; // Center content horizontally
-      padding: 1rem 15px; // Match .container padding
-      text-align: left; // Left-align text
+      max-width: 1400px; // Match container max width
+      margin: 0 auto; // Center horizontally
+      padding: 1rem 15px; // Internal spacing
+      text-align: left; // Align text left
     }
   }
 }

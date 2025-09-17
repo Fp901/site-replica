@@ -13,3 +13,30 @@
     background-color: darken($bg-color, 10%);
   }
 }
+
+// Responsive two-column grid mixin
+@mixin two-column-grid($gap-mobile: 10px, $gap-tablet: 20px, $gap-desktop: 30px, $gap-large: 40px, $breakpoint: 768px) {
+  display: grid;
+  grid-template-columns: 1fr; // Default single column (mobile)
+  gap: $gap-mobile;
+
+  @media (min-width: $breakpoint) {
+    grid-template-columns: repeat(2, 1fr); // Two columns on tablet+
+    gap: $gap-tablet;
+  }
+
+  @media (min-width: 992px) {
+    gap: $gap-desktop;
+  }
+
+  @media (min-width: 1260px) {
+    gap: $gap-large;
+  }
+}
+
+// Full width section mixin
+@mixin full-width($bg-color: transparent) {
+  width: 100%;
+  background-color: $bg-color;
+  margin: 0 auto;
+}
