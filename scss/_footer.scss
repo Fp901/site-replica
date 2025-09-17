@@ -1,159 +1,188 @@
 .footer {
-  background-color: $bg-color-footer; // Match Netmatters dark footer background
+  background-color: $bg-color-footer;
   color: #fff;
   padding: 30px 0 0;
-  position: relative; // Positioning context for children
+  position: relative;
 
   .footer-row {
     display: grid;
-    grid-template-columns: 1fr; // Single column on mobile
-    gap: 20px; // Space between footer sections
+    grid-template-columns: 1fr;
+    gap: 20px;
 
     .footer-menu {
       margin-bottom: 30px;
-      padding: 0 10px; // Internal spacing for consistency
+      padding: 0 10px;
 
-      // Special styling for the first footer menu (logo/social area)
-      &:first-child { 
-        margin-right: 2rem; // Base spacing for logo/social
+      &:first-child {
+        margin-right: 2rem;
 
         @media (min-width: 768px) {
-          margin-right: 3rem; // Increase spacing on tablet
+          margin-right: 3rem;
         }
 
         @media (min-width: 992px) {
-          margin-right: 4rem; // Increase spacing on desktop
+          margin-right: 4rem;
         }
       }
 
-      // Grid layout changes on larger screens
-      @media (min-width: 768px) {
-        grid-template-columns: repeat(2, 1fr); // Two columns on tablet
-      }
-
-      @media (min-width: 992px) {
-        grid-template-columns: repeat(5, 1fr); // Five columns on desktop
-        margin-bottom: 0; // Remove bottom margin on desktop
-      }
-
-      @media (min-width: 1260px) {
-        margin-bottom: 40px; // Restore margin for large screens
-      }
-
-      // Footer headings
-      h3, h4 {
+      h3,
+      h4 {
         text-transform: uppercase;
         font-weight: 500;
         font-size: 1rem;
         margin-bottom: 30px;
       }
 
-      // Footer navigation list
       ul {
         list-style: none;
         padding: 0;
 
         li {
           margin-bottom: 0.5rem;
+        }
 
-          a {
-            color: white;
-            text-decoration: none;
+        a {
+          color: white;
+          text-decoration: none;
 
-            &:hover { 
-              text-decoration: underline; // Underline links on hover
-            }
+          &:hover {
+            text-decoration: underline;
           }
         }
       }
 
-      // Logo block
       .footer-logo {
-        margin-bottom: 1rem;
-
         img {
-          max-width: 150px;
+          max-width: 400px;
+          width: 100%;
           height: auto;
+          margin-bottom: 1rem;
+
+          @media (max-width: 768px) {
+            width: 250px; // smaller version for tablets/mobiles
+          }
         }
       }
 
-      // Social media icons container
       .footer-social {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); // Flexible grid for icons
-        gap: 1rem; 
-        justify-items: center; // Center icons horizontally
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 1rem;
+        justify-items: center;
         margin: 1rem 0;
 
         @media (min-width: 768px) {
-          grid-template-columns: repeat(4, 1fr); // Fixed 4 columns on tablet+
-          gap: 1rem; // Restore gap
+          grid-template-columns: repeat(4, 1fr);
         }
 
-        // Individual social button
         .icon-btn {
-          width: 100px; // Large on mobile
-          height: 100px;
-          border-radius: 0;
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: #212330; // Dark button background
+          width: 100px;
+          height: 100px;
+          background-color: #212330;
+          border-radius: 8px;
           transition: all 0.3s ease;
+          text-decoration: none !important;
 
           @media (min-width: 768px) {
-            width: 90px; // Slightly smaller on tablet
+            width: 90px;
             height: 90px;
           }
 
           @media (min-width: 1200px) {
-            width: 80px; // Smaller on desktop
+            width: 80px;
             height: 80px;
           }
 
-          // Icon styling inside the button
-          .icon {
-            font-size: 45px; // Big icons on mobile
-            color: #fff;
+          &:hover,
+          &:visited,
+          &:active,
+          &:focus {
+            text-decoration: none !important;
+            outline: none;
+          }
+
+          i.icon {
+            font-size: 45px;
+            color: #ffffff !important;
+            fill: #ffffff !important; /* For SVG icons */
 
             @media (min-width: 768px) {
-              font-size: 40px; // Slightly smaller on tablet
+              font-size: 40px;
             }
 
             @media (min-width: 1200px) {
-              font-size: 35px; // Smaller on desktop
+              font-size: 35px;
+            }
+
+            /* Target :before pseudo-element for icon libraries */
+            &:before {
+              color: #ffffff !important;
+              fill: #ffffff !important;
             }
           }
 
+          /* Specific override for LinkedIn icon */
+          i.icon-linkedin,
+          i.fa-linkedin,
+          i.fa-linkedin-in,
+          i[class*="linkedin"] {
+            color: #ffffff !important;
+            fill: #ffffff !important;
+
+            &:before {
+              color: #ffffff !important;
+              fill: #ffffff !important;
+            }
+          }
+
+          /* Ultra-specific rule for LinkedIn */
+          &.icon-btn i.icon.icon-linkedin,
+          &.icon-btn i.fa-linkedin,
+          &.icon-btn i.fa-linkedin-in,
+          &.icon-btn i[class*="linkedin"] {
+            color: #ffffff !important;
+            fill: #ffffff !important;
+
+            &:before {
+              color: #ffffff !important;
+              fill: #ffffff !important;
+            }
+          }
+
+          /* Target SVG elements */
+          svg,
+          svg path,
+          svg * {
+            fill: #ffffff !important;
+          }
+
           &:hover {
-            background-color: #003087; // Blue hover background
-            border-color: #003087;
+            background-color: #003087;
           }
         }
       }
     }
 
-    // Desktop-wide layout for footer menus
     @media (min-width: 992px) {
-      grid-template-columns: repeat(5, 1fr); // Five evenly spaced columns
+      grid-template-columns: repeat(5, 1fr);
     }
   }
 
-  // Footer bottom strip
   .footer-bottom {
     background-color: $bg-color-footer-dark;
-    width: 100vw; // Full width strip
+    width: 100vw;
     position: relative;
     left: 50%;
-    right: 50%;
     margin-left: -50vw;
-    margin-right: -50vw;
 
     .footer-bottom-content {
-      max-width: 1400px; // Match container max width
-      margin: 0 auto; // Center horizontally
-      padding: 1rem 15px; // Internal spacing
-      text-align: left; // Align text left
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 15px;
+      text-align: left;
     }
   }
 }

@@ -1,6 +1,8 @@
 // ======================================
 // MIXINS
 // ======================================
+
+// Button mixin
 @mixin button($bg-color: $bg-color-footer-dark, $text-color: white, $padding: 0.75rem 1.5rem) {
   display: inline-block;
   background-color: $bg-color;
@@ -18,18 +20,20 @@
 }
 
 // Responsive two-column grid mixin
-@mixin two-column-grid($gap-mobile: 10px, $gap-tablet: 20px, $gap-desktop: 30px, $gap-large: 40px, $breakpoint: 768px) {
+@mixin two-column-grid(
+  $gap-mobile: 10px,
+  $gap-tablet: 20px,
+  $gap-desktop: 30px,
+  $gap-large: 40px,
+  $breakpoint: 990px // updated breakpoint
+) {
   display: grid;
-  grid-template-columns: 1fr; // Default single column (mobile)
+  grid-template-columns: 1fr; // default single column
   gap: $gap-mobile;
 
   @media (min-width: $breakpoint) {
-    grid-template-columns: repeat(2, 1fr); // Two columns on tablet+
+    grid-template-columns: repeat(2, 1fr); // two columns on tablet+
     gap: $gap-tablet;
-  }
-
-  @media (min-width: 992px) {
-    gap: $gap-desktop;
   }
 
   @media (min-width: 1260px) {

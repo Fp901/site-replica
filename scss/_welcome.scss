@@ -12,22 +12,16 @@
   font-family: $primary-font;
 
   .welcome-bg {
-    // Full width background wrapper
     @include full-width($bg-color-footer);
 
     .container {
       .welcome-grid {
-        // Responsive grid: 1 column on mobile, 2 on tablet/desktop
-        @include two-column-grid(10px, 20px, 30px, 40px);
+        @include two-column-grid(10px, 20px, 30px, 40px, 990px); // breakpoint updated
 
-        // ======================================
-        // WELCOME CONTENT & CLIENT THOUGHTS
-        // ======================================
         .welcome-content,
         .client-thoughts {
           margin-bottom: 30px;
 
-          // Headings
           h2,
           h3,
           h4 {
@@ -37,7 +31,6 @@
             line-height: 1.2;
           }
 
-          // Paragraph text
           p {
             font-size: 1rem;
             color: #fff;
@@ -46,16 +39,12 @@
             font-weight: normal;
           }
 
-          // ======================================
-          // BUTTONS (Google / TrustPilot)
-          // ======================================
           .welcome-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             justify-content: center;
             margin: 1rem 0;
-
 
             @media (min-width: 768px) {
               flex-wrap: nowrap;
@@ -64,29 +53,26 @@
             }
 
             .btn {
-              @include button($bg-color-footer-dark, #fff, 0.75rem 1.5rem); // Default button with white background for contrast
-              border-radius: 8px; // Slightly rounded edges
+              @include button($bg-color-footer-dark, #fff, 0.75rem 1.5rem);
+              border-radius: 8px;
               font-family: $primary-font;
               font-size: 20px;
               line-height: 35px;
               font-weight: 400;
               letter-spacing: 0.4px;
               text-transform: none;
-              text-decoration: none; // No text underlines
+              text-decoration: none;
               width: auto;
               max-width: 100%;
               box-sizing: border-box;
               transition: all 0.3s ease;
-
-              // Ensure visibility against dark background
-              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Subtle shadow for contrast
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
               &:hover {
-                filter: brightness(0.9); // Slightly darken on hover
-                text-decoration: none; // No underline on hover
+                filter: brightness(0.9);
+                text-decoration: none;
               }
 
-              // Responsive font sizes
               @media (max-width: 480px) {
                 font-size: 16px;
                 line-height: 28px;
@@ -97,13 +83,18 @@
                 font-size: 18px;
                 line-height: 32px;
               }
+
+              i.icon {
+                margin-left: 8px;
+                font-size: 1.2em;
+                vertical-align: middle;
+                display: inline-block;
+              }
             }
 
-            // Specific button colors with higher specificity
             .btn-google {
               background-color: #166AF4;
               color: #fff;
-
               &:hover {
                 background-color: darken(#166AF4, 10%);
               }
@@ -112,12 +103,10 @@
             .btn-trustpilot {
               background-color: #009B69;
               color: #fff;
-
               &:hover {
                 background-color: darken(#009B69, 10%);
               }
             }
-
           }
 
           // ======================================
@@ -125,17 +114,35 @@
           // ======================================
           .testimonial {
             .stars {
-              margin-bottom: 0.5rem;
+              display: flex;
+              gap: 5px;
+              margin: 1rem 0 1.5rem 0; // added bottom margin for spacing
 
-              i.icon-star {
-                color: #f5a623; // Gold star color
-                font-size: 1rem;
+              i {
+                font-family: 'icomoon' !important;
+                font-style: normal;
+                font-weight: normal;
+                line-height: 1;
+                font-size: 50px;
+                color: #FFA500;
+                display: inline-block;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+
+                @media (max-width: 767px) {
+                  font-size: 35px;
+                  line-height: 35px;
+                }
+
+                @media (max-width: 480px) {
+                  font-size: 25px;
+                  line-height: 25px;
+                }
               }
             }
 
-            // Testimonial text
             p {
-              font-size: 1.2rem;
+              font-size: 1.3rem;
               font-style: italic;
               font-weight: 600;
               color: #fff;
@@ -143,7 +150,6 @@
               margin-bottom: 0.5rem;
             }
 
-            // Author attribution
             .author {
               font-style: normal;
               font-size: 1.1rem;
@@ -155,7 +161,7 @@
                 text-decoration: none;
 
                 &:hover {
-                  text-decoration: none; // Ensure no underline
+                  text-decoration: none;
                 }
               }
             }
