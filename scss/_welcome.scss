@@ -1,6 +1,5 @@
 @use 'base' as *;
 @use 'mixins' as *;
-@use 'components' as *;
 
 // ======================================
 // WELCOME SECTION STYLES
@@ -42,7 +41,7 @@
           p {
             font-size: 1rem;
             color: #fff;
-            line-height: 2.0;
+            line-height: 2;
             margin-bottom: 1.2rem;
             font-weight: normal;
           }
@@ -57,44 +56,68 @@
             justify-content: center;
             margin: 1rem 0;
 
+
             @media (min-width: 768px) {
               flex-wrap: nowrap;
               justify-content: flex-start;
+              gap: 1.5rem;
             }
 
             .btn {
-              @include button($bg-color: $bg-color-footer-dark, $text-color: #fff);
-              width: auto; // fit text width
-              padding: 0.75rem 1.5rem; // spacing inside button
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              border-radius: 0;
-
-              // Typography adjustments
-              font-family: 'Poppins', sans-serif;
+              @include button($bg-color-footer-dark, #fff, 0.75rem 1.5rem); // Default button with white background for contrast
+              border-radius: 8px; // Slightly rounded edges
+              font-family: $primary-font;
               font-size: 20px;
               line-height: 35px;
               font-weight: 400;
               letter-spacing: 0.4px;
-              text-transform: none; // remove uppercase
+              text-transform: none;
+              text-decoration: none; // No text underlines
+              width: auto;
+              max-width: 100%;
+              box-sizing: border-box;
               transition: all 0.3s ease;
 
-              // Hover effect
+              // Ensure visibility against dark background
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Subtle shadow for contrast
+
               &:hover {
-                background-color: darken($bg-color-footer-dark, 10%);
+                filter: brightness(0.9); // Slightly darken on hover
+                text-decoration: none; // No underline on hover
               }
 
-              // Google button style
-              &.btn-google {
-                @include button($bg-color: #4285F4, $text-color: #fff);
+              // Responsive font sizes
+              @media (max-width: 480px) {
+                font-size: 16px;
+                line-height: 28px;
+                padding: 0.5rem 1rem;
               }
 
-              // Trustpilot button style
-              &.btn-trustpilot {
-                @include button($bg-color: #00b67a, $text-color: #fff);
+              @media (min-width: 481px) and (max-width: 767px) {
+                font-size: 18px;
+                line-height: 32px;
               }
             }
+
+            // Specific button colors with higher specificity
+            .btn-google {
+              background-color: #166AF4;
+              color: #fff;
+
+              &:hover {
+                background-color: darken(#166AF4, 10%);
+              }
+            }
+
+            .btn-trustpilot {
+              background-color: #009B69;
+              color: #fff;
+
+              &:hover {
+                background-color: darken(#009B69, 10%);
+              }
+            }
+
           }
 
           // ======================================
@@ -132,7 +155,7 @@
                 text-decoration: none;
 
                 &:hover {
-                  text-decoration: underline;
+                  text-decoration: none; // Ensure no underline
                 }
               }
             }
