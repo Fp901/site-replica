@@ -1,16 +1,17 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?y988i5');
-  src:  url('fonts/icomoon.eot?y988i5#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?y988i5') format('truetype'),
-    url('fonts/icomoon.woff?y988i5') format('woff'),
-    url('fonts/icomoon.svg?y988i5#icomoon') format('svg');
+  src: url('fonts/icomoon.eot?14hr71');
+  src: url('fonts/icomoon.eot?14hr71#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?14hr71') format('truetype'),
+    url('fonts/icomoon.woff?14hr71') format('woff'),
+    url('fonts/icomoon.svg?14hr71#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^='icon-'],
+[class*=' icon-'] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: never;
@@ -26,20 +27,41 @@
 }
 
 .icon-x:before {
-  content: "\e901";
+  content: '\e900';
+}
+.icon-graduation-cap:before {
+  content: '\e901';
+}
+.icon-shield:before {
+  content: '\e902';
+}
+.icon-mouse:before {
+  content: '\e903';
+}
+.icon-phone_in_talk:before {
+  content: '\e904';
+}
+.icon-code:before {
+  content: '\e905';
+}
+.icon-bar-graph:before {
+  content: '\e906';
+}
+.icon-display:before {
+  content: '\e956';
 }
 .icon-star-full:before {
-  content: "\e902";
+  content: '\e9d9';
 }
-.icon-linkedin:before {
-  content: "\e903";
+.icon-arrow-right2:before {
+  content: '\ea3c';
+}
+.icon-facebook2:before {
+  content: '\ea91';
 }
 .icon-instagram:before {
-  content: "\e904";
+  content: '\ea92';
 }
-.icon-facebook:before {
-  content: "\e905";
-}
-.icon-arrow-right:before {
-  content: "\e900";
+.icon-linkedin:before {
+  content: '\eac9';
 }
