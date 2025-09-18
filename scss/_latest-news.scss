@@ -59,9 +59,24 @@
       width: 100%;
       max-width: 345px;
       height: 569.391px;
+      position: relative;
 
       &:hover {
         transform: translateY(-5px);
+      }
+
+      .news-overlay {
+            position: absolute;
+            top: 15px;       /* Adjust distance from top */
+            right: 15px;     /* Adjust distance from right */
+            background-color: rgba(0,0,0,0.6); /* Semi-transparent */
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;      /* Ensure it appears on top of the image */
+            text-transform: uppercase;
       }
 
       .news-image {
