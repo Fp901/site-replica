@@ -114,12 +114,31 @@
           }
         }
 
+        .read-more-blue {
+          display: inline-block;
+          background: #4183D7;
+          color: #fff;
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+          text-decoration: none;
+          font-weight: 500;
+          transition: background 0.3s ease;
+
+          &:hover {
+            background: #e0b107;
+          }
+        }
+
         .news-meta {
           display: flex;
           align-items: center;
           margin-top: 1rem;
           font-size: 0.875rem;
           color: #666;
+
+          /* 👇 Divider added */
+          padding-top: 1rem;
+          border-top: 1px solid #ccc;
 
           .logo {
             width: 24px;
