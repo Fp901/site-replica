@@ -1,11 +1,12 @@
-@import 'base';
-@import 'mixins';
-@import 'layout';
-@import 'components';
-@import 'footer';
-@import 'welcome';
-@import 'banner';
-@import 'latest-news';
+@import "base";
+@import "mixins";
+@import "layout";
+@import "components";
+@import "footer";
+@import "welcome";
+@import "banner";
+@import "latest-news";
+@import "slide-top";
 
 body {
   margin: 0;

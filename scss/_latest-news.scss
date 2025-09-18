@@ -2,12 +2,6 @@
   padding: 2rem 0;
   background-color: #fff;
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
   .news-header {
     display: flex;
     justify-content: space-between;
@@ -15,7 +9,7 @@
     margin-bottom: 2rem;
 
     h2 {
-      font-size: 1.75rem;
+      font-size: 2rem;
       color: #333;
       font-weight: 600;
     }
@@ -40,9 +34,9 @@
 
   .news-grid {
     display: grid;
-    gap: 2.5rem; // spacing between items
+    gap: 1.875rem; // spacing between items
     justify-content: center;
-    margin-bottom: 50px; // spacing to next section
+    margin-bottom: 3.125rem; // spacing to next section
 
     // Mobile default: 1 column
     grid-template-columns: 1fr;
@@ -57,8 +51,8 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
       width: 100%;
-      max-width: 345px;
-      height: 569.391px;
+      max-width: 23.75rem;
+      height: auto;
       position: relative;
 
       &:hover {
@@ -66,22 +60,22 @@
       }
 
       .news-overlay {
-            position: absolute;
-            top: 15px;       /* Adjust distance from top */
-            right: 15px;     /* Adjust distance from right */
-            background-color: rgba(0,0,0,0.6); /* Semi-transparent */
-            color: #fff;
-            padding: 5px 12px;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            z-index: 2;      /* Ensure it appears on top of the image */
-            text-transform: uppercase;
+        position: absolute;
+        top: 15px; /* Adjust distance from top */
+        right: 15px; /* Adjust distance from right */
+        background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent */
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 5px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        z-index: 2; /* Ensure it appears on top of the image */
+        text-transform: uppercase;
       }
 
       .news-image {
         width: 100%;
-        height: 50%; // half the card height
+        height: 12.5rem; // half the card height
         background-size: cover;
         background-position: center;
       }
@@ -101,14 +95,14 @@
         }
 
         h3 {
-          font-size: 1.25rem;
+          font-size: 1.5rem;
           color: #333;
           margin-bottom: 0.5rem;
           font-weight: 600;
         }
 
         p {
-          font-size: 0.95rem;
+          font-size: 1.1rem;
           color: #666;
           margin-bottom: 1rem;
           line-height: 1.5;
@@ -131,7 +125,7 @@
 
         .read-more-blue {
           display: inline-block;
-          background: #4183D7;
+          background: #4183d7;
           color: #fff;
           padding: 0.5rem 1rem;
           border-radius: 4px;
@@ -156,8 +150,8 @@
           border-top: 1px solid #ccc;
 
           .logo {
-            width: 24px;
-            height: 24px;
+            width: 47px;
+            height: 47px;
             background: #3498db;
             color: #fff;
             display: flex;
@@ -201,18 +195,26 @@
 
     // Large screens: 3 fixed-width columns
     @media (min-width: 1024px) {
-      grid-template-columns: repeat(3, 370px);
-      gap: 2.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.875rem;
+
+      .news-image {
+        height: 18.75rem;
+      }
 
       .news-item {
-        width: 370px;
-        height: 608.844px;
+        width: 100%;
+        height: auto;
         border-radius: 0;
+      }
+
+      .news-image {
+        height: 18.75rem;
       }
     }
 
     // Extra small screens < 400px: 1 column
-    @media (max-width: 399px) {
+    @media (max-width: 770px) {
       grid-template-columns: 1fr;
 
       .news-item {
@@ -220,6 +222,17 @@
         max-width: 100%;
         height: auto;
         border-radius: 8px;
+      }
+
+      .news-item {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .news-item:nth-child(3) {
+        display: none;
       }
     }
   }
