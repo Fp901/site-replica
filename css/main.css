@@ -1011,59 +1011,67 @@ body {
 }
 
 /* line 1, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
-.partners-strip {
+.partners-slideshow {
   width: 100%;
-  overflow-x: auto;
-  padding: 50px 0;
   background-color: #f8f8f8;
+  padding: 50px 0;
+  overflow: hidden;
 }
 
 /* line 7, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
-.partners-strip .logo-track {
-  display: flex;
-  gap: 30px;
-  justify-content: space-between;
-  padding: 0 20px;
-  scroll-snap-type: nowrap;
+.partners-slideshow .partners-strip {
+  width: 100%;
+  max-width: 100%;
+  height: 170px;
+  border-radius: 0;
 }
 
-/* line 15, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
-.partners-strip .logo-item {
-  flex: 1 1 0;
-  width: 150px;
-  height: 80px;
+/* line 13, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
+.partners-slideshow .partners-strip .scroll-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* line 18, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
+.partners-slideshow .partners-strip .logo-track {
   display: flex;
   align-items: center;
-  justify-content: center;
-  scroll-snap-align: start;
-  margin: 0 15px;
+  gap: 70px;
+  animation: step-scroll 36s steps(9) infinite;
+  width: max-content;
 }
 
-/* line 25, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
-.partners-strip .logo-item img {
+/* line 26, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
+.partners-slideshow .partners-strip .logo-item {
+  flex: 0 0 auto;
+  width: 240px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* line 34, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
+.partners-slideshow .partners-strip .logo-item img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  display: block;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
 }
 
-@media (max-width: 500px) {
-  /* line 34, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
-  .partners-strip .logo-item:nth-child(n + 4) {
-    display: none;
+/* line 42, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
+.partners-slideshow .partners-strip .logo-item img:hover, .partners-slideshow .partners-strip .logo-item img:focus {
+  filter: grayscale(0%);
+}
+
+@keyframes step-scroll {
+  0% {
+    transform: translateX(0);
   }
-}
-
-@media (max-width: 400px) {
-  /* line 40, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
-  .partners-strip .logo-item:nth-child(n + 3) {
-    display: none;
-  }
-}
-
-@media (max-width: 300px) {
-  /* line 46, ../../../Desktop/Netmatters/site-replica/scss/_slide-top.scss */
-  .partners-strip .logo-item:nth-child(n + 2) {
-    display: none;
+  100% {
+    transform: translateX(-100%);
   }
 }
 
