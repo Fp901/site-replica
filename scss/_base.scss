@@ -1,5 +1,12 @@
 $bg-color-footer: #323544;
 $bg-color-footer-dark: #212330;
+$bg-color-gold: #ffa500;
+$bg-color-blue: #4183d7;
+$bg-color-green: #2ecc71;
+$bg-color-red: #d64541;
+$bg-color-pink: #f62459;
+$bg-color-purp: #926fb1;
+$bg-color-brown: #d66049;
 
 $primary-font: 'poppins', sans-serif;
 
@@ -15,9 +22,9 @@ $primary-font: 'poppins', sans-serif;
   padding: 0 1rem;
 }
 
-html, body {
+html,
+body {
   font-family: $primary-font;
   font-size: 16px; // optional default
-  line-height: 1.5; 
+  line-height: 1.5;
 }
-

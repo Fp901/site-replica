@@ -1,13 +1,13 @@
-@import 'base';
-@import 'mixins';
-@import 'layout';
-@import 'components';
-@import 'footer';
-@import 'welcome';
-@import 'banner';
-@import 'latest-news';
-@import 'sliders';
-@import 'services';
+@import './base';
+@import './mixins';
+@import './layout';
+@import './components';
+@import './footer';
+@import './welcome';
+@import './banner';
+@import './latest-news';
+@import './sliders';
+@import './services';
 
 body {
   margin: 0;
