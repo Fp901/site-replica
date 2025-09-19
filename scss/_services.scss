@@ -5,26 +5,27 @@
 
 .services-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* h2 left, view-all right */
   align-items: center;
   margin-bottom: 40px;
+
+  h2 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
 }
 
-.services-header h2 {
-  margin: 0;
-  font-size: 2.5rem;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-}
-
-/* 👇 Updated to match Latest News section */
+/* View All button */
 .view-all {
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.75rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  font-size: 1.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
 
   span {
     margin-left: 0.5rem;
@@ -35,15 +36,39 @@
   }
 }
 
+/* Desktop (≥992px): inline beside heading */
+@media (min-width: 992px) {
+  .our-services .view-all {
+    margin: 0; /* reset margin */
+    position: static; /* no absolute positioning */
+  }
+}
+
+/* Mobile (≤991px): below the grid */
+@media (max-width: 991px) {
+  .our-services .view-all {
+    display: block;
+    margin: 20px auto 0;
+    text-align: center;
+  }
+
+  .services-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+}
+
 /* Grid Layout */
 .services-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px;
+  gap: 40px;
+  align-items: stretch; /* equal row heights */
 }
 
 .top-row {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 @media (min-width: 1261px) {
@@ -75,8 +100,13 @@
   .bottom-row {
     grid-template-columns: 1fr;
   }
+
+  /* Center bottom-row cards on mobile */
   .bottom-row .service-item {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }
 
@@ -88,10 +118,12 @@
   border-radius: 12px;
   padding: 30px 20px 80px;
   display: flex;
-  align-items: stretch;
-  justify-content: center;
+  flex-direction: column; /* fill box */
+  align-items: center;
+  justify-content: flex-start;
   text-align: center;
   min-height: 300px;
+  height: 100%; /* equal grid row height */
   box-sizing: border-box;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -106,10 +138,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* vertical centering */
   flex-grow: 1;
+  width: 100%;
   max-width: 260px;
+  margin: 0 auto;
   letter-spacing: 0.5px;
   font-size: 1.2rem;
+  text-align: center;
 }
 
 /* Service icon circle */
@@ -163,7 +199,7 @@
 
 /* --- Service-Specific Colors with Icon Inversion --- */
 
-/* Consultancy (blue + white icon) */
+/* Consultancy */
 .service-item.consultancy .service-icon {
   background-color: $bg-color-blue;
   color: #fff;
@@ -183,7 +219,7 @@
   color: $bg-color-blue;
 }
 
-/* IT Support (blue) */
+/* IT Support */
 .service-item.it-support .service-icon,
 .service-item.it-support .learn-more {
   background-color: $bg-color-blue;
@@ -200,7 +236,7 @@
   color: $bg-color-blue;
 }
 
-/* Digital Marketing (green) */
+/* Digital Marketing */
 .service-item.digital-marketing .service-icon,
 .service-item.digital-marketing .learn-more {
   background-color: $bg-color-green;
@@ -217,7 +253,7 @@
   color: $bg-color-green;
 }
 
-/* Developer Training (brown) */
+/* Developer Training */
 .service-item.developer-training .service-icon,
 .service-item.developer-training .learn-more {
   background-color: $bg-color-brown;
@@ -234,7 +270,7 @@
   color: $bg-color-brown;
 }
 
-/* Cyber Security (pink) */
+/* Cyber Security */
 .service-item.cyber-security .service-icon,
 .service-item.cyber-security .learn-more {
   background-color: $bg-color-pink;
@@ -251,7 +287,7 @@
   color: $bg-color-pink;
 }
 
-/* Web Design (purple) */
+/* Web Design */
 .service-item.web-design .service-icon,
 .service-item.web-design .learn-more {
   background-color: $bg-color-purp;
@@ -268,7 +304,7 @@
   color: $bg-color-purp;
 }
 
-/* Telecoms Services (red) */
+/* Telecoms Services */
 .service-item.telecoms-services .service-icon,
 .service-item.telecoms-services .learn-more {
   background-color: $bg-color-red;

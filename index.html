@@ -16,6 +16,116 @@
     <link rel="stylesheet" href="icons/style.css" />
   </head>
   <body>
+    <!-- Fixed Navbar with Services Menu -->
+    <header class="navbar">
+      <!-- Top navigation -->
+      <div class="container top-nav">
+        <!-- Logo -->
+        <div class="navbar-brand">
+          <a href="#">
+            <img src="images/logo.png" alt="MyCompany Logo" />
+          </a>
+        </div>
+
+        <!-- Buttons -->
+        <div class="navbar-buttons">
+          <a href="#" class="btn support-btn">Support</a>
+          <a href="#" class="btn contact-btn">Contact</a>
+        </div>
+
+        <!-- Search + Hamburger -->
+        <div class="navbar-actions">
+          <form class="search-form" action="#" method="get">
+            <input type="text" placeholder="Search..." />
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+          <button class="hamburger"><i class="fa fa-bars"></i></button>
+        </div>
+      </div>
+
+      <!-- Services Menu -->
+      <div class="services-menu">
+        <ul>
+          <li class="consultancy">
+            <a href="#">
+              <i class="fa-solid fa-briefcase"></i>
+              <span>Consultancy</span>
+            </a>
+            <div class="mega-panel">
+              <h3>Consultancy Services</h3>
+              <ul class="mega-list"></ul>
+            </div>
+          </li>
+
+          <li class="it-support">
+            <a href="#">
+              <i class="fa-solid fa-headset"></i>
+              <span>IT Support</span>
+            </a>
+            <div class="mega-panel">
+              <h3>IT Support Services</h3>
+              <ul class="mega-list"></ul>
+            </div>
+          </li>
+
+          <li class="digital-marketing">
+            <a href="#">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Marketing</span>
+            </a>
+            <div class="mega-panel">
+              <h3>Digital Marketing</h3>
+              <ul class="mega-list"></ul>
+            </div>
+          </li>
+
+          <li class="telecoms-services">
+            <a href="#">
+              <i class="fa-solid fa-phone"></i>
+              <span>Telecoms</span>
+            </a>
+            <div class="mega-panel">
+              <h3>Telecoms Services</h3>
+              <ul class="mega-list"></ul>
+            </div>
+          </li>
+
+          <li class="web-design">
+            <a href="#">
+              <i class="fa-solid fa-code"></i>
+              <span>Web Design</span>
+            </a>
+            <div class="mega-panel">
+              <h3>Web Design</h3>
+              <ul class="mega-list"></ul>
+            </div>
+          </li>
+
+          <li class="cyber-security">
+            <a href="#">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Cyber Security</span>
+            </a>
+            <div class="mega-panel">
+              <h3>Cyber Security</h3>
+              <ul class="mega-list"></ul>
+            </div>
+          </li>
+
+          <li class="developer-training">
+            <a href="#">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span>Training</span>
+            </a>
+            <div class="mega-panel">
+              <h3>Developer Training</h3>
+              <ul class="mega-list"></ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </header>
+
     <section class="banner">
       <div class="banner-slide">
         <div class="container">
@@ -46,10 +156,6 @@
         <div class="container">
           <div class="services-header">
             <h2>Our Services</h2>
-            <a href="#" class="view-all">
-              View All
-              <span><i class="icon icon-arrow-right2"></i></span>
-            </a>
           </div>
 
           <!-- Top Row: Always 3 cards -->
@@ -149,6 +255,11 @@
               </div>
             </div>
           </div>
+          <!-- Place this AFTER the bottom-row grid, BEFORE </div> of .container -->
+          <a href="#" class="view-all">
+            View Our Work
+            <span><i class="icon icon-arrow-right2"></i></span>
+          </a>
         </div>
       </section>
 
