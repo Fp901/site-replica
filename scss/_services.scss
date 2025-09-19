@@ -1,6 +1,3 @@
-@debug 'Inside services.scss';
-@debug $bg-color-blue;
-@debug $bg-color-gold;
 /* Basic Styling */
 .our-services {
   padding: 60px 0;
@@ -20,14 +17,22 @@
   letter-spacing: 0.5px;
 }
 
+/* 👇 Updated to match Latest News section */
 .view-all {
-  color: #007bff;
-  font-weight: 400;
+  color: #333;
   text-decoration: none;
+  font-weight: 500;
+  font-size: 1.75rem;
   display: flex;
   align-items: center;
-  letter-spacing: 0.5px;
-  font-size: 1.2rem;
+
+  span {
+    margin-left: 0.5rem;
+  }
+
+  &:hover {
+    color: #3498db;
+  }
 }
 
 /* Grid Layout */
@@ -118,6 +123,7 @@
   margin: 0 auto 20px auto;
   font-size: 2rem;
   color: #fff;
+  transition: all 0.3s ease;
 }
 
 /* Headings and paragraphs */
@@ -155,18 +161,22 @@
   color: #fff;
 }
 
-/* --- Service-Specific Colors --- */
+/* --- Service-Specific Colors with Icon Inversion --- */
 
-/* Consultancy (gold + #67809F icon) */
+/* Consultancy (blue + white icon) */
 .service-item.consultancy .service-icon {
   background-color: $bg-color-blue;
-  color: #67809f;
+  color: #fff;
 }
 .service-item.consultancy .learn-more {
   background-color: $bg-color-blue;
 }
 .service-item.consultancy:hover {
   background-color: $bg-color-blue;
+}
+.service-item.consultancy:hover .service-icon {
+  background-color: #fff;
+  color: $bg-color-blue;
 }
 .service-item.consultancy:hover .learn-more {
   background-color: #fff;
@@ -181,6 +191,10 @@
 .service-item.it-support:hover {
   background-color: $bg-color-blue;
 }
+.service-item.it-support:hover .service-icon {
+  background-color: #fff;
+  color: $bg-color-blue;
+}
 .service-item.it-support:hover .learn-more {
   background-color: #fff;
   color: $bg-color-blue;
@@ -193,6 +207,10 @@
 }
 .service-item.digital-marketing:hover {
   background-color: $bg-color-green;
+}
+.service-item.digital-marketing:hover .service-icon {
+  background-color: #fff;
+  color: $bg-color-green;
 }
 .service-item.digital-marketing:hover .learn-more {
   background-color: #fff;
@@ -207,6 +225,10 @@
 .service-item.developer-training:hover {
   background-color: $bg-color-brown;
 }
+.service-item.developer-training:hover .service-icon {
+  background-color: #fff;
+  color: $bg-color-brown;
+}
 .service-item.developer-training:hover .learn-more {
   background-color: #fff;
   color: $bg-color-brown;
@@ -219,6 +241,10 @@
 }
 .service-item.cyber-security:hover {
   background-color: $bg-color-pink;
+}
+.service-item.cyber-security:hover .service-icon {
+  background-color: #fff;
+  color: $bg-color-pink;
 }
 .service-item.cyber-security:hover .learn-more {
   background-color: #fff;
@@ -233,6 +259,10 @@
 .service-item.web-design:hover {
   background-color: $bg-color-purp;
 }
+.service-item.web-design:hover .service-icon {
+  background-color: #fff;
+  color: $bg-color-purp;
+}
 .service-item.web-design:hover .learn-more {
   background-color: #fff;
   color: $bg-color-purp;
@@ -245,6 +275,10 @@
 }
 .service-item.telecoms-services:hover {
   background-color: $bg-color-red;
+}
+.service-item.telecoms-services:hover .service-icon {
+  background-color: #fff;
+  color: $bg-color-red;
 }
 .service-item.telecoms-services:hover .learn-more {
   background-color: #fff;

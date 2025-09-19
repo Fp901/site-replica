@@ -1,6 +1,6 @@
 .partners-slideshow {
   width: 100%;
-  background-color: #f8f8f8;
+  background-color: #fff; // white background
   padding: 50px 0;
   overflow: hidden;
 
@@ -19,7 +19,6 @@
       display: flex;
       align-items: center;
       gap: 70px;
-      animation: step-scroll 36s steps(9) infinite;
       width: max-content;
     }
 
@@ -48,8 +47,30 @@
   }
 }
 
-// Keyframes for stepped scroll
-@keyframes step-scroll {
+/* -------------------------
+   Animations for each slider
+   ------------------------- */
+
+/* Top slider (18 logos total) */
+.partners-slideshow:first-of-type .logo-track {
+  animation: step-scroll-top 72s steps(18) infinite;
+}
+
+@keyframes step-scroll-top {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Bottom slider (28 logos total) */
+.partners-slideshow:last-of-type .logo-track {
+  animation: step-scroll-bottom 112s steps(28) infinite;
+}
+
+@keyframes step-scroll-bottom {
   0% {
     transform: translateX(0);
   }
