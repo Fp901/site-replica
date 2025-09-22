@@ -3,7 +3,7 @@
   width: 100%;
   background: #2c2f38;
   border-radius: 0;
-  height: 8rem; // increased height (128px)
+  height: 8rem; // section height
   font-family: 'Poppins', sans-serif;
   z-index: 1000;
 
@@ -14,22 +14,24 @@
 
     ul {
       display: flex;
+      flex-wrap: nowrap; // ✅ keep all items on one line
       justify-content: space-between;
       align-items: stretch;
       margin: 0;
       padding: 0;
       list-style: none;
       height: 100%;
+      overflow: hidden; // ✅ stop overflow issues
     }
 
     li {
-      width: 10.446rem; // 167px
+      flex: 1 1 auto; // ✅ items grow/shrink evenly
+      min-width: 0; // ✅ allow shrinking below intrinsic width
       height: 8rem; // match section height
       border-radius: 0;
       text-align: center;
       position: relative;
       transition: background-color 0.3s ease;
-      flex: 0 0 auto;
 
       a {
         display: flex;
@@ -39,25 +41,25 @@
         text-decoration: none;
         color: #fff;
         height: 100%;
-        padding: 1rem 0; // more padding
+        padding: 1rem 0;
         text-transform: uppercase;
 
         i {
-          font-size: 1.5rem; // slightly bigger to balance
-          margin-bottom: 0.75rem; // more gap below icon
+          font-size: 1.5rem;
+          margin-bottom: 0.75rem;
           transition: color 0.3s ease;
         }
       }
 
       /* Word styling */
       .first-word {
-        font-size: 0.9rem; // ~16px
+        font-size: 0.9rem;
         font-weight: 400;
         line-height: 1.1;
       }
 
       .second-word {
-        font-size: 1.3rem; // ~28px (larger emphasis)
+        font-size: 1.3rem;
         font-weight: 400;
         display: block;
         margin-top: 0.25rem;
@@ -108,11 +110,16 @@
       }
     }
   }
+
+  /* Hide the entire services menu below 993px */
+  @media (max-width: 992px) {
+    display: none;
+  }
 }
 
 /* Icon colors */
 .services-menu li.consultancy i {
-  color: $bg-color-blue;
+  color: $bg-color-grey;
 }
 .services-menu li.it-support i {
   color: $bg-color-blue;

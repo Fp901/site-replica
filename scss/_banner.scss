@@ -1,12 +1,16 @@
-.banner {  
+.banner {
   width: 100%;
   position: relative;
 
   .banner-slide {
     width: 100%;
-    min-height: 550px;
-    background-image: 
-      radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%), // darkened edges
+    min-height: 700px;
+    background-image: radial-gradient(
+        circle,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.8) 100%
+      ),
+      // darkened edges
       url('../assets/images/home-MSxH.webp');
     background-size: cover;
     background-position: center;
@@ -19,10 +23,11 @@
     &:before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.2); // overall dark overlay
+      background: rgba(0, 0, 0, 0.2); // overall dark overlay
       z-index: 1;
     }
 
@@ -80,7 +85,7 @@
         padding: 0;
         line-height: 62px;
         border-radius: 3px;
-        background-color: #E80A42;
+        background-color: #e80a42;
         color: #ffffff;
         text-decoration: none;
         font-size: clamp(16px, 2vw, 20px);
@@ -88,7 +93,9 @@
         text-align: center;
         transition: background-color 0.3s ease;
 
-        &:hover { background-color: #0055b3; }
+        &:hover {
+          background-color: #0055b3;
+        }
 
         @media (max-width: 991px) {
           align-self: center;

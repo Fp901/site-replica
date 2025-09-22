@@ -19,11 +19,11 @@
     <!-- Fixed Navbar with Services Menu -->
     <!-- Fixed Navbar -->
     <header class="navbar">
-      <div class="container top-nav">
+      <div class="top-nav">
         <!-- Logo -->
         <div class="navbar-brand">
           <a href="#">
-            <img src="assets/images/f-logo.webp" alt=".." />
+            <img src="assets/images/f-logo.webp" alt="Company Logo" />
           </a>
         </div>
 
@@ -33,25 +33,41 @@
           <a href="#" class="btn contact-btn">Contact</a>
         </div>
 
-        <!-- Actions: Search + Hamburger -->
+        <!-- Actions -->
         <div class="navbar-actions">
-          <!-- Grey mobile search -->
-          <form class="search-form mobile-search" action="#" method="get">
+          <form class="search-form" action="#" method="get">
             <input type="text" placeholder="Search..." />
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>
 
-          <!-- White desktop search -->
-          <form class="search-form desktop-search" action="#" method="get">
-            <input type="text" placeholder="Search..." />
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
+          <button class="search-icon-btn" aria-label="Search">
+            <i class="fa fa-search"></i>
+          </button>
 
-          <!-- Hamburger -->
-          <button class="hamburger"><i class="fa fa-bars"></i></button>
+          <a
+            href="tel:+441234567890"
+            class="telephone-icon"
+            aria-label="Call Us"
+          >
+            <i class="fa fa-phone"></i>
+          </a>
+
+          <button class="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </div>
     </header>
+
+    <!-- Mobile full-width search (<768px only) -->
+    <div class="mobile-full-search">
+      <form action="#" method="get">
+        <input type="text" placeholder="Search..." />
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
 
     <!-- Services Menu -->
     <div class="services-menu">

@@ -201,22 +201,22 @@
 
 /* Consultancy */
 .service-item.consultancy .service-icon {
-  background-color: $bg-color-blue;
+  background-color: $bg-color-grey;
   color: #fff;
 }
 .service-item.consultancy .learn-more {
-  background-color: $bg-color-blue;
+  background-color: $bg-color-gold;
 }
 .service-item.consultancy:hover {
-  background-color: $bg-color-blue;
+  background-color: $bg-color-grey;
 }
 .service-item.consultancy:hover .service-icon {
   background-color: #fff;
-  color: $bg-color-blue;
+  color: $bg-color-grey;
 }
 .service-item.consultancy:hover .learn-more {
   background-color: #fff;
-  color: $bg-color-blue;
+  color: $bg-color-grey;
 }
 
 /* IT Support */

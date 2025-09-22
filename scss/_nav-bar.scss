@@ -3,53 +3,57 @@
    ====================== */
 .navbar {
   position: relative;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 7.5rem; // 120px
+  height: 7.5rem;
   background: #fff;
   border-bottom: 1px solid #ddd;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   z-index: 1100;
 
   .top-nav {
+    max-width: 1400px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 0 1.5rem;
+    padding: 0 1.5rem; // default desktop padding
   }
 
   /* Logo */
-  .navbar-brand img {
-    height: 4rem; // 48px
-    width: auto;
+  .navbar-brand {
+    margin-right: 1rem; // ✅ space after logo
+
+    img {
+      height: 5rem;
+      width: auto;
+      transition: all 0.3s ease;
+    }
   }
 
-  /* Buttons */
   /* Buttons */
   .navbar-buttons {
     display: flex;
     gap: 1rem;
 
     .btn {
-      width: 11rem; // 149.422px
-      height: 4rem; // 56px
-      line-height: 4rem; // vertically center text
-      border-radius: 0.1875rem; // 3px
+      width: 11rem;
+      height: 4rem;
+      line-height: 4rem;
+      border-radius: 0.1875rem;
       font-size: 1.5rem;
       font-weight: 400;
       text-align: center;
       text-decoration: none;
       color: #fff;
       transition: background 0.3s ease;
-      display: inline-block;
 
       &.support-btn {
         background: $bg-color-blue;
       }
       &.contact-btn {
         background: $bg-color-grey;
+        margin-right: 0.5rem; // ✅ space after contact button
       }
 
       &:hover {
@@ -58,59 +62,233 @@
     }
   }
 
-  /* Search + Hamburger */
+  /* Actions */
   .navbar-actions {
     display: flex;
     align-items: center;
     gap: 1rem;
 
+    /* Full search form */
     .search-form {
       display: flex;
       align-items: center;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      border: 0.5px solid $bg-color-grey;
+      border-radius: 0.1875rem;
+      height: 4rem;
+      width: 22rem;
       overflow: hidden;
 
       input {
+        flex: 1;
         border: none;
-        padding: 0.4rem 0.6rem;
+        padding: 0 1rem;
         font-size: 1rem;
         outline: none;
+        height: 100%;
+        min-width: 0; // ✅ prevents overflow gaps
       }
 
       button {
-        background: #f1f1f1;
+        background: $bg-color-grey;
         border: none;
-        padding: 0.4rem 0.6rem;
+        width: 4rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
+        flex-shrink: 0; // ✅ button never squashes
 
         i {
-          color: #333;
+          color: #fff;
+          font-size: 1.6rem;
+          line-height: 1;
         }
       }
     }
 
-    .hamburger {
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: #333;
-    }
-
-    /* Hide desktop search by default (mobile-first) */
-    .desktop-search {
+    /* Magnifying glass */
+    .search-icon-btn {
       display: none;
+      width: 4rem;
+      height: 4rem;
+      border: none;
+      border-radius: 0.1875rem;
+      background: $bg-color-grey;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      i {
+        color: #fff;
+        font-size: 1.6rem;
+      }
     }
 
-    /* Show desktop search from 768px upwards */
-    @media (min-width: 768px) {
-      .mobile-search {
+    /* Telephone icon */
+    .telephone-icon {
+      display: none;
+      font-size: 2rem;
+      color: $bg-color-grey;
+      cursor: pointer;
+
+      &:hover {
+        color: $bg-color-blue;
+      }
+    }
+
+    /* Hamburger */
+    .hamburger {
+      background: $bg-color-footer;
+      border: 1px solid #ddd;
+      border-radius: 0.15rem;
+      width: 5rem;
+      height: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      gap: 0.4rem;
+      transition: background 0.3s ease;
+      flex-shrink: 0; // ✅ never shrinks
+
+      span {
+        display: block;
+        width: 2.2rem;
+        height: 0.25rem;
+        background: #fff;
+      }
+
+      &:hover {
+        background: darken($bg-color-footer, 8%);
+        span {
+          background: #333;
+        }
+      }
+    }
+  }
+}
+
+/* ======================
+   Responsive rules
+   ====================== */
+
+/* <1260px & ≥993px → hide search, show magnifying glass */
+@media (max-width: 1259px) and (min-width: 993px) {
+  .navbar {
+    .navbar-actions {
+      .search-form {
         display: none;
       }
-      .desktop-search {
+      .search-icon-btn {
         display: flex;
       }
     }
+  }
+}
+
+/* <993px & ≥768px → hide buttons + magnifying glass, show full search */
+@media (max-width: 992px) and (min-width: 768px) {
+  .navbar {
+    .navbar-buttons {
+      display: none !important;
+    }
+    .navbar-actions {
+      .search-form {
+        display: flex;
+        flex: 1; // ✅ stretch naturally
+        max-width: 20rem; // optional cap
+        min-width: 12rem; // optional min
+      }
+      .search-icon-btn {
+        display: none;
+      }
+    }
+  }
+}
+
+/* <768px → phone + hamburger, logo larger, new full-width search */
+@media (max-width: 767px) {
+  .navbar {
+    .navbar-buttons {
+      display: none !important;
+    }
+    .navbar-brand img {
+      height: 6rem; /* slightly bigger logo */
+    }
+    .navbar-actions {
+      .search-form {
+        display: none;
+      }
+      .search-icon-btn {
+        display: none;
+      }
+      .telephone-icon {
+        display: block;
+      }
+    }
+  }
+
+  /* New full-width search bar below */
+  .mobile-full-search {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    border-top: 1px solid #ddd;
+
+    form {
+      display: flex;
+      border: 0.5px solid $bg-color-grey;
+      border-radius: 0.1875rem;
+      overflow: hidden;
+      height: 3.5rem;
+
+      input {
+        flex: 1;
+        border: none;
+        padding: 0 1rem;
+        font-size: 1rem;
+        outline: none;
+        min-width: 0;
+      }
+
+      button {
+        background: $bg-color-grey;
+        border: none;
+        width: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+
+        i {
+          color: #fff;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
+
+/* Default: hide mobile full search */
+.mobile-full-search {
+  display: none;
+}
+
+/* ======================
+   Top-nav spacing tweaks
+   ====================== */
+@media (max-width: 992px) {
+  .navbar .top-nav {
+    padding: 0 1rem; // reduce padding so search + hamburger fit
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar .top-nav {
+    padding: 0 0.75rem; // tighter but not flush with edges
   }
 }
