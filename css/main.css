@@ -1510,257 +1510,205 @@ body {
   color: #fff;
 }
 
-/* ======================
-   NAVBAR (Fixed Top)
-   ====================== */
-/* line 4, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* line 13, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  border-bottom: 1px solid #ddd;
-  /* Logo */
-  /* Buttons */
-  /* Search + Hamburger */
-}
-
-/* line 21, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-brand img {
-  height: 40px;
-  max-width: 100%;
-}
-
-/* line 27, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-buttons {
-  display: flex;
-  gap: 15px;
-}
-
-/* line 31, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-buttons .btn {
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  color: #fff;
-}
-
-/* line 40, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-buttons .btn.support-btn {
-  background: #4183d7;
-}
-
-/* line 43, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-buttons .btn.contact-btn {
-  background: #2ecc71;
-}
-
-/* line 47, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-buttons .btn:hover {
-  opacity: 0.85;
-}
-
-/* line 54, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-/* line 59, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-actions .search-form {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  padding: 5px 10px;
-}
-
-/* line 66, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-actions .search-form input {
-  border: none;
-  outline: none;
-  font-size: 0.9rem;
-  padding: 5px;
-}
-
-/* line 73, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-actions .search-form button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #333;
-  font-size: 1rem;
-}
-
-/* line 80, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-actions .search-form button:hover {
-  color: #3498db;
-}
-
-/* line 86, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-actions .hamburger {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #333;
-}
-
-/* line 93, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.navbar .top-nav .navbar-actions .hamburger:hover {
-  color: #3498db;
-}
-
-/* ======================
-   NAVBAR (Services Menu)
-   ====================== */
-/* line 104, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
+/* line 1, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
 .services-menu {
+  width: 100%;
   background: #2c2f38;
-  /* Service-specific colors */
+  border-radius: 0;
+  height: 8rem;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* line 107, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul {
+/* line 8, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner {
+  max-width: 103.375rem;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* line 13, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner ul {
   display: flex;
   justify-content: space-between;
+  align-items: stretch;
   margin: 0;
   padding: 0;
   list-style: none;
+  height: 100%;
 }
 
-/* line 114, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul li {
-  flex: 1;
+/* line 23, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li {
+  width: 10.446rem;
+  height: 8rem;
+  border-radius: 0;
   text-align: center;
   position: relative;
-  /* Full width mega panel */
+  transition: background-color 0.3s ease;
+  flex: 0 0 auto;
+  /* Word styling */
+  /* Mega-panel (dropdown) */
 }
 
-/* line 119, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul li a {
-  display: block;
-  padding: 15px 10px;
-  color: #fff;
+/* line 32, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
+  color: #fff;
+  height: 100%;
+  padding: 1rem 0;
+  text-transform: uppercase;
 }
 
-/* line 127, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul li a i {
-  display: block;
+/* line 43, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li a i {
   font-size: 1.5rem;
-  margin-bottom: 5px;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
 }
 
-/* line 133, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul li a span {
+/* line 51, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li .first-word {
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+/* line 57, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li .second-word {
+  font-size: 1.3rem;
+  font-weight: 400;
   display: block;
-  line-height: 1.2;
+  margin-top: 0.25rem;
+  line-height: 1;
 }
 
-/* line 140, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul li .mega-panel {
+/* line 66, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li .mega-panel {
   position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
-  top: 100%;
   display: none;
-  padding: 40px 60px;
+  padding: 2.5rem 3.75rem;
   color: #fff;
   z-index: 999;
 }
 
-/* line 150, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul li .mega-panel h3 {
-  margin: 0 0 20px;
+/* line 76, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li .mega-panel h3 {
+  margin: 0 0 1.25rem;
   font-size: 1.5rem;
   font-weight: 600;
+  text-transform: uppercase;
 }
 
-/* line 156, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul li .mega-panel .mega-list {
+/* line 83, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li .mega-panel .mega-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(13.75rem, 1fr));
+  gap: 1.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 164, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul li .mega-panel .mega-list li {
+/* line 91, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li .mega-panel .mega-list li {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
   font-size: 1rem;
 }
 
-/* line 170, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul li .mega-panel .mega-list li i {
+/* line 97, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li .mega-panel .mega-list li i {
   font-size: 1.2rem;
 }
 
-/* line 177, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu ul li:hover .mega-panel {
+/* line 104, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner li:hover .mega-panel {
   display: block;
 }
 
-/* line 184, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu li.consultancy .mega-panel {
+/* Icon colors */
+/* line 112, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.consultancy i {
+  color: #4183d7;
+}
+
+/* line 115, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.it-support i {
+  color: #4183d7;
+}
+
+/* line 118, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.digital-marketing i {
+  color: #2ecc71;
+}
+
+/* line 121, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.telecoms-services i {
+  color: #d64541;
+}
+
+/* line 124, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.web-design i {
+  color: #926fb1;
+}
+
+/* line 127, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.cyber-security i {
+  color: #f62459;
+}
+
+/* line 130, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.developer-training i {
+  color: #d66049;
+}
+
+/* Hover background + icon turns white */
+/* line 135, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.consultancy:hover {
   background: #4183d7;
 }
 
-/* line 187, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu li.it-support .mega-panel {
+/* line 138, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.it-support:hover {
   background: #4183d7;
 }
 
-/* line 190, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu li.digital-marketing .mega-panel {
+/* line 141, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.digital-marketing:hover {
   background: #2ecc71;
 }
 
-/* line 193, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu li.telecoms-services .mega-panel {
+/* line 144, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.telecoms-services:hover {
   background: #d64541;
 }
 
-/* line 196, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu li.web-design .mega-panel {
+/* line 147, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.web-design:hover {
   background: #926fb1;
 }
 
-/* line 199, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu li.cyber-security .mega-panel {
+/* line 150, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.cyber-security:hover {
   background: #f62459;
 }
 
-/* line 202, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-.services-menu li.developer-training .mega-panel {
+/* line 153, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li.developer-training:hover {
   background: #d66049;
 }
 
-/* Push content below navbar */
-/* line 208, ../../../Desktop/Netmatters/site-replica/scss/_navbar.scss */
-body {
-  padding-top: 180px;
+/* line 157, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu li:hover i {
+  color: #fff;
 }
 
 /* line 13, ../../../Desktop/Netmatters/site-replica/scss/main.scss */

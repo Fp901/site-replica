@@ -1,0 +1,159 @@
+.services-menu {
+  width: 100%;
+  background: #2c2f38;
+  border-radius: 0;
+  height: 8rem; // increased height (128px)
+  font-family: 'Poppins', sans-serif;
+
+  .services-menu-inner {
+    max-width: 103.375rem; // 1654px
+    margin: 0 auto;
+    padding: 0;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      height: 100%;
+    }
+
+    li {
+      width: 10.446rem; // 167px
+      height: 8rem; // match section height
+      border-radius: 0;
+      text-align: center;
+      position: relative;
+      transition: background-color 0.3s ease;
+      flex: 0 0 auto;
+
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #fff;
+        height: 100%;
+        padding: 1rem 0; // more padding
+        text-transform: uppercase;
+
+        i {
+          font-size: 1.5rem; // slightly bigger to balance
+          margin-bottom: 0.75rem; // more gap below icon
+          transition: color 0.3s ease;
+        }
+      }
+
+      /* Word styling */
+      .first-word {
+        font-size: 0.9rem; // ~16px
+        font-weight: 400;
+        line-height: 1.1;
+      }
+
+      .second-word {
+        font-size: 1.3rem; // ~28px (larger emphasis)
+        font-weight: 400;
+        display: block;
+        margin-top: 0.25rem;
+        line-height: 1;
+      }
+
+      /* Mega-panel (dropdown) */
+      .mega-panel {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        padding: 2.5rem 3.75rem;
+        color: #fff;
+        z-index: 999;
+
+        h3 {
+          margin: 0 0 1.25rem;
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+
+        .mega-list {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(13.75rem, 1fr));
+          gap: 1.25rem;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+
+          li {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            font-size: 1rem;
+
+            i {
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+
+      &:hover .mega-panel {
+        display: block;
+      }
+    }
+  }
+}
+
+/* Icon colors */
+.services-menu li.consultancy i {
+  color: $bg-color-blue;
+}
+.services-menu li.it-support i {
+  color: $bg-color-blue;
+}
+.services-menu li.digital-marketing i {
+  color: $bg-color-green;
+}
+.services-menu li.telecoms-services i {
+  color: $bg-color-red;
+}
+.services-menu li.web-design i {
+  color: $bg-color-purp;
+}
+.services-menu li.cyber-security i {
+  color: $bg-color-pink;
+}
+.services-menu li.developer-training i {
+  color: $bg-color-brown;
+}
+
+/* Hover background + icon turns white */
+.services-menu li.consultancy:hover {
+  background: $bg-color-blue;
+}
+.services-menu li.it-support:hover {
+  background: $bg-color-blue;
+}
+.services-menu li.digital-marketing:hover {
+  background: $bg-color-green;
+}
+.services-menu li.telecoms-services:hover {
+  background: $bg-color-red;
+}
+.services-menu li.web-design:hover {
+  background: $bg-color-purp;
+}
+.services-menu li.cyber-security:hover {
+  background: $bg-color-pink;
+}
+.services-menu li.developer-training:hover {
+  background: $bg-color-brown;
+}
+
+.services-menu li:hover i {
+  color: #fff;
+}
