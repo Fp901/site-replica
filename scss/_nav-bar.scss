@@ -1,0 +1,116 @@
+/* ======================
+   NAVBAR (Top Header)
+   ====================== */
+.navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7.5rem; // 120px
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1100;
+
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 1.5rem;
+  }
+
+  /* Logo */
+  .navbar-brand img {
+    height: 4rem; // 48px
+    width: auto;
+  }
+
+  /* Buttons */
+  /* Buttons */
+  .navbar-buttons {
+    display: flex;
+    gap: 1rem;
+
+    .btn {
+      width: 11rem; // 149.422px
+      height: 4rem; // 56px
+      line-height: 4rem; // vertically center text
+      border-radius: 0.1875rem; // 3px
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      transition: background 0.3s ease;
+      display: inline-block;
+
+      &.support-btn {
+        background: $bg-color-blue;
+      }
+      &.contact-btn {
+        background: $bg-color-grey;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  /* Search + Hamburger */
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .search-form {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+
+      input {
+        border: none;
+        padding: 0.4rem 0.6rem;
+        font-size: 1rem;
+        outline: none;
+      }
+
+      button {
+        background: #f1f1f1;
+        border: none;
+        padding: 0.4rem 0.6rem;
+        cursor: pointer;
+
+        i {
+          color: #333;
+        }
+      }
+    }
+
+    .hamburger {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* Hide desktop search by default (mobile-first) */
+    .desktop-search {
+      display: none;
+    }
+
+    /* Show desktop search from 768px upwards */
+    @media (min-width: 768px) {
+      .mobile-search {
+        display: none;
+      }
+      .desktop-search {
+        display: flex;
+      }
+    }
+  }
+}

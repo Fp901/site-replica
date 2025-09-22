@@ -1,9 +1,11 @@
 .services-menu {
+  position: relative;
   width: 100%;
   background: #2c2f38;
   border-radius: 0;
   height: 8rem; // increased height (128px)
   font-family: 'Poppins', sans-serif;
+  z-index: 1000;
 
   .services-menu-inner {
     max-width: 103.375rem; // 1654px
