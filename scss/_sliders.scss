@@ -1,8 +1,8 @@
 .partners-slideshow {
   width: 100%;
-  background-color: #fff; // white background
+  background-color: #fff;
   padding: 50px 0;
-  overflow: hidden;
+  overflow: hidden; // default (for top slider)
 
   .partners-strip {
     width: 100%;
@@ -12,7 +12,7 @@
 
     .scroll-wrapper {
       width: 100%;
-      overflow: hidden;
+      overflow: visible; // tooltips need this
     }
 
     .logo-track {
@@ -29,6 +29,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
 
       img {
         max-width: 100%;
@@ -52,6 +53,9 @@
    ------------------------- */
 
 /* Top slider (18 logos total) */
+.partners-slideshow:first-of-type {
+  overflow: hidden; // keep tidy
+}
 .partners-slideshow:first-of-type .logo-track {
   animation: step-scroll-top 72s steps(18) infinite;
 }
@@ -66,6 +70,17 @@
 }
 
 /* Bottom slider (28 logos total) */
+.partners-slideshow:last-of-type {
+  overflow: visible !important; // ✅ let tooltips extend outside
+  position: relative;
+  z-index: 3000;
+
+  .partners-strip,
+  .scroll-wrapper,
+  .logo-track {
+    overflow: visible !important; // ensure no clipping
+  }
+}
 .partners-slideshow:last-of-type .logo-track {
   animation: step-scroll-bottom 112s steps(28) infinite;
 }
@@ -76,5 +91,86 @@
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+
+/* -------------------------
+   Bottom Slider Tooltips
+   ------------------------- */
+.partners-slideshow:last-of-type {
+  .logo-item {
+    position: relative;
+
+    .tooltip {
+      position: absolute;
+      bottom: calc(100% + 25px); /* ✅ sits above triangle */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      background: $bg-color-footer; // ✅ tooltip background
+      color: #fff;
+      padding: 1rem;
+      border-radius: 4px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 9999; // topmost
+
+      h4 {
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      p {
+        margin: 0 0 0.75rem;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: #fff;
+      }
+
+      .btn {
+        display: inline-block;
+        margin-top: 0.5rem;
+        padding: 0.4rem 0.8rem;
+        background: $bg-color-gold; // ✅ gold button
+        color: #000; // contrast against gold
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 3px;
+        transition: background 0.3s ease, color 0.3s ease;
+
+        &:hover {
+          background: darken($bg-color-gold, 10%);
+          color: #fff;
+        }
+      }
+    }
+
+    .triangle {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-top: 25px solid $bg-color-footer; // ✅ matches tooltip bg
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 9998;
+    }
+
+    /* Hover state */
+    &:hover .tooltip,
+    &:hover .triangle {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
