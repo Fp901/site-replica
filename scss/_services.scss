@@ -65,6 +65,12 @@
   grid-template-columns: 1fr;
   gap: 40px;
   align-items: stretch; /* equal row heights */
+
+  /* ✅ Mobile spacing fix */
+  @media (max-width: 991px) {
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
 }
 
 .top-row {
