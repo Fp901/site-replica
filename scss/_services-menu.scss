@@ -3,34 +3,33 @@
   width: 100%;
   background: #2c2f38;
   border-radius: 0;
-  height: 8rem; // section height
+  height: 8rem;
   font-family: 'Poppins', sans-serif;
   z-index: 1000;
 
   .services-menu-inner {
-    max-width: 103.375rem; // 1654px
+    max-width: 103.375rem;
     margin: 0 auto;
     padding: 0;
 
     ul {
       display: flex;
-      flex-wrap: nowrap; // ✅ keep all items on one line
+      flex-wrap: nowrap;
       justify-content: space-between;
       align-items: stretch;
       margin: 0;
       padding: 0;
       list-style: none;
       height: 100%;
-      overflow: hidden; // ✅ stop overflow issues
+      overflow: visible; // ✅ allow dropdowns
     }
 
     li {
-      flex: 1 1 auto; // ✅ items grow/shrink evenly
-      min-width: 0; // ✅ allow shrinking below intrinsic width
-      height: 8rem; // match section height
-      border-radius: 0;
+      flex: 1 1 auto;
+      min-width: 0;
+      height: 8rem;
       text-align: center;
-      position: relative;
+      position: static; // ✅ mega-panel aligns to whole menu
       transition: background-color 0.3s ease;
 
       a {
@@ -51,7 +50,6 @@
         }
       }
 
-      /* Word styling */
       .first-word {
         font-size: 0.9rem;
         font-weight: 400;
@@ -66,52 +64,68 @@
         line-height: 1;
       }
 
-      /* Mega-panel (dropdown) */
+      /* Mega-panel */
       .mega-panel {
         position: absolute;
         top: 100%;
         left: 0;
-        right: 0;
-        display: none;
-        padding: 2.5rem 3.75rem;
+        width: 100%;
         color: #fff;
-        z-index: 999;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
 
-        h3 {
-          margin: 0 0 1.25rem;
-          font-size: 1.5rem;
-          font-weight: 600;
-          text-transform: uppercase;
-        }
+        .mega-panel-inner {
+          max-width: 103.375rem;
+          margin: 0 auto;
+          padding: 0.5rem 1.5rem; // ⬅️ minimal padding
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
 
-        .mega-list {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(13.75rem, 1fr));
-          gap: 1.25rem;
-          list-style: none;
-          margin: 0;
-          padding: 0;
+          h3 {
+            margin: 0 0 0.2rem; // ⬅️ almost no gap under heading
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: left;
+          }
 
-          li {
-            display: flex;
-            align-items: center;
-            gap: 0.625rem;
-            font-size: 1rem;
+          .mega-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.25rem 0.5rem; // ⬅️ tiny gaps rows/columns
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
 
-            i {
-              font-size: 1.2rem;
+            li {
+              display: flex;
+              align-items: center;
+              gap: 0.25rem; // ⬅️ icon close to text
+              font-size: 0.9rem;
+              line-height: 1.1; // ⬅️ very compact
+              margin: 0; // ⬅️ no extra margin
+              padding: 0; // ⬅️ no extra padding
+
+              i {
+                font-size: 0.95rem;
+              }
             }
           }
         }
       }
 
-      &:hover .mega-panel {
-        display: block;
+      &:hover .mega-panel,
+      .mega-panel:hover {
+        opacity: 1;
+        visibility: visible;
       }
     }
   }
 
-  /* Hide the entire services menu below 993px */
   @media (max-width: 992px) {
     display: none;
   }
@@ -142,7 +156,7 @@
 
 /* Hover background + icon turns white */
 .services-menu li.consultancy:hover {
-  background: $bg-color-blue;
+  background: $bg-color-grey;
 }
 .services-menu li.it-support:hover {
   background: $bg-color-blue;
@@ -165,4 +179,27 @@
 
 .services-menu li:hover i {
   color: #fff;
+}
+
+/* Mega-panel background colors (match hover) */
+.services-menu li.consultancy .mega-panel {
+  background: $bg-color-grey;
+}
+.services-menu li.it-support .mega-panel {
+  background: $bg-color-blue;
+}
+.services-menu li.digital-marketing .mega-panel {
+  background: $bg-color-green;
+}
+.services-menu li.telecoms-services .mega-panel {
+  background: $bg-color-red;
+}
+.services-menu li.web-design .mega-panel {
+  background: $bg-color-purp;
+}
+.services-menu li.cyber-security .mega-panel {
+  background: $bg-color-pink;
+}
+.services-menu li.developer-training .mega-panel {
+  background: $bg-color-brown;
 }

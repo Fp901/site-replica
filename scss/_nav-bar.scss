@@ -213,14 +213,14 @@
   }
 }
 
-/* <768px → phone + hamburger, logo larger, new full-width search */
+/* <768px → phone + hamburger, logo smaller, new full-width search */
 @media (max-width: 767px) {
   .navbar {
     .navbar-buttons {
       display: none !important;
     }
     .navbar-brand img {
-      height: 6rem; /* slightly bigger logo */
+      height: 3.5rem; /* ✅ reduced logo size for mobile */
     }
     .navbar-actions {
       .search-form {
