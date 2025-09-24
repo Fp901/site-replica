@@ -217,51 +217,58 @@ body {
   }
 }
 
-/* line 111, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 112, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-social .icon-btn, .footer .footer-row .footer-menu .footer-social .icon-btn:hover, .footer .footer-row .footer-menu .footer-social .icon-btn:focus, .footer .footer-row .footer-menu .footer-social .icon-btn:active, .footer .footer-row .footer-menu .footer-social .icon-btn:visited {
+  text-decoration: none !important;
+  color: #fff !important;
+  outline: none;
+}
+
+/* line 122, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-row .footer-menu .footer-social .icon-btn i.icon {
   font-size: 2.5rem;
   color: #ffffff !important;
 }
 
 @media (min-width: 1200px) {
-  /* line 111, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  /* line 122, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
   .footer .footer-row .footer-menu .footer-social .icon-btn i.icon {
     font-size: 2.1875rem;
   }
 }
 
-/* line 120, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 131, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-row .footer-menu .footer-social .icon-btn:hover {
   background-color: #003087;
 }
 
-/* line 123, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 134, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-row .footer-menu .footer-social .icon-btn:hover:has(i.icon-facebook2) {
   background-color: #3b5998;
 }
 
-/* line 126, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 137, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-row .footer-menu .footer-social .icon-btn:hover:has(i.icon-linkedin) {
   background-color: #0077b5;
 }
 
-/* line 129, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 140, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-row .footer-menu .footer-social .icon-btn:hover:has(i.icon-x) {
   background-color: #000;
 }
 
-/* line 132, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 143, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-row .footer-menu .footer-social .icon-btn:hover:has(i.icon-instagram) {
   background-color: #d93175;
 }
 
-/* line 140, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 151, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-bottom {
   position: relative;
   background-color: #212330;
 }
 
-/* line 144, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 155, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-bottom::before {
   content: '';
   position: absolute;
@@ -270,7 +277,7 @@ body {
   z-index: -1;
 }
 
-/* line 152, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 163, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-bottom .footer-bottom-content {
   max-width: 87.5rem;
   margin: 0 auto;
@@ -280,27 +287,27 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* line 152, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  /* line 163, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
   .footer .footer-bottom .footer-bottom-content {
     font-size: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
-  /* line 152, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+  /* line 163, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
   .footer .footer-bottom .footer-bottom-content {
     font-size: 0.75rem;
     line-height: 1.4;
   }
 }
 
-/* line 168, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 179, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-bottom .footer-bottom-content a {
   color: #fff;
   text-decoration: none;
 }
 
-/* line 171, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 182, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-bottom .footer-bottom-content a:hover {
   text-decoration: underline;
 }
