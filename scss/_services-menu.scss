@@ -147,10 +147,10 @@
                     flex-shrink: 0;
                   }
 
-                  &:hover {
+                  /* ✅ underline only the text, never the icon */
+                  &:hover span {
                     text-decoration: underline;
                   }
-
                   &:hover i {
                     text-decoration: none;
                   }

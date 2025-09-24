@@ -176,6 +176,8 @@ body {
   /* Specific override for LinkedIn icon */
   /* Ultra-specific rule for LinkedIn */
   /* Target SVG elements */
+  /* Default hover fallback */
+  /* --- Brand hover overrides (no HTML changes) --- */
 }
 
 @media (min-width: 768px) {
@@ -233,7 +235,7 @@ body {
 .footer .footer-row .footer-menu .footer-social .icon-btn i.icon-linkedin,
 .footer .footer-row .footer-menu .footer-social .icon-btn i.fa-linkedin,
 .footer .footer-row .footer-menu .footer-social .icon-btn i.fa-linkedin-in,
-.footer .footer-row .footer-menu .footer-social .icon-btn i[class*="linkedin"] {
+.footer .footer-row .footer-menu .footer-social .icon-btn i[class*='linkedin'] {
   color: #ffffff !important;
   fill: #ffffff !important;
 }
@@ -242,7 +244,7 @@ body {
 .footer .footer-row .footer-menu .footer-social .icon-btn i.icon-linkedin:before,
 .footer .footer-row .footer-menu .footer-social .icon-btn i.fa-linkedin:before,
 .footer .footer-row .footer-menu .footer-social .icon-btn i.fa-linkedin-in:before,
-.footer .footer-row .footer-menu .footer-social .icon-btn i[class*="linkedin"]:before {
+.footer .footer-row .footer-menu .footer-social .icon-btn i[class*='linkedin']:before {
   color: #ffffff !important;
   fill: #ffffff !important;
 }
@@ -251,7 +253,7 @@ body {
 .footer .footer-row .footer-menu .footer-social .icon-btn.icon-btn i.icon.icon-linkedin,
 .footer .footer-row .footer-menu .footer-social .icon-btn.icon-btn i.fa-linkedin,
 .footer .footer-row .footer-menu .footer-social .icon-btn.icon-btn i.fa-linkedin-in,
-.footer .footer-row .footer-menu .footer-social .icon-btn.icon-btn i[class*="linkedin"] {
+.footer .footer-row .footer-menu .footer-social .icon-btn.icon-btn i[class*='linkedin'] {
   color: #ffffff !important;
   fill: #ffffff !important;
 }
@@ -260,7 +262,7 @@ body {
 .footer .footer-row .footer-menu .footer-social .icon-btn.icon-btn i.icon.icon-linkedin:before,
 .footer .footer-row .footer-menu .footer-social .icon-btn.icon-btn i.fa-linkedin:before,
 .footer .footer-row .footer-menu .footer-social .icon-btn.icon-btn i.fa-linkedin-in:before,
-.footer .footer-row .footer-menu .footer-social .icon-btn.icon-btn i[class*="linkedin"]:before {
+.footer .footer-row .footer-menu .footer-social .icon-btn.icon-btn i[class*='linkedin']:before {
   color: #ffffff !important;
   fill: #ffffff !important;
 }
@@ -272,9 +274,29 @@ body {
   fill: #ffffff !important;
 }
 
-/* line 162, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 163, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-row .footer-menu .footer-social .icon-btn:hover {
   background-color: #003087;
+}
+
+/* line 168, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-social .icon-btn:hover:has(i.icon-facebook2) {
+  background-color: #3b5998;
+}
+
+/* line 171, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-social .icon-btn:hover:has(i.icon-linkedin) {
+  background-color: #0077b5;
+}
+
+/* line 174, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-social .icon-btn:hover:has(i.icon-x) {
+  background-color: #000000;
+}
+
+/* line 177, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-row .footer-menu .footer-social .icon-btn:hover:has(i.icon-instagram) {
+  background-color: #d93175;
 }
 
 @media (min-width: 992px) {
@@ -284,7 +306,7 @@ body {
   }
 }
 
-/* line 174, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 189, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-bottom {
   background-color: #212330;
   width: 100vw;
@@ -293,12 +315,23 @@ body {
   margin-left: -50vw;
 }
 
-/* line 181, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+/* line 196, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
 .footer .footer-bottom .footer-bottom-content {
   max-width: 1400px;
   margin: 0 auto;
   padding: 1rem 15px;
   text-align: left;
+}
+
+/* line 202, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-bottom .footer-bottom-content a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* line 206, ../../../Desktop/Netmatters/site-replica/scss/_footer.scss */
+.footer .footer-bottom .footer-bottom-content a:hover {
+  text-decoration: underline;
 }
 
 @use 'base' as *;
@@ -616,11 +649,11 @@ body {
 .banner .banner-slide .container h1 {
   font-family: 'Poppins', sans-serif;
   font-size: 64px;
-  line-height: 80px;
-  font-weight: 400;
+  line-height: 100px;
+  font-weight: 500px;
   letter-spacing: 0.4px;
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 @media (max-width: 991px) {
@@ -636,10 +669,10 @@ body {
 .banner .banner-slide .container p {
   font-family: 'Poppins', sans-serif;
   font-size: 1.7rem;
-  font-weight: 400;
+  font-weight: 500;
   color: #ffffff;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
+  margin-bottom: 2rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 991px) {
@@ -663,12 +696,13 @@ body {
   font-size: clamp(16px, 2vw, 20px);
   font-weight: 500;
   text-align: center;
+  text-transform: uppercase;
   transition: background-color 0.3s ease;
 }
 
-/* line 96, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+/* line 97, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
 .banner .banner-slide .container .btn:hover {
-  background-color: #0055b3;
+  background-color: #b70834;
 }
 
 @media (max-width: 991px) {
@@ -686,7 +720,7 @@ body {
   }
 }
 
-/* line 112, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+/* line 116, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
 .banner .banner-slide .owl-dots {
   position: absolute;
   bottom: 51px;
@@ -698,7 +732,7 @@ body {
   z-index: 3;
 }
 
-/* line 123, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+/* line 127, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
 .banner .banner-slide .owl-dots .owl-dot span {
   display: block;
   width: 15px;
@@ -709,19 +743,19 @@ body {
   border: 2px solid transparent;
 }
 
-/* line 132, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+/* line 136, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
 .banner .banner-slide .owl-dots .owl-dot span.active {
   background-color: #fff;
   border: 2px solid #869791;
 }
 
 @media (max-width: 768px) {
-  /* line 112, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  /* line 116, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
   .banner .banner-slide .owl-dots {
     bottom: 20px;
     gap: 6px;
   }
-  /* line 143, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  /* line 147, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
   .banner .banner-slide .owl-dots .owl-dot span {
     width: 10px;
     height: 10px;
@@ -729,12 +763,12 @@ body {
 }
 
 @media (max-width: 480px) {
-  /* line 112, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  /* line 116, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
   .banner .banner-slide .owl-dots {
     bottom: 20px;
     gap: 4px;
   }
-  /* line 153, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
+  /* line 157, ../../../Desktop/Netmatters/site-replica/scss/_banner.scss */
   .banner .banner-slide .owl-dots .owl-dot span {
     width: 8px;
     height: 8px;
@@ -1785,6 +1819,7 @@ body {
   padding: 0;
   color: #fff;
   text-decoration: none;
+  /* ✅ underline only the text, never the icon */
 }
 
 /* line 145, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
@@ -1793,8 +1828,8 @@ body {
   flex-shrink: 0;
 }
 
-/* line 150, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
-.services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a:hover {
+/* line 151, ../../../Desktop/Netmatters/site-replica/scss/_services-menu.scss */
+.services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a:hover span {
   text-decoration: underline;
 }
 

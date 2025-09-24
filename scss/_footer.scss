@@ -128,7 +128,7 @@
           i.icon-linkedin,
           i.fa-linkedin,
           i.fa-linkedin-in,
-          i[class*="linkedin"] {
+          i[class*='linkedin'] {
             color: #ffffff !important;
             fill: #ffffff !important;
 
@@ -142,7 +142,7 @@
           &.icon-btn i.icon.icon-linkedin,
           &.icon-btn i.fa-linkedin,
           &.icon-btn i.fa-linkedin-in,
-          &.icon-btn i[class*="linkedin"] {
+          &.icon-btn i[class*='linkedin'] {
             color: #ffffff !important;
             fill: #ffffff !important;
 
@@ -159,8 +159,23 @@
             fill: #ffffff !important;
           }
 
+          /* Default hover fallback */
           &:hover {
             background-color: #003087;
+          }
+
+          /* --- Brand hover overrides (no HTML changes) --- */
+          &:hover:has(i.icon-facebook2) {
+            background-color: #3b5998;
+          }
+          &:hover:has(i.icon-linkedin) {
+            background-color: #0077b5;
+          }
+          &:hover:has(i.icon-x) {
+            background-color: #000000;
+          }
+          &:hover:has(i.icon-instagram) {
+            background-color: #d93175;
           }
         }
       }
@@ -183,6 +198,15 @@
       margin: 0 auto;
       padding: 1rem 15px;
       text-align: left;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
