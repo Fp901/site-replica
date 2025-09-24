@@ -1,17 +1,17 @@
 .footer {
   background-color: $bg-color-footer;
   color: #fff;
-  padding: 30px 0 0;
+  padding: 1.875rem 0 0;
   position: relative;
 
   .footer-row {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 1.25rem;
 
     .footer-menu {
-      margin-bottom: 30px;
-      padding: 0 10px;
+      margin-bottom: 1.875rem;
+      padding: 0 0.625rem;
 
       &:first-child {
         margin-right: 2rem;
@@ -30,7 +30,7 @@
         text-transform: uppercase;
         font-weight: 500;
         font-size: 1rem;
-        margin-bottom: 30px;
+        margin-bottom: 1.875rem;
       }
 
       ul {
@@ -53,47 +53,47 @@
 
       .footer-logo {
         img {
-          max-width: 400px;
+          max-width: 25rem;
           width: 100%;
           height: auto;
           margin-bottom: 1rem;
 
           @media (max-width: 768px) {
-            width: 250px; // smaller version for tablets/mobiles
+            width: 15.625rem;
           }
         }
       }
 
       .footer-social {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+        gap: 1.25rem;
         justify-items: center;
-        margin: 1rem 0;
+        margin: 1.25rem 0;
+
+        @media (max-width: 400px) {
+          grid-template-columns: repeat(2, 1fr); // ✅ 2 columns on tiny screens
+          gap: 1rem;
+        }
 
         @media (min-width: 768px) {
           grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
         }
 
         .icon-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100px;
-          height: 100px;
+          @include square-btn-footer(6rem);
           background-color: #212330;
-          border-radius: 8px;
+          border-radius: 0.25rem;
           transition: all 0.3s ease;
           text-decoration: none !important;
 
           @media (min-width: 768px) {
-            width: 90px;
-            height: 90px;
+            @include square-btn-footer(5.625rem);
           }
 
           @media (min-width: 1200px) {
-            width: 80px;
-            height: 80px;
+            @include square-btn-footer(5rem);
           }
 
           &:hover,
@@ -105,26 +105,24 @@
           }
 
           i.icon {
-            font-size: 45px;
+            font-size: 2.5rem;
             color: #ffffff !important;
-            fill: #ffffff !important; /* For SVG icons */
+            fill: #ffffff !important;
 
             @media (min-width: 768px) {
-              font-size: 40px;
+              font-size: 2.5rem;
             }
 
             @media (min-width: 1200px) {
-              font-size: 35px;
+              font-size: 2.1875rem;
             }
 
-            /* Target :before pseudo-element for icon libraries */
             &:before {
               color: #ffffff !important;
               fill: #ffffff !important;
             }
           }
 
-          /* Specific override for LinkedIn icon */
           i.icon-linkedin,
           i.fa-linkedin,
           i.fa-linkedin-in,
@@ -138,7 +136,6 @@
             }
           }
 
-          /* Ultra-specific rule for LinkedIn */
           &.icon-btn i.icon.icon-linkedin,
           &.icon-btn i.fa-linkedin,
           &.icon-btn i.fa-linkedin-in,
@@ -152,19 +149,16 @@
             }
           }
 
-          /* Target SVG elements */
           svg,
           svg path,
           svg * {
             fill: #ffffff !important;
           }
 
-          /* Default hover fallback */
           &:hover {
             background-color: #003087;
           }
 
-          /* --- Brand hover overrides (no HTML changes) --- */
           &:hover:has(i.icon-facebook2) {
             background-color: #3b5998;
           }
@@ -187,16 +181,24 @@
   }
 
   .footer-bottom {
-    background-color: $bg-color-footer-dark;
-    width: 100vw;
     position: relative;
-    left: 50%;
-    margin-left: -50vw;
+    background-color: $bg-color-footer-dark;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $bg-color-footer-dark;
+      z-index: -1;
+    }
 
     .footer-bottom-content {
-      max-width: 1400px;
+      max-width: 87.5rem;
       margin: 0 auto;
-      padding: 1rem 15px;
+      padding: 1rem 0.9375rem;
       text-align: left;
 
       a {
