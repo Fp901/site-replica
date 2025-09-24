@@ -6,24 +6,43 @@
 
   .footer-row {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; // default mobile single col
     gap: 1.25rem;
+
+    // ✅ Tablets: 2 columns, logo spans full width
+    @media (min-width: 768px) and (max-width: 991px) {
+      grid-template-columns: repeat(2, 1fr);
+
+      .footer-menu:first-child {
+        grid-column: 1 / -1; // spans both columns
+        text-align: left;
+        margin-bottom: 5rem;
+
+        .footer-social {
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    // ✅ Small desktops: 4 columns, logo on top
+    @media (min-width: 992px) and (max-width: 1199px) {
+      grid-template-columns: repeat(4, 1fr);
+
+      .footer-menu:first-child {
+        grid-column: 1 / -1; // logo still full width on its own
+        margin-bottom: 3rem;
+      }
+    }
+
+    // ✅ Large desktops: 5 columns
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5rem;
+    }
 
     .footer-menu {
       margin-bottom: 1.875rem;
       padding: 0 0.625rem;
-
-      &:first-child {
-        margin-right: 2rem;
-
-        @media (min-width: 768px) {
-          margin-right: 3rem;
-        }
-
-        @media (min-width: 992px) {
-          margin-right: 4rem;
-        }
-      }
 
       h3,
       h4 {
@@ -51,34 +70,28 @@
         }
       }
 
-      .footer-logo {
-        img {
-          max-width: 25rem;
-          width: 100%;
-          height: auto;
-          margin-bottom: 1rem;
+      .footer-logo img {
+        max-width: 25rem;
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
 
-          @media (max-width: 768px) {
-            width: 15.625rem;
-          }
+        @media (max-width: 768px) {
+          width: 15.625rem;
         }
       }
 
       .footer-social {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
-        gap: 1.25rem;
-        justify-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
         margin: 1.25rem 0;
 
-        @media (max-width: 400px) {
-          grid-template-columns: repeat(2, 1fr); // ✅ 2 columns on tiny screens
-          gap: 1rem;
-        }
-
         @media (min-width: 768px) {
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
+          flex-wrap: nowrap; // always in a row on larger screens
+          justify-content: flex-start;
+          gap: 0.75rem;
         }
 
         .icon-btn {
@@ -86,7 +99,6 @@
           background-color: #212330;
           border-radius: 0.25rem;
           transition: all 0.3s ease;
-          text-decoration: none !important;
 
           @media (min-width: 768px) {
             @include square-btn-footer(5.625rem);
@@ -96,69 +108,18 @@
             @include square-btn-footer(5rem);
           }
 
-          &:hover,
-          &:visited,
-          &:active,
-          &:focus {
-            text-decoration: none !important;
-            outline: none;
-          }
-
           i.icon {
             font-size: 2.5rem;
             color: #ffffff !important;
-            fill: #ffffff !important;
-
-            @media (min-width: 768px) {
-              font-size: 2.5rem;
-            }
 
             @media (min-width: 1200px) {
               font-size: 2.1875rem;
             }
-
-            &:before {
-              color: #ffffff !important;
-              fill: #ffffff !important;
-            }
-          }
-
-          i.icon-linkedin,
-          i.fa-linkedin,
-          i.fa-linkedin-in,
-          i[class*='linkedin'] {
-            color: #ffffff !important;
-            fill: #ffffff !important;
-
-            &:before {
-              color: #ffffff !important;
-              fill: #ffffff !important;
-            }
-          }
-
-          &.icon-btn i.icon.icon-linkedin,
-          &.icon-btn i.fa-linkedin,
-          &.icon-btn i.fa-linkedin-in,
-          &.icon-btn i[class*='linkedin'] {
-            color: #ffffff !important;
-            fill: #ffffff !important;
-
-            &:before {
-              color: #ffffff !important;
-              fill: #ffffff !important;
-            }
-          }
-
-          svg,
-          svg path,
-          svg * {
-            fill: #ffffff !important;
           }
 
           &:hover {
             background-color: #003087;
           }
-
           &:hover:has(i.icon-facebook2) {
             background-color: #3b5998;
           }
@@ -166,17 +127,13 @@
             background-color: #0077b5;
           }
           &:hover:has(i.icon-x) {
-            background-color: #000000;
+            background-color: #000;
           }
           &:hover:has(i.icon-instagram) {
             background-color: #d93175;
           }
         }
       }
-    }
-
-    @media (min-width: 992px) {
-      grid-template-columns: repeat(5, 1fr);
     }
   }
 
@@ -187,10 +144,7 @@
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background-color: $bg-color-footer-dark;
       z-index: -1;
     }
@@ -200,11 +154,20 @@
       margin: 0 auto;
       padding: 1rem 0.9375rem;
       text-align: left;
+      font-size: 0.95rem;
+
+      @media (max-width: 768px) {
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 0.75rem;
+        line-height: 1.4;
+      }
 
       a {
         color: #fff;
         text-decoration: none;
-
         &:hover {
           text-decoration: underline;
         }
