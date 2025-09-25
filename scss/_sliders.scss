@@ -82,7 +82,7 @@
 
     .tooltip {
       position: absolute;
-      bottom: calc(100% + 20px); // ✅ sits above triangle
+      bottom: calc(100% + 25px); // ✅ sits above triangle
       left: 50%;
       transform: translateX(-50%);
       width: 280px;
@@ -136,9 +136,9 @@
       transform: translateX(-50%);
       width: 0;
       height: 0;
-      border-left: 15px solid transparent;
-      border-right: 15px solid transparent;
-      border-top: 15px solid $bg-color-footer; // ✅ matches tooltip bg
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-top: 40px solid $bg-color-footer; // ✅ matches tooltip bg
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s ease;
