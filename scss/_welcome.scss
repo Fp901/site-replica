@@ -31,14 +31,26 @@
           h2,
           h3,
           h4 {
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: 600;
             margin-bottom: 26px;
             line-height: 1.2;
           }
 
+          .welcome-intro {
+            font-size: 1.1rem;
+            color: #fff;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+
+            @media (max-width: 767px) {
+              font-size: 1.1rem;
+            }
+          }
+
           p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #fff;
             line-height: 2;
             margin-bottom: 1.2rem;
@@ -162,6 +174,7 @@
               color: #fff;
               text-align: left;
               margin-bottom: 0.5rem;
+              line-height: 1.8;
             }
 
             .author {
