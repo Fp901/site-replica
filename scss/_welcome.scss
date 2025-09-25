@@ -73,6 +73,7 @@
               box-sizing: border-box;
               transition: all 0.3s ease;
               box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+              white-space: nowrap; /* Prevent text and icon from wrapping */
 
               &:hover {
                 filter: brightness(0.9);
@@ -83,11 +84,18 @@
                 font-size: 16px;
                 line-height: 28px;
                 padding: 0.5rem 1rem;
+                i.icon {
+                  font-size: 1em; /* Smaller icon to fit */
+                }
               }
 
               @media (min-width: 481px) and (max-width: 767px) {
                 font-size: 18px;
                 line-height: 32px;
+                padding: 0.5rem 1.2rem; /* Slightly more horizontal padding */
+                i.icon {
+                  font-size: 1.1em; /* Adjust icon size */
+                }
               }
 
               i.icon {

@@ -30,7 +30,7 @@
     margin-right: 1rem;
 
     img {
-      @include responsive-logo(5rem, 4.2rem, 3.2rem, 2.2rem);
+      @include responsive-logo(4.3rem, 4rem, 2.5rem, 2.5rem);
       width: auto;
       transition: all 0.3s ease;
     }
@@ -192,7 +192,7 @@
    Responsive rules
    ====================== */
 
-@media (max-width: 1365px) and (min-width: 993px) {
+@media (max-width: 1262px) and (min-width: 993px) {
   .navbar .navbar-actions {
     .search-form {
       display: none;
@@ -203,7 +203,7 @@
   }
 }
 
-@media (max-width: 1120px) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px) {
   .navbar {
     .navbar-buttons {
       display: none !important;
@@ -212,8 +212,8 @@
       .search-form {
         display: flex;
         flex: 1;
-        max-width: 20rem;
-        min-width: 12rem;
+        max-width: 18rem;
+        min-width: 10rem;
       }
       .search-icon-btn {
         display: none;
@@ -223,7 +223,7 @@
 }
 
 /* <892px → mobile full search */
-@media (max-width: 892px) {
+@media (max-width: 767px) {
   .navbar {
     .navbar-buttons {
       display: none !important;
@@ -238,6 +238,22 @@
       .telephone-icon {
         display: block;
         color: $bg-color-footer;
+        @include square-btn-nav(2rem); /* Smaller phone icon to save space */
+        flex-shrink: 0;
+      }
+      margin-left: 0; /* Remove auto margin to let flex handle spacing */
+      justify-content: flex-end; /* Push hamburger to the far right */
+      gap: 0.5rem; /* Reduce gaps */
+      .hamburger {
+        flex-shrink: 0; /* Prevent shrinking */
+        margin-left: auto; /* Force to the right */
+      }
+    }
+    .top-nav {
+      justify-content: space-between; /* Logo left, actions right */
+      padding: 0 0.5rem; /* Tighter padding for narrow screens */
+      .navbar-brand {
+        flex-shrink: 0; /* Keep logo fixed */
       }
     }
   }
