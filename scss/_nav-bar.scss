@@ -8,7 +8,7 @@
   background: #fff;
   border-bottom: 1px solid #ddd;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1100;
+  z-index: 1300;
 
   .top-nav {
     max-width: 1400px;
@@ -41,10 +41,9 @@
     display: flex;
     gap: 1rem;
 
-    // ✅ Move buttons towards the right (closer to search bar) on large screens
     @media (min-width: 1120px) {
       margin-left: auto;
-      margin-right: 1rem; // keeps some spacing before search
+      margin-right: 1rem;
     }
 
     .btn {
@@ -157,41 +156,76 @@
       }
     }
 
+    /* ============================
+       FIXED CENTERED HAMBURGER/X ICON
+       ============================ */
     .hamburger {
       background: $bg-color-footer;
       border: 1px solid #ddd;
       border-radius: 0.15rem;
-      @include rectangle-btn(4rem, 4rem); // ✅ same height as search
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @include rectangle-btn(4rem, 4rem);
+      position: relative; /* anchor for absolute spans */
+      display: inline-block;
       cursor: pointer;
-      gap: 0.4rem;
-      transition: background 0.3s ease;
       flex-shrink: 0;
+      transition: background 0.3s ease;
+      z-index: 13002;
 
+      /* bars */
       span {
-        display: block;
-        width: 2rem;
-        height: 0.25rem;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 22px;
+        height: 3px;
+        margin-left: -11px;
+        margin-top: -1.5px;
         background: #fff;
+        border-radius: 2px;
+        transition: transform 0.28s ease, opacity 0.2s ease,
+          background 0.2s ease;
+        transform-origin: center;
+      }
+
+      span:nth-child(1) {
+        transform: translateY(-8px);
+      }
+      span:nth-child(2) {
+        transform: translateY(0);
+      }
+      span:nth-child(3) {
+        transform: translateY(8px);
       }
 
       &:hover {
         background: darken($bg-color-footer, 8%);
-        span {
-          background: #333;
-        }
+      }
+      &:hover span {
+        background: #333;
+      }
+
+      /* active state → X */
+      &.active span:nth-child(1) {
+        transform: rotate(45deg);
+      }
+      &.active span:nth-child(2) {
+        opacity: 0;
+      }
+      &.active span:nth-child(3) {
+        transform: rotate(-45deg);
       }
     }
   }
 }
 
+/* Keep white bars when menu is open */
+body.menu-open .navbar .hamburger span {
+  background: #fff;
+}
+
 /* ======================
    Responsive rules
    ====================== */
-
 @media (max-width: 1262px) and (min-width: 993px) {
   .navbar .navbar-actions {
     .search-form {
@@ -238,22 +272,22 @@
       .telephone-icon {
         display: block;
         color: $bg-color-footer;
-        @include square-btn-nav(2rem); /* Smaller phone icon to save space */
+        @include square-btn-nav(2rem);
         flex-shrink: 0;
       }
-      margin-left: 0; /* Remove auto margin to let flex handle spacing */
-      justify-content: flex-end; /* Push hamburger to the far right */
-      gap: 0.5rem; /* Reduce gaps */
+      margin-left: 0;
+      justify-content: flex-end;
+      gap: 0.5rem;
       .hamburger {
-        flex-shrink: 0; /* Prevent shrinking */
-        margin-left: auto; /* Force to the right */
+        flex-shrink: 0;
+        margin-left: auto;
       }
     }
     .top-nav {
-      justify-content: space-between; /* Logo left, actions right */
-      padding: 0 0.5rem; /* Tighter padding for narrow screens */
+      justify-content: space-between;
+      padding: 0 0.5rem;
       .navbar-brand {
-        flex-shrink: 0; /* Keep logo fixed */
+        flex-shrink: 0;
       }
     }
   }

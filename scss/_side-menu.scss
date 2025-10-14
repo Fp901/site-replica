@@ -1,0 +1,180 @@
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: 0; // ✅ keep it anchored to the right edge
+  width: clamp(280px, 30%, 400px);
+  height: 100vh;
+  background: $bg-color-footer-dark; // keep your existing colour
+  color: #fff;
+  z-index: 12000; // ✅ slightly higher to stay above everything
+  transform: translateX(100%); // ✅ hidden off-screen initially
+  transition: transform 0.4s ease-in-out; // ✅ smooth slide animation
+  overflow-y: auto; // ✅ allows internal scroll
+  overflow-x: hidden;
+  border-left: 1px solid darken($bg-color-footer-dark, 8%);
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.4);
+
+  &.open {
+    transform: translateX(0); // ✅ slides in instead of changing layout
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .side-menu-inner {
+    padding-top: 1rem; // ✅ replaced large margin with compact spacing
+
+    .side-menu-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      .menu-section {
+        border: 1px solid darken($bg-color-footer-dark, 8%);
+        margin-bottom: 1rem;
+
+        h3 {
+          background: $bg-color-footer;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          color: #fff;
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin: 0;
+          padding: 1rem 1.25rem;
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          border-bottom: 1px solid darken($bg-color-footer-dark, 10%);
+          transition: background-color 0.25s ease;
+
+          i {
+            color: #fff;
+            font-size: 1.1rem;
+          }
+
+          &:hover {
+            background-color: lighten($bg-color-footer, 6%);
+            cursor: pointer;
+          }
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          background: $bg-color-footer-dark;
+
+          li {
+            border-top: 1px solid darken($bg-color-footer-dark, 6%);
+            padding: 0.9rem 1.25rem;
+
+            a {
+              position: relative;
+              display: block;
+              color: #ccc;
+              text-decoration: none;
+              font-size: 0.95rem;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              transition: color 0.2s ease;
+              padding-left: 1.25rem; // ✅ spacing for arrows
+
+              &::before {
+                content: '»'; // ✅ double arrow symbol
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #999;
+                font-size: 1rem;
+                transition: color 0.2s ease;
+              }
+
+              &:hover {
+                color: #fff;
+
+                &::before {
+                  color: #fff;
+                }
+              }
+            }
+
+            &:first-child {
+              border-top: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ✅ Keep site scrollable while menu stays fixed */
+body.no-scroll {
+  overflow-y: auto !important;
+}
+
+/* ✅ Optional: darken background slightly when menu is open */
+.page-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 11000;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Hamburger animation */
+.hamburger span {
+  transition: all 0.3s ease-in-out;
+}
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ============================
+   Site Shell Push Animation
+   ============================ */
+.site-shell {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: transform 0.4s ease-in-out;
+}
+
+body.menu-open .site-shell {
+  transform: translateX(calc(-1 * (clamp(280px, 30%, 400px) * 0.85)));
+}
+
+/* Prevent horizontal scrollbars */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}

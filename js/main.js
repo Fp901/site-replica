@@ -53,11 +53,8 @@ $(function () {
 
   function showSlide(index) {
     const slide = slides[index];
-
-    // hide text
     banner.addClass('hide-text');
 
-    // create sliding image layer
     const nextImage = $('<div class="slide-image"></div>')
       .css(
         'background-image',
@@ -65,10 +62,8 @@ $(function () {
       )
       .appendTo(banner);
 
-    // trigger slide movement (allow layout to attach first)
     setTimeout(() => banner.addClass('is-sliding'), 10);
 
-    // after slide completes
     setTimeout(() => {
       banner
         .removeClass('is-sliding')
@@ -79,7 +74,6 @@ $(function () {
 
       nextImage.remove();
 
-      // update text & button
       $('.banner-slide .container h1').html(slide.title);
       $('.banner-slide .container p').html(slide.text);
       $('.banner-slide .btn').html(
@@ -88,7 +82,6 @@ $(function () {
 
       banner.removeClass('hide-text');
 
-      // update dots (only if they exist)
       if (dots.length) {
         dots.removeClass('active');
         dots.eq(index).addClass('active');
@@ -101,7 +94,6 @@ $(function () {
     showSlide(currentSlide);
   }
 
-  // Manual dot click
   dots.each(function (i) {
     $(this).on('click', function () {
       if (i !== currentSlide) {
@@ -111,45 +103,51 @@ $(function () {
     });
   });
 
-  // init + auto rotate
   showSlide(currentSlide);
   setInterval(nextSlide, 6000);
 
   // ==============================
-  // 2. Side Menu
+  // 2. Side Menu (Right Push Effect)
   // ==============================
-  const sideMenu = $("<nav id='side-menu'></nav>").appendTo('body');
-  sideMenu.html(`
-    <button id="close-side">✕</button>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  `);
+  const $sideMenu = $('.side-menu');
+  const $body = $('body');
+  const $overlay = $('<div class="page-overlay"></div>').appendTo('body');
 
-  $('#close-side').hide();
-
-  $('.hamburger').on('click', function () {
-    sideMenu.addClass('active');
-    $('#close-side').show();
+  // Toggle hamburger
+  $(document).on('click', '.hamburger', function () {
+    $(this).toggleClass('active');
+    if ($(this).hasClass('active')) {
+      openSideMenu();
+    } else {
+      closeSideMenu();
+    }
   });
 
-  $(document).on('click', '#close-side', function () {
-    sideMenu.removeClass('active');
-    $('#close-side').hide();
+  // Open menu
+  function openSideMenu() {
+    $sideMenu.addClass('open');
+    $overlay.addClass('active');
+    $body.addClass('menu-open');
+  }
+
+  // Close menu
+  function closeSideMenu() {
+    $('.hamburger').removeClass('active');
+    $sideMenu.removeClass('open');
+    $overlay.removeClass('active');
+    $body.removeClass('menu-open');
+  }
+
+  // Close when clicking outside or overlay
+  $(document).on('click', function (e) {
+    if ($(e.target).closest('.side-menu, .hamburger').length === 0) {
+      closeSideMenu();
+    }
   });
+  $overlay.on('click', closeSideMenu);
 
   // ==============================
-  // 3. Mobile Menu
-  // ==============================
-  $('.hamburger').on('click', function () {
-    $('.services-menu').slideToggle();
-  });
-
-  // ==============================
-  // 4. Sticky Header
+  // 3. Sticky Header
   // ==============================
   $(window).on('scroll', function () {
     if ($(this).scrollTop() > 50) {
@@ -160,7 +158,7 @@ $(function () {
   });
 
   // ==============================
-  // 5. Cookie Consent Pop-Up
+  // 4. Cookie Consent Pop-Up
   // ==============================
   const cookiePopup = $(`
     <div id="cookie-popup">
