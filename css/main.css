@@ -2378,11 +2378,17 @@ body.no-scroll {
   transition: transform 0.4s ease-in-out;
 }
 
+/* ✅ The key part — shift site by the *exact* width of the side-menu */
 body.menu-open .site-shell {
-  transform: translateX(calc(-1 * (clamp(280px, 30%, 400px) * 0.85)));
+  transform: translateX(calc(-1 * clamp(280px, 30%, 400px)));
 }
 
-/* Prevent horizontal scrollbars */
+/* When the side menu is open, make sure the X stays white */
+body.menu-open .hamburger span {
+  background: #fff !important;
+}
+
+/* ✅ Prevent horizontal scrollbars */
 html,
 body {
   width: 100%;
