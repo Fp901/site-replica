@@ -1,36 +1,99 @@
-$(document).ready(function () {
+$(function () {
   // ==============================
   // 1. Banner Slider
   // ==============================
-  let slides = [
+  const slides = [
     {
-      title: 'Cyber Security',
-      text: 'Keeping businesses and their customers sensitive information protected.',
+      title: 'The East Of Englands Leading Technology Company',
+      text: 'Performance-driven digital and technology services<br>with complete transparency.',
       btnText: 'Find out more',
-      img: 'assets/images/banner1.jpg',
+      img: '../assets/images/banner_slider/leading_company.webp',
+    },
+    {
+      title: 'Bespoke Software',
+      text: 'Delivering expert bespoke software<br>solutions across a range of industries.',
+      btnText: 'Find out more',
+      img: '../assets/images/banner_slider/bespoke_software.jpg',
     },
     {
       title: 'IT Support',
-      text: 'Reliable support and consultancy for your business needs.',
-      btnText: 'Learn more',
-      img: 'assets/images/banner2.jpg',
+      text: 'Fast and cost-effective IT support<br>services for your business.',
+      btnText: 'Find out more',
+      img: '../assets/images/banner_slider/IT_support.webp',
+    },
+    {
+      title: 'Digital Marketing',
+      text: 'Generating your new business through<br>results-driven marketing activities.',
+      btnText: 'Find out more',
+      img: '../assets/images/banner_slider/marketing.webp',
+    },
+    {
+      title: 'Telecoms Services',
+      text: 'A new approach to connectivity, see<br>how we can help your business.',
+      btnText: 'Find out more',
+      img: '../assets/images/banner_slider/telecoms.webp',
     },
     {
       title: 'Web Design',
-      text: 'Modern, responsive websites that convert visitors into customers.',
-      btnText: 'View Projects',
-      img: 'assets/images/banner3.jpg',
+      text: 'For businesses looking to make a strong<br>and effective first impression.',
+      btnText: 'Find out more',
+      img: '../assets/images/banner_slider/web_design.webp',
+    },
+    {
+      title: 'Cyber Security',
+      text: 'Keeping businesses and their customers<br>sensitive information protected.',
+      btnText: 'Find out more',
+      img: '../assets/images/banner_slider/home-MSxH.webp',
     },
   ];
 
   let currentSlide = 0;
+  const banner = $('.banner-slide');
+  const dots = $('.owl-dot span');
 
   function showSlide(index) {
     const slide = slides[index];
-    $('.banner-slide .container h1').text(slide.title);
-    $('.banner-slide .container p').html(slide.text);
-    $('.banner-slide .btn').text(slide.btnText);
-    $('.banner-slide').css('background-image', `url(${slide.img})`);
+
+    // hide text
+    banner.addClass('hide-text');
+
+    // create sliding image layer
+    const nextImage = $('<div class="slide-image"></div>')
+      .css(
+        'background-image',
+        `radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%), url(${slide.img})`
+      )
+      .appendTo(banner);
+
+    // trigger slide movement (allow layout to attach first)
+    setTimeout(() => banner.addClass('is-sliding'), 10);
+
+    // after slide completes
+    setTimeout(() => {
+      banner
+        .removeClass('is-sliding')
+        .css(
+          'background-image',
+          `radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%), url(${slide.img})`
+        );
+
+      nextImage.remove();
+
+      // update text & button
+      $('.banner-slide .container h1').html(slide.title);
+      $('.banner-slide .container p').html(slide.text);
+      $('.banner-slide .btn').html(
+        `${slide.btnText} <i class="fa-solid fa-arrow-right"></i>`
+      );
+
+      banner.removeClass('hide-text');
+
+      // update dots (only if they exist)
+      if (dots.length) {
+        dots.removeClass('active');
+        dots.eq(index).addClass('active');
+      }
+    }, 350);
   }
 
   function nextSlide() {
@@ -38,8 +101,19 @@ $(document).ready(function () {
     showSlide(currentSlide);
   }
 
+  // Manual dot click
+  dots.each(function (i) {
+    $(this).on('click', function () {
+      if (i !== currentSlide) {
+        currentSlide = i;
+        showSlide(currentSlide);
+      }
+    });
+  });
+
+  // init + auto rotate
   showSlide(currentSlide);
-  setInterval(nextSlide, 5000);
+  setInterval(nextSlide, 6000);
 
   // ==============================
   // 2. Side Menu
@@ -57,7 +131,7 @@ $(document).ready(function () {
 
   $('#close-side').hide();
 
-  $('.hamburger').click(function () {
+  $('.hamburger').on('click', function () {
     sideMenu.addClass('active');
     $('#close-side').show();
   });
@@ -70,7 +144,7 @@ $(document).ready(function () {
   // ==============================
   // 3. Mobile Menu
   // ==============================
-  $('.hamburger').click(function () {
+  $('.hamburger').on('click', function () {
     $('.services-menu').slideToggle();
   });
 
@@ -101,7 +175,7 @@ $(document).ready(function () {
     $('#cookie-popup').fadeIn();
   }
 
-  $('#accept-cookies').click(function () {
+  $('#accept-cookies').on('click', function () {
     localStorage.setItem('cookiesAccepted', 'true');
     $('#cookie-popup').fadeOut();
   });
