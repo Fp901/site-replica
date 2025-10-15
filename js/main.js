@@ -1,4 +1,8 @@
 $(function () {
+  // Debug: Confirm jQuery and script execution
+  console.log('main.js loaded, jQuery version:', $.fn.jquery);
+  console.log('Document ready, DOM loaded');
+
   // ==============================
   // 1. Banner Slider
   // ==============================
@@ -112,11 +116,99 @@ $(function () {
   const $sideMenu = $('.side-menu');
   const $body = $('body');
   const $overlay = $('<div class="page-overlay"></div>').appendTo('body');
+  const $servicesMenu = $('.services-menu');
+  const $hamburger = $('.hamburger');
+  let $servicesPlaceholder = null;
+  let isMenuOpen = false;
+
+  // Debug: Check if key elements exist
+  console.log('.side-menu found:', $sideMenu.length ? 'Yes' : 'No');
+  console.log('.services-menu found:', $servicesMenu.length ? 'Yes' : 'No');
+  console.log('.hamburger found:', $hamburger.length ? 'Yes' : 'No');
+
+  // Function to inject services-menu into side-menu
+  function injectServicesMenu() {
+    if ($servicesMenu.length && !$sideMenu.find('.services-menu').length) {
+      console.log('Injecting services-menu into side-menu');
+      $servicesPlaceholder = $(
+        '<div class="services-placeholder"></div>'
+      ).insertAfter($servicesMenu);
+      $servicesMenu.prependTo($sideMenu);
+    } else {
+      console.log('Services-menu already injected or not found');
+    }
+  }
+
+  // Function to restore services-menu to original position
+  function restoreServicesMenu() {
+    if (
+      $servicesPlaceholder &&
+      $servicesPlaceholder.length &&
+      $sideMenu.find('.services-menu').length
+    ) {
+      console.log('Restoring services-menu to original position');
+      $servicesMenu.insertBefore($servicesPlaceholder);
+      $servicesPlaceholder.remove();
+      $servicesPlaceholder = null;
+    } else {
+      console.log(
+        'Not restoring: No placeholder or services-menu not in side-menu'
+      );
+    }
+  }
+
+  // Debounce function to limit resize event frequency
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  // Function to check viewport and manage injection/restoration
+  function checkViewport() {
+    const width = window.innerWidth;
+    console.log('Checking viewport, width:', width, 'Menu open:', isMenuOpen);
+    if (width < 992) {
+      injectServicesMenu();
+      // Reapply menu state if open
+      if (isMenuOpen) {
+        $sideMenu.addClass('open');
+        $overlay.addClass('active');
+        $body.addClass('menu-open');
+        $hamburger.addClass('active');
+      }
+    } else {
+      restoreServicesMenu();
+      // Keep menu open if it was open
+      if (isMenuOpen) {
+        console.log('Keeping side menu open on desktop viewport');
+        $sideMenu.addClass('open');
+        $overlay.addClass('active');
+        $body.addClass('menu-open');
+        $hamburger.addClass('active');
+      }
+    }
+  }
+
+  // Debounced viewport check
+  const debouncedCheckViewport = debounce(checkViewport, 100);
+
+  // Initial check on load
+  checkViewport();
 
   // Toggle hamburger
   $(document).on('click', '.hamburger', function () {
+    console.log('Hamburger clicked');
     $(this).toggleClass('active');
-    if ($(this).hasClass('active')) {
+    isMenuOpen = $(this).hasClass('active');
+    console.log('Menu state updated:', isMenuOpen ? 'Open' : 'Closed');
+    if (isMenuOpen) {
       openSideMenu();
     } else {
       closeSideMenu();
@@ -125,26 +217,37 @@ $(function () {
 
   // Open menu
   function openSideMenu() {
+    console.log('Opening side menu, window width:', window.innerWidth);
     $sideMenu.addClass('open');
     $overlay.addClass('active');
     $body.addClass('menu-open');
+    isMenuOpen = true;
   }
 
   // Close menu
   function closeSideMenu() {
-    $('.hamburger').removeClass('active');
+    console.log('Closing side menu');
+    $hamburger.removeClass('active');
     $sideMenu.removeClass('open');
     $overlay.removeClass('active');
     $body.removeClass('menu-open');
+    isMenuOpen = false;
   }
 
   // Close when clicking outside or overlay
   $(document).on('click', function (e) {
     if ($(e.target).closest('.side-menu, .hamburger').length === 0) {
+      console.log('Clicked outside, closing side menu');
       closeSideMenu();
     }
   });
-  $overlay.on('click', closeSideMenu);
+  $overlay.on('click', function () {
+    console.log('Overlay clicked, closing side menu');
+    closeSideMenu();
+  });
+
+  // Handle resize with debounce
+  $(window).on('resize', debouncedCheckViewport);
 
   // ==============================
   // 3. Sticky Header

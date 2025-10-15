@@ -1,3 +1,4 @@
+/* _side-menu.scss (full updated version) */
 .side-menu {
   position: fixed;
   top: 0;
@@ -31,8 +32,6 @@
   }
 
   .side-menu-inner {
-    padding-top: 1rem;
-
     .side-menu-list {
       list-style: none;
       padding: 0;
@@ -40,7 +39,6 @@
 
       .menu-section {
         border: 1px solid darken($bg-color-footer-dark, 8%);
-        margin-bottom: 1rem;
 
         h3 {
           background: $bg-color-footer;
@@ -111,6 +109,130 @@
 
             &:first-child {
               border-top: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* Appended styles for injected .services-menu integration */
+  .services-menu {
+    display: block !important; /* Force visibility in side-menu */
+    height: auto;
+    background: $bg-color-footer-dark;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    border-bottom: 1px solid darken($bg-color-footer-dark, 8%);
+    margin: 1rem 0; /* Add margin for spacing */
+    padding: 0;
+
+    .services-menu-inner {
+      padding: 0;
+
+      > ul {
+        flex-direction: column;
+        height: auto;
+
+        > li {
+          height: auto;
+          min-height: 4rem;
+
+          > a {
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem 1.25rem;
+            align-items: center;
+            color: #ccc;
+            transition: color 0.2s ease;
+
+            i {
+              margin-bottom: 0.75rem;
+              margin-right: 0;
+              font-size: 1.2rem;
+            }
+
+            .text-block {
+              display: flex;
+              flex-direction: column;
+              text-align: center;
+              gap: 0.25rem;
+            }
+
+            .first-word,
+            .second-word {
+              display: block;
+              margin: 0;
+              font-size: 0.95rem;
+              line-height: 1.2;
+            }
+
+            .triangle {
+              display: none;
+            }
+          }
+
+          .mega-panel {
+            position: static;
+            width: auto;
+            box-shadow: none;
+            opacity: 1;
+            visibility: visible; /* Expanded by default */
+            max-height: none; /* Expanded by default */
+            overflow: visible; /* Expanded by default */
+            background: $bg-color-footer-dark;
+
+            .mega-panel-inner {
+              max-width: none;
+              padding: 0 1.25rem 1rem;
+              background: transparent;
+
+              h3 {
+                display: none;
+              }
+
+              .mega-list {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+
+                li {
+                  border-top: 1px solid darken($bg-color-footer-dark, 6%);
+                  padding: 0.75rem 0;
+
+                  a {
+                    display: flex;
+                    flex-direction: column; /* Icon above text */
+                    align-items: center;
+                    gap: 0.75rem;
+                    font-size: 0.9rem;
+                    padding-left: 0;
+                    position: relative;
+                    color: #ccc;
+
+                    &::before {
+                      display: none; /* Remove » since icons are shown */
+                    }
+
+                    &:hover {
+                      color: #fff;
+                    }
+
+                    i {
+                      display: block !important; /* Show icons */
+                      font-size: 1.5rem; /* Larger for above layout */
+                    }
+
+                    span {
+                      text-align: center;
+                    }
+                  }
+
+                  &:first-child {
+                    border-top: none;
+                  }
+                }
+              }
             }
           }
         }
