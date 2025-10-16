@@ -13,7 +13,7 @@
   overflow-x: hidden;
   border-left: 1px solid darken($bg-color-footer-dark, 8%);
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.4);
-  padding-bottom: 2rem; /* ensures bottom item is never cut off */
+  padding-bottom: 2rem;
   background-clip: padding-box;
 
   &.open {
@@ -40,6 +40,8 @@
 
       .menu-section {
         border: 1px solid darken($bg-color-footer-dark, 8%);
+        border-bottom: none;
+        margin-bottom: 0;
 
         h3 {
           background: $bg-color-footer;
@@ -101,10 +103,11 @@
         }
       }
 
-      /* Remove border on last section to eliminate dark band */
-      .menu-section:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
+      /* Remove bottom border and gap before services-menu */
+      .menu-section:last-of-type {
+        border-bottom: none !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
       }
     }
   }
@@ -113,16 +116,16 @@
   .services-menu {
     display: block !important;
     height: auto;
-    background: $bg-color-footer;
+    background: $bg-color-footer; /* lighter section, consistent with headers */
     border-left: none;
     border-right: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.05); /* subtle fade line */
+    border-top: none !important; /* 🔧 remove line above */
     border-bottom: 1px solid darken($bg-color-footer-dark, 8%);
     border-radius: 0;
-    margin-top: -1px; /* removes visible dark line overlap */
+    margin-top: 0 !important; /* 🔧 remove dark gap completely */
     margin-bottom: 1rem;
     padding-top: 1rem;
-    padding-bottom: 1.5rem; /* ensures contact card visible */
+    padding-bottom: 1.5rem;
 
     .services-menu-inner {
       padding: 0;

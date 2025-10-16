@@ -2221,7 +2221,6 @@ body.menu-open .navbar .hamburger span {
   border-left: 1px solid #101118;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.4);
   padding-bottom: 2rem;
-  /* ensures bottom item is never cut off */
   background-clip: padding-box;
   /* === Services Menu Integration (Injected) === */
   /* Disable hover highlights from original services menu */
@@ -2247,11 +2246,13 @@ body.menu-open .navbar .hamburger span {
   list-style: none;
   padding: 0;
   margin: 0;
-  /* Remove border on last section to eliminate dark band */
+  /* Remove bottom border and gap before services-menu */
 }
 
 .side-menu .side-menu-inner .side-menu-list .menu-section {
   border: 1px solid #101118;
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .side-menu .side-menu-inner .side-menu-list .menu-section h3 {
@@ -2313,27 +2314,28 @@ body.menu-open .navbar .hamburger span {
   border-top: none;
 }
 
-.side-menu .side-menu-inner .side-menu-list .menu-section:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
+.side-menu .side-menu-inner .side-menu-list .menu-section:last-of-type {
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .side-menu .services-menu {
   display: block !important;
   height: auto;
   background: #323544;
+  /* lighter section, consistent with headers */
   border-left: none;
   border-right: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  /* subtle fade line */
+  border-top: none !important;
+  /* 🔧 remove line above */
   border-bottom: 1px solid #101118;
   border-radius: 0;
-  margin-top: -1px;
-  /* removes visible dark line overlap */
+  margin-top: 0 !important;
+  /* 🔧 remove dark gap completely */
   margin-bottom: 1rem;
   padding-top: 1rem;
   padding-bottom: 1.5rem;
-  /* ensures contact card visible */
 }
 
 .side-menu .services-menu .services-menu-inner {
