@@ -69,7 +69,7 @@
 .partners-slideshow:last-of-type {
   position: relative;
   overflow: visible !important; // ✅ tooltips not clipped
-  z-index: 3000;
+  z-index: 500;
 
   .partners-strip,
   .scroll-wrapper,

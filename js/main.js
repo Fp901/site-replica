@@ -219,7 +219,6 @@ $(function () {
   const $servicesBar = $('.services-menu');
   let lastScrollTop = 0;
   let isHeaderVisible = true; // Start visible at top
-  let hasScrolledUp = false; // Track first scroll up
   const threshold = 100; // Fixed threshold for scroll behavior
 
   function updateHeader() {
@@ -227,22 +226,27 @@ $(function () {
     const scrollingDown = scrollTop > lastScrollTop;
     const isDesktop = window.innerWidth >= 992;
 
-    // Reset hasScrolledUp at top
-    if (scrollTop <= 0) {
-      hasScrolledUp = false;
-      $navbar.removeClass('active-scroll');
+    // Always ensure natural visible state near top
+    if (scrollTop <= threshold) {
+      $navbar.removeClass('sticky hidden').addClass('visible');
       if (isDesktop) {
-        $servicesBar.removeClass('active-scroll');
+        $servicesBar.removeClass('sticky hidden').addClass('visible');
       }
-    }
-
-    // Detect first scroll up
-    if (!scrollingDown && scrollTop > 0) {
-      hasScrolledUp = true;
-      $navbar.addClass('active-scroll');
+      isHeaderVisible = true;
+    } else if (scrollingDown && isHeaderVisible) {
+      // Scrolling down: hide both
+      $navbar.addClass('sticky hidden').removeClass('visible');
       if (isDesktop) {
-        $servicesBar.addClass('active-scroll');
+        $servicesBar.addClass('sticky hidden').removeClass('visible');
       }
+      isHeaderVisible = false;
+    } else if (!scrollingDown && !isHeaderVisible) {
+      // Scrolling up: show both
+      $navbar.addClass('sticky visible').removeClass('hidden');
+      if (isDesktop) {
+        $servicesBar.addClass('sticky visible').removeClass('hidden');
+      }
+      isHeaderVisible = true;
     }
 
     // Log state for debugging
@@ -253,8 +257,6 @@ $(function () {
       scrollingDown,
       'Header visible:',
       isHeaderVisible,
-      'Has scrolled up:',
-      hasScrolledUp,
       'Threshold:',
       threshold,
       'Is desktop:',
@@ -265,45 +267,7 @@ $(function () {
       $servicesBar.attr('class')
     );
 
-    if (!hasScrolledUp) {
-      // Before first scroll up: no changes, stay visible
-      $navbar.removeClass('sticky hidden active-scroll').addClass('visible');
-      if (isDesktop) {
-        $servicesBar
-          .removeClass('sticky hidden active-scroll')
-          .addClass('visible');
-      }
-      isHeaderVisible = true;
-      console.log(
-        'Initial scroll down: Navbar and Services menu remain visible, no changes'
-      );
-    } else if (scrollTop <= threshold) {
-      // At top after scroll up: natural state
-      $navbar.removeClass('sticky hidden').addClass('visible');
-      if (isDesktop) {
-        $servicesBar.removeClass('sticky hidden').addClass('visible');
-      }
-      isHeaderVisible = true;
-      console.log('At top: Navbar and Services menu set to visible, no sticky');
-    } else if (scrollingDown && isHeaderVisible) {
-      // Scroll down after first scroll up: hide both
-      $navbar.addClass('sticky hidden').removeClass('visible');
-      if (isDesktop) {
-        $servicesBar.addClass('sticky hidden').removeClass('visible');
-      }
-      isHeaderVisible = false;
-      console.log('Scroll down: Navbar and Services menu hidden with sticky');
-    } else if (!scrollingDown && !isHeaderVisible && scrollTop > threshold) {
-      // Scroll up after first scroll up: show both
-      $navbar.addClass('sticky visible').removeClass('hidden');
-      if (isDesktop) {
-        $servicesBar.addClass('sticky visible').removeClass('hidden');
-      }
-      isHeaderVisible = true;
-      console.log('Scroll up: Navbar and Services menu shown with sticky');
-    }
-
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+    lastScrollTop = Math.max(scrollTop, 0); // Prevent negatives
   }
 
   // Throttle scroll event for performance
@@ -324,6 +288,16 @@ $(function () {
 
   // Initial check
   updateHeader();
+
+  // keep services menu aligned below current navbar height
+  $(window)
+    .on('resize', () => {
+      document.documentElement.style.setProperty(
+        '--navbar-offset',
+        `${$('header.navbar').outerHeight()}px`
+      );
+    })
+    .trigger('resize');
 
   // ==============================
   // 4. Cookie Consent Pop-Up

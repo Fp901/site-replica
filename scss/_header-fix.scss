@@ -1,0 +1,76 @@
+/* ================================
+   Sticky Header & Services Menu Fix
+   ================================ */
+
+header.navbar,
+.services-menu {
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+    opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+    visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Clean hide/show */
+header.navbar.hidden,
+.services-menu.hidden {
+  transform: translateY(-100%) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+header.navbar.visible,
+.services-menu.visible {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Services bar follows navbar height */
+.services-menu.sticky {
+  top: var(--navbar-offset, 7.5rem) !important;
+}
+
+/* Always use smooth transitions even with active-scroll */
+header.navbar.active-scroll,
+.services-menu.active-scroll {
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+    opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+    visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+}
+
+@media (min-width: 993px) {
+  header.navbar,
+  .services-menu {
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+      opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+      visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
+  header.navbar.hidden,
+  .services-menu.hidden {
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  header.navbar.visible,
+  .services-menu.visible {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .services-menu.sticky {
+    top: var(--navbar-offset, 7.5rem) !important;
+  }
+
+  header.navbar.active-scroll,
+  .services-menu.active-scroll {
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+      opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+      visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  }
+}
