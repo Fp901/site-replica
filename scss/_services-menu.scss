@@ -6,7 +6,12 @@
   height: 8rem;
   font-family: 'Poppins', sans-serif;
   z-index: 1000;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: none; /* No transitions until .active-scroll */
+
+  &.active-scroll {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+  }
 
   &.sticky {
     position: fixed !important;
@@ -20,7 +25,7 @@
 
   &.hidden {
     transform: translateY(-100%) !important;
-    opacity: 0 !important; // Fallback to ensure hiding
+    opacity: 0 !important;
     visibility: hidden !important;
   }
 
@@ -121,7 +126,7 @@
           z-index: 2000;
           opacity: 0;
           visibility: hidden;
-          transition: opacity 0.25s ease, visibility 0.25s ease;
+          transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 
           .mega-panel-inner {
@@ -170,7 +175,7 @@
                     flex-shrink: 0;
                   }
 
-                  /* Underline only the text, never the icon */
+                  /* Underline only the text, not the icon */
                   &:hover span {
                     text-decoration: underline;
                   }

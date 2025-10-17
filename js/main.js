@@ -45,7 +45,7 @@ $(function () {
       title: 'Cyber Security',
       text: 'Keeping businesses and their customers<br>sensitive information protected.',
       btnText: 'Find out more',
-      img: 'assets/images/banner_slider/cyber_security.webp',
+      img: 'assets/images/banner_slider/cyber_security.jpg', // Verify path
     },
   ];
 
@@ -219,12 +219,31 @@ $(function () {
   const $servicesBar = $('.services-menu');
   let lastScrollTop = 0;
   let isHeaderVisible = true; // Start visible at top
-  const threshold = 100; // Fixed threshold for initial scroll
+  let hasScrolledUp = false; // Track first scroll up
+  const threshold = 100; // Fixed threshold for scroll behavior
 
   function updateHeader() {
     const scrollTop = $(window).scrollTop();
     const scrollingDown = scrollTop > lastScrollTop;
     const isDesktop = window.innerWidth >= 992;
+
+    // Reset hasScrolledUp at top
+    if (scrollTop <= 0) {
+      hasScrolledUp = false;
+      $navbar.removeClass('active-scroll');
+      if (isDesktop) {
+        $servicesBar.removeClass('active-scroll');
+      }
+    }
+
+    // Detect first scroll up
+    if (!scrollingDown && scrollTop > 0) {
+      hasScrolledUp = true;
+      $navbar.addClass('active-scroll');
+      if (isDesktop) {
+        $servicesBar.addClass('active-scroll');
+      }
+    }
 
     // Log state for debugging
     console.log(
@@ -234,6 +253,8 @@ $(function () {
       scrollingDown,
       'Header visible:',
       isHeaderVisible,
+      'Has scrolled up:',
+      hasScrolledUp,
       'Threshold:',
       threshold,
       'Is desktop:',
@@ -244,30 +265,42 @@ $(function () {
       $servicesBar.attr('class')
     );
 
-    if (scrollTop <= threshold) {
-      // At top: natural state
+    if (!hasScrolledUp) {
+      // Before first scroll up: no changes, stay visible
+      $navbar.removeClass('sticky hidden active-scroll').addClass('visible');
+      if (isDesktop) {
+        $servicesBar
+          .removeClass('sticky hidden active-scroll')
+          .addClass('visible');
+      }
+      isHeaderVisible = true;
+      console.log(
+        'Initial scroll down: Navbar and Services menu remain visible, no changes'
+      );
+    } else if (scrollTop <= threshold) {
+      // At top after scroll up: natural state
       $navbar.removeClass('sticky hidden').addClass('visible');
       if (isDesktop) {
         $servicesBar.removeClass('sticky hidden').addClass('visible');
-        console.log('At top: Services menu set to visible, no sticky');
       }
       isHeaderVisible = true;
+      console.log('At top: Navbar and Services menu set to visible, no sticky');
     } else if (scrollingDown && isHeaderVisible) {
-      // Scroll down: hide both
+      // Scroll down after first scroll up: hide both
       $navbar.addClass('sticky hidden').removeClass('visible');
       if (isDesktop) {
         $servicesBar.addClass('sticky hidden').removeClass('visible');
-        console.log('Scroll down: Services menu hidden with sticky');
       }
       isHeaderVisible = false;
+      console.log('Scroll down: Navbar and Services menu hidden with sticky');
     } else if (!scrollingDown && !isHeaderVisible && scrollTop > threshold) {
-      // Scroll up: show both with sticky
+      // Scroll up after first scroll up: show both
       $navbar.addClass('sticky visible').removeClass('hidden');
       if (isDesktop) {
         $servicesBar.addClass('sticky visible').removeClass('hidden');
-        console.log('Scroll up: Services menu shown with sticky');
       }
       isHeaderVisible = true;
+      console.log('Scroll up: Navbar and Services menu shown with sticky');
     }
 
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
