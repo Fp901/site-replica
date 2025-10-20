@@ -1,3 +1,15 @@
+/* ===========================================================
+   _side-menu.scss
+   Mobile / Overlay Side Navigation
+   -----------------------------------------------------------
+   - Handles slide-in menu from the right
+   - Integrates with Services Menu for mobile
+   - Includes overlay, scroll lock, and hamburger animation
+   =========================================================== */
+
+/* ============================
+   📱 SIDE MENU CONTAINER
+   ============================ */
 .side-menu {
   position: fixed;
   top: 0;
@@ -16,10 +28,12 @@
   padding-bottom: 2rem;
   background-clip: padding-box;
 
+  /* ---- Active (open) state ---- */
   &.open {
     transform: translateX(0);
   }
 
+  /* ---- Close Button ---- */
   .close-btn {
     position: absolute;
     top: 1rem;
@@ -32,6 +46,9 @@
     z-index: 10;
   }
 
+  /* ============================
+     📋 MENU CONTENT
+     ============================ */
   .side-menu-inner {
     .side-menu-list {
       list-style: none;
@@ -45,13 +62,13 @@
 
         h3 {
           background: $bg-color-footer;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
           color: #fff;
-          font-size: 1.2rem;
-          font-weight: 600;
           margin: 0;
           padding: 1rem 1.25rem;
+          font-size: 1.2rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
           display: flex;
           align-items: center;
           gap: 0.6rem;
@@ -77,12 +94,12 @@
               position: relative;
               display: block;
               color: #ccc;
-              text-decoration: none;
               font-size: 0.95rem;
               text-transform: uppercase;
               letter-spacing: 0.5px;
-              transition: color 0.2s ease;
+              text-decoration: none;
               padding-left: 1.25rem;
+              transition: color 0.2s ease;
 
               &::before {
                 content: '»';
@@ -101,31 +118,28 @@
             }
           }
         }
-      }
 
-      /* Remove bottom border and gap before services-menu */
-      .menu-section:last-of-type {
-        border-bottom: none !important;
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
+        &:last-of-type {
+          border-bottom: none !important;
+          margin-bottom: 0 !important;
+          padding-bottom: 0 !important;
+        }
       }
     }
   }
 
-  /* === Services Menu Integration (Injected) === */
+  /* ============================
+     🧩 SERVICES MENU (INTEGRATED)
+     ============================ */
   .services-menu {
     display: block !important;
     height: auto;
-    background: $bg-color-footer; /* lighter section, consistent with headers */
-    border-left: none;
-    border-right: none;
-    border-top: none !important; /* 🔧 remove line above */
+    background: $bg-color-footer;
+    border: none;
     border-bottom: 1px solid darken($bg-color-footer-dark, 8%);
     border-radius: 0;
-    margin-top: 0 !important; /* 🔧 remove dark gap completely */
-    margin-bottom: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1.5rem;
+    margin: 0 0 1rem;
+    padding: 1rem 0 1.5rem;
 
     .services-menu-inner {
       padding: 0;
@@ -138,17 +152,18 @@
           height: auto;
           margin-bottom: 0.5rem;
 
-          /* CONTACT US button */
+          /* ---- Contact Us Button ---- */
           &.contact-us > a {
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 1rem;
+            margin: 0.5rem 1.5rem;
             color: #fff;
             background: lighten($bg-color-footer-dark, 3%);
             border: 1px solid darken($bg-color-footer-dark, 10%);
             border-radius: 0.5rem;
-            margin: 0.5rem 1.5rem;
             text-transform: uppercase;
             font-weight: 600;
 
@@ -161,47 +176,46 @@
             }
           }
 
-          /* Main heading items (Consultancy, IT Support, etc.) */
+          /* ---- Service Headings ---- */
           > a {
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 1rem;
+            margin: 0 1.5rem;
             color: #fff;
             background: $bg-color-footer;
             border: 1px solid darken($bg-color-footer-dark, 10%);
             border-radius: 0.5rem;
-            margin: 0rem 1.5rem;
             text-transform: uppercase;
-
-            &.consultancy i,
-            &.it-support i {
-              color: $bg-color-blue;
-            }
 
             i {
               margin-bottom: 0.75rem;
-              margin-right: 0;
               font-size: 1.5rem;
             }
 
             .text-block {
               display: flex;
               flex-direction: column;
-              text-align: center;
               gap: 0.25rem;
+              text-align: center;
             }
 
             .first-word,
             .second-word {
-              display: block;
-              margin: 0;
               font-size: 0.95rem;
               line-height: 1.2;
             }
 
             .triangle {
               display: none;
+            }
+
+            /* Color-coded icons */
+            &.consultancy i,
+            &.it-support i {
+              color: $bg-color-blue;
             }
           }
 
@@ -210,19 +224,19 @@
             background: none;
           }
 
+          /* ---- Submenu Panels ---- */
           .mega-panel {
             position: static;
             width: auto;
+            background: transparent;
             box-shadow: none;
             opacity: 1;
             visibility: visible;
             max-height: none;
             overflow: visible;
-            background: transparent;
             padding: 0;
 
             .mega-panel-inner {
-              max-width: none;
               padding: 0;
               background: transparent;
 
@@ -235,33 +249,23 @@
                 gap: 0.025rem;
 
                 li {
-                  border-top: none;
-
                   a {
                     display: block;
+                    padding: 0.75rem;
+                    margin: 0 1.5rem;
                     font-size: 0.9rem;
-                    padding: 0.75rem 0.75rem;
                     color: #ccc;
-                    text-decoration: none;
                     text-transform: uppercase;
                     letter-spacing: 0.5px;
                     background: $bg-color-footer-dark;
                     border: 1px solid darken($bg-color-footer-dark, 10%);
                     border-radius: 0.1rem;
-                    margin: 0rem 1.5rem;
                     text-align: center;
-                    position: relative;
+                    text-decoration: none;
 
-                    &::before {
-                      display: none;
-                    }
-
+                    &::before,
                     i {
                       display: none !important;
-                    }
-
-                    span {
-                      text-align: center;
                     }
 
                     &:hover span {
@@ -281,15 +285,9 @@
     }
   }
 
-  /* Disable hover highlights from original services menu */
+  /* Disable original hover highlights inside the side menu */
   .services-menu > ul > li:hover,
-  .services-menu li.consultancy:hover,
-  .services-menu li.it-support:hover,
-  .services-menu li.digital-marketing:hover,
-  .services-menu li.telecoms-services:hover,
-  .services-menu li.web-design:hover,
-  .services-menu li.cyber-security:hover,
-  .services-menu li.developer-training:hover {
+  .services-menu li:hover {
     background: none !important;
   }
 
@@ -298,18 +296,19 @@
   }
 }
 
-/* Keep site scrollable while menu stays fixed */
+/* ===========================================================
+   🌒 OVERLAY & BODY BEHAVIOR
+   =========================================================== */
+
+/* Prevent scroll lock (keep vertical scroll allowed) */
 body.no-scroll {
   overflow-y: auto !important;
 }
 
-/* Optional overlay when menu opens */
+/* ---- Dimmed overlay behind side menu ---- */
 .page-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
@@ -322,21 +321,28 @@ body.no-scroll {
   }
 }
 
-/* Hamburger animation */
+/* ===========================================================
+   🍔 HAMBURGER ANIMATION
+   =========================================================== */
 .hamburger span {
   transition: all 0.3s ease-in-out;
 }
-.hamburger.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+
+.hamburger.active {
+  span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  span:nth-child(2) {
+    opacity: 0;
+  }
+  span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 }
 
-/* Site shell slide animation */
+/* ===========================================================
+   🧱 SITE SHELL TRANSITION
+   =========================================================== */
 .site-shell {
   position: relative;
   width: 100%;
@@ -345,16 +351,17 @@ body.no-scroll {
   transition: transform 0.4s ease-in-out;
 }
 
+/* Slide site content left when menu opens */
 body.menu-open .site-shell {
   transform: translateX(calc(-1 * clamp(280px, 30%, 400px)));
 }
 
-/* When the side menu is open, make sure the X stays white */
+/* Ensure hamburger stays visible on dark background */
 body.menu-open .hamburger span {
   background: #fff !important;
 }
 
-/* Prevent horizontal scrollbars */
+/* Prevent horizontal scrollbars globally */
 html,
 body {
   width: 100%;

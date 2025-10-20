@@ -2,74 +2,97 @@
   width: 100%;
   position: relative;
 
-  .banner-slide {
+  /* ============================
+     Banner Slide Wrapper
+     ============================ */
+  .banner-slider {
     width: 100%;
     min-height: clamp(360px, 70vh, 550px);
-    background-image: radial-gradient(
-        circle,
-        rgba(0, 0, 0, 0.3) 0%,
-        rgba(0, 0, 0, 0.8) 100%
-      ),
-      url('../assets/images/home-MSxH.webp');
+    background-color: #333; /* Fallback to mask white space */
+    background-image: none; /* Handled by .slide-background */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     overflow: hidden;
 
-    // Dark overlay
-    &:before {
-      content: '';
+    cursor: grab;
+    &.is-dragging {
+      cursor: grabbing;
+      .slide-image {
+        transition: none; /* Disable transition during drag */
+      }
+      .container {
+        visibility: hidden; /* Hide text during drag to avoid overlap */
+      }
+    }
+
+    /* Current slide background */
+    .slide-background {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.2);
-      z-index: 1;
+      z-index: 1; /* Below text and temporary images */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #333; /* Fallback */
+      will-change: transform; /* Optimize animation */
     }
 
-    // ===== SLIDE ANIMATION LAYER =====
+    /* ============================
+       Slide Animation Layer
+       ============================ */
     .slide-image {
       position: absolute;
       top: 0;
-      left: 100%; // start off-screen right
+      left: 0;
       width: 100%;
       height: 100%;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      z-index: 2; // sits above overlay but below text
-      transform: translateX(0);
+      background-color: #333; /* Fallback */
+      z-index: 2; /* Above slide-background, below text */
       transition: transform 0.35s ease-in-out;
+      will-change: transform; /* Optimize animation */
     }
 
     &.is-sliding .slide-image {
       transform: translateX(-100%);
     }
 
+    /* Fades out text during transition */
     &.hide-text .container {
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
     }
 
-    // ===== CONTENT =====
+    /* ============================
+       Content Container
+       ============================ */
     .container {
       max-width: 1400px;
       width: 100%;
       margin: 0 auto;
       padding: 0 15px;
       position: relative;
-      z-index: 3; // above overlay + sliding image
+      z-index: 3; /* Above all images */
+      transition: transform 0.35s ease, visibility 0s, opacity 0.3s ease-in-out; /* Smooth slide and visibility */
+      will-change: transform; /* Optimize animation */
+
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: flex-start;
       min-height: 450px;
       text-align: left;
-      align-items: flex-start;
 
       @media (min-width: 1200px) {
         padding-left: 30px;
@@ -80,7 +103,7 @@
         line-height: 100px;
         font-weight: 600;
         letter-spacing: 0.4px;
-        color: #ffffff;
+        color: #fff;
         margin-bottom: 1.5rem;
 
         @media (max-width: 991px) {
@@ -93,7 +116,7 @@
       p {
         font-size: 1.7rem;
         font-weight: 500;
-        color: #ffffff;
+        color: #fff;
         margin-bottom: 2rem;
         line-height: 1.5;
 
@@ -104,7 +127,7 @@
       }
 
       .btn {
-        --btn-color: #e80a42; // default fallback color
+        --btn-color: #e80a42;
         display: inline-block;
         width: 224.891px;
         height: 62px;
@@ -112,7 +135,7 @@
         line-height: 62px;
         border-radius: 3px;
         background-color: var(--btn-color);
-        color: #ffffff;
+        color: #fff;
         text-decoration: none;
         font-size: clamp(16px, 2vw, 20px);
         font-weight: 500;
@@ -135,7 +158,9 @@
       }
     }
 
-    // ===== DOTS =====
+    /* ============================
+       Navigation Dots
+       ============================ */
     .owl-dots {
       position: absolute;
       bottom: 51px;
@@ -144,7 +169,7 @@
       display: flex;
       justify-content: center;
       gap: 20px;
-      z-index: 4; // always above everything
+      z-index: 4;
 
       .owl-dot {
         span {
@@ -153,12 +178,12 @@
           height: 15px;
           border-radius: 50%;
           background-color: #869791;
-          transition: all 0.3s ease;
           border: 2px solid transparent;
+          transition: all 0.3s ease;
 
           &.active {
             background-color: #fff;
-            border: 2px solid #869791;
+            border-color: #869791;
           }
         }
       }

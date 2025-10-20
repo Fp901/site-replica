@@ -1,32 +1,102 @@
-$bg-color-footer: #323544;
-$bg-color-footer-dark: #212330;
-$bg-color-gold: #ffa500;
-$bg-color-blue: #4183d7;
-$bg-color-green: #2ecc71;
-$bg-color-red: #d64541;
-$bg-color-pink: #f62459;
-$bg-color-purp: #926fb1;
-$bg-color-brown: #d66049;
-$bg-color-grey: #84858f;
+/* ===========================================================
+   _base.scss
+   Global Variables & Base Styles
+   -----------------------------------------------------------
+   - Defines global color palette, typography, and layout
+   - Resets default browser spacing
+   - Provides a base container for layout alignment
+   =========================================================== */
 
-$primary-font: 'poppins', sans-serif;
+/* ============================
+   🎨 COLOR VARIABLES
+   ============================ */
+$colors: (
+  footer: #323544,
+  footer-dark: #212330,
+  gold: #ffa500,
+  blue: #4183d7,
+  green: #2ecc71,
+  red: #d64541,
+  pink: #f62459,
+  purple: #926fb1,
+  brown: #d66049,
+  grey: #84858f,
+);
 
+// Example usage: color: map-get($colors, gold);
+
+/* ============================
+   🧩 BACKWARD-COMPATIBLE COLOR VARIABLES
+   ============================ */
+
+/* ============================
+   🎨 COLOR VARIABLES
+   ============================ */
+$colors: (
+  footer: #323544,
+  footer-dark: #212330,
+  gold: #ffa500,
+  blue: #4183d7,
+  green: #2ecc71,
+  red: #d64541,
+  pink: #f62459,
+  purple: #926fb1,
+  brown: #d66049,
+  grey: #84858f,
+);
+
+// Example usage: color: map-get($colors, gold);
+
+/* ============================
+   🧩 BACKWARD-COMPATIBLE COLOR VARIABLES
+   ------------------------------------------------------------
+   These variables map directly to the $colors map above.
+   They maintain support for legacy partials (footer, sliders,
+   services, etc.) that still reference $bg-color-* variables.
+   ------------------------------------------------------------ */
+$bg-color-footer: map-get($colors, footer);
+$bg-color-footer-dark: map-get($colors, footer-dark);
+$bg-color-gold: map-get($colors, gold);
+$bg-color-blue: map-get($colors, blue);
+$bg-color-green: map-get($colors, green);
+$bg-color-red: map-get($colors, red);
+$bg-color-pink: map-get($colors, pink);
+$bg-color-purp: map-get($colors, purple);
+$bg-color-brown: map-get($colors, brown);
+$bg-color-grey: map-get($colors, grey);
+
+/* ============================
+   🖋️ TYPOGRAPHY
+   ============================ */
+$primary-font: 'Poppins', sans-serif;
+
+/* ============================
+   🔧 GLOBAL RESET
+   ============================ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* ============================
+   📐 GLOBAL LAYOUT
+   ============================ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
+/* ============================
+   🌍 BASE HTML & BODY STYLES
+   ============================ */
 html,
 body {
   font-family: $primary-font;
-  font-size: 16px; // optional default
+  font-size: 16px; // Default root font size
   line-height: 1.5;
   overflow-x: hidden;
+  color: #222; // Optional: ensures legible default text color
+  background-color: #fff; // Optional: provides base contrast
 }

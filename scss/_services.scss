@@ -1,11 +1,25 @@
-/* Basic Styling */
+/* ===========================================================
+   _services.scss
+   Our Services Section
+   -----------------------------------------------------------
+   - Displays service cards with icons, descriptions, and CTAs
+   - Fully responsive grid layout with hover color inversion
+   - Applies DRY principles via Sass map for service colors
+   =========================================================== */
+
+/* ============================
+   📦 SECTION WRAPPER
+   ============================ */
 .our-services {
   padding: 60px 0;
 }
 
+/* ============================
+   🏷️ HEADER
+   ============================ */
 .services-header {
   display: flex;
-  justify-content: space-between; /* h2 left, view-all right */
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
 
@@ -17,7 +31,7 @@
   }
 }
 
-/* View All button */
+/* ---- "View All" Buttons ---- */
 .view-all {
   display: inline-flex;
   align-items: center;
@@ -36,7 +50,6 @@
   }
 }
 
-/* Desktop (≥992px): inline beside heading */
 .view-all-desktop {
   display: inline-flex;
 }
@@ -47,7 +60,7 @@
   text-align: center;
 }
 
-/* Mobile (≤991px): below the grid */
+/* ---- Mobile header adjustments ---- */
 @media (max-width: 991px) {
   .services-header {
     flex-direction: column;
@@ -64,49 +77,57 @@
   }
 }
 
-/* Grid Layout */
+/* ============================
+   🧱 GRID LAYOUT
+   ============================ */
 .services-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 40px;
-  align-items: stretch; /* equal row heights */
+  align-items: stretch;
 }
 
 .top-row {
   margin-bottom: 40px;
 }
 
+/* ---- Large Desktop (≥1261px) ---- */
 @media (min-width: 1261px) {
   .top-row {
     grid-template-columns: repeat(3, 1fr);
   }
+
   .bottom-row {
     grid-template-columns: repeat(4, 1fr);
   }
+
   .bottom-row .service-item {
     display: block;
   }
 }
 
+/* ---- Small Desktop (992px–1260px) ---- */
 @media (max-width: 1260px) and (min-width: 992px) {
   .top-row {
     grid-template-columns: repeat(3, 1fr);
   }
+
   .bottom-row {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .bottom-row .service-item:nth-child(n + 3) {
     display: none;
   }
 }
 
+/* ---- Mobile (≤991px) ---- */
 @media (max-width: 991px) {
   .top-row,
   .bottom-row {
     grid-template-columns: 1fr;
   }
 
-  /* Center bottom-row cards on mobile */
   .bottom-row .service-item {
     display: flex;
     justify-content: center;
@@ -115,7 +136,9 @@
   }
 }
 
-/* Shared Service Box Styling */
+/* ============================
+   🎨 SERVICE CARD BASE STYLE
+   ============================ */
 .service-item {
   position: relative;
   background: #fff;
@@ -123,212 +146,155 @@
   border-radius: 12px;
   padding: 30px 20px 80px;
   display: flex;
-  flex-direction: column; /* fill box */
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   text-align: center;
   min-height: 300px;
-  height: 100%; /* equal grid row height */
-  box-sizing: border-box;
+  height: 100%;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    color: #fff;
+
+    h3,
+    p {
+      color: #fff;
+    }
+  }
+
+  /* ---- Service Content ---- */
+  .service-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    text-align: center;
+
+    h3 {
+      margin: 0 0 20px;
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      margin: 0 0 16px;
+      font-size: 1.1rem;
+      color: #555;
+      letter-spacing: 0.5px;
+      line-height: 1.6;
+    }
+  }
+
+  /* ---- Service Icon ---- */
+  .service-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+
+  /* ---- "Learn More" Button ---- */
+  .learn-more {
+    position: absolute;
+    bottom: 31px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    border-radius: 3px;
+    padding: 14px 22px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+  }
 }
 
-.service-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-  color: #fff;
-}
+/* ===========================================================
+   🧩 SERVICE COLOR THEMES
+   -----------------------------------------------------------
+   - Uses a Sass map to apply consistent color rules
+   - Handles icon, button, hover background, and inversion
+   =========================================================== */
 
-.service-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* vertical centering */
-  flex-grow: 1;
-  width: 100%;
-  max-width: 260px;
-  margin: 0 auto;
-  letter-spacing: 0.5px;
-  font-size: 1.2rem;
-  text-align: center;
-}
+$service-colors: (
+  consultancy: (
+    $bg-color-grey,
+    $bg-color-gold,
+  ),
+  it-support: (
+    $bg-color-blue,
+    $bg-color-blue,
+  ),
+  digital-marketing: (
+    $bg-color-green,
+    $bg-color-green,
+  ),
+  developer-training: (
+    $bg-color-brown,
+    $bg-color-brown,
+  ),
+  cyber-security: (
+    $bg-color-pink,
+    $bg-color-pink,
+  ),
+  web-design: (
+    $bg-color-purp,
+    $bg-color-purp,
+  ),
+  telecoms-services: (
+    $bg-color-red,
+    $bg-color-red,
+  ),
+);
 
-/* Service icon circle */
-.service-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px auto;
-  font-size: 2rem;
-  color: #fff;
-  transition: all 0.3s ease;
-}
+@each $service, $colors in $service-colors {
+  $main: nth($colors, 1);
+  $button: nth($colors, 2);
 
-/* Headings and paragraphs */
-.service-content h3 {
-  margin: 0 0 20px;
-  font-size: 1.6rem;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-}
+  .service-item.#{$service} {
+    .service-icon {
+      background-color: $main;
+    }
 
-.service-content p {
-  margin: 0 0 16px;
-  color: #555;
-  font-size: 1.1rem;
-  letter-spacing: 0.5px;
-  line-height: 1.6;
-}
+    .learn-more {
+      background-color: $button;
+    }
 
-/* Buttons */
-.learn-more {
-  position: absolute;
-  bottom: 31px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: none;
-  width: 150px;
-  border-radius: 3px;
-  font-size: 1rem;
-  letter-spacing: 1.2px;
-  padding: 14px 22px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  text-transform: uppercase;
-  color: #fff;
-}
+    &:hover {
+      background-color: $main;
 
-/* --- Service-Specific Colors with Icon Inversion --- */
+      .service-icon {
+        background-color: #fff;
+        color: $main;
+      }
 
-/* Consultancy */
-.service-item.consultancy .service-icon {
-  background-color: $bg-color-grey;
-  color: #fff;
-}
-.service-item.consultancy .learn-more {
-  background-color: $bg-color-gold;
-}
-.service-item.consultancy:hover {
-  background-color: $bg-color-grey;
-}
-.service-item.consultancy:hover .service-icon {
-  background-color: #fff;
-  color: $bg-color-grey;
-}
-.service-item.consultancy:hover .learn-more {
-  background-color: #fff;
-  color: $bg-color-grey;
-}
-
-/* IT Support */
-.service-item.it-support .service-icon,
-.service-item.it-support .learn-more {
-  background-color: $bg-color-blue;
-}
-.service-item.it-support:hover {
-  background-color: $bg-color-blue;
-}
-.service-item.it-support:hover .service-icon {
-  background-color: #fff;
-  color: $bg-color-blue;
-}
-.service-item.it-support:hover .learn-more {
-  background-color: #fff;
-  color: $bg-color-blue;
-}
-
-/* Digital Marketing */
-.service-item.digital-marketing .service-icon,
-.service-item.digital-marketing .learn-more {
-  background-color: $bg-color-green;
-}
-.service-item.digital-marketing:hover {
-  background-color: $bg-color-green;
-}
-.service-item.digital-marketing:hover .service-icon {
-  background-color: #fff;
-  color: $bg-color-green;
-}
-.service-item.digital-marketing:hover .learn-more {
-  background-color: #fff;
-  color: $bg-color-green;
-}
-
-/* Developer Training */
-.service-item.developer-training .service-icon,
-.service-item.developer-training .learn-more {
-  background-color: $bg-color-brown;
-}
-.service-item.developer-training:hover {
-  background-color: $bg-color-brown;
-}
-.service-item.developer-training:hover .service-icon {
-  background-color: #fff;
-  color: $bg-color-brown;
-}
-.service-item.developer-training:hover .learn-more {
-  background-color: #fff;
-  color: $bg-color-brown;
-}
-
-/* Cyber Security */
-.service-item.cyber-security .service-icon,
-.service-item.cyber-security .learn-more {
-  background-color: $bg-color-pink;
-}
-.service-item.cyber-security:hover {
-  background-color: $bg-color-pink;
-}
-.service-item.cyber-security:hover .service-icon {
-  background-color: #fff;
-  color: $bg-color-pink;
-}
-.service-item.cyber-security:hover .learn-more {
-  background-color: #fff;
-  color: $bg-color-pink;
-}
-
-/* Web Design */
-.service-item.web-design .service-icon,
-.service-item.web-design .learn-more {
-  background-color: $bg-color-purp;
-}
-.service-item.web-design:hover {
-  background-color: $bg-color-purp;
-}
-.service-item.web-design:hover .service-icon {
-  background-color: #fff;
-  color: $bg-color-purp;
-}
-.service-item.web-design:hover .learn-more {
-  background-color: #fff;
-  color: $bg-color-purp;
-}
-
-/* Telecoms Services */
-.service-item.telecoms-services .service-icon,
-.service-item.telecoms-services .learn-more {
-  background-color: $bg-color-red;
-}
-.service-item.telecoms-services:hover {
-  background-color: $bg-color-red;
-}
-.service-item.telecoms-services:hover .service-icon {
-  background-color: #fff;
-  color: $bg-color-red;
-}
-.service-item.telecoms-services:hover .learn-more {
-  background-color: #fff;
-  color: $bg-color-red;
-}
-
-/* Make all text white on hover */
-.service-item:hover h3,
-.service-item:hover p {
-  color: #fff;
+      .learn-more {
+        background-color: #fff;
+        color: $main;
+      }
+    }
+  }
 }

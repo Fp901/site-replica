@@ -1,24 +1,156 @@
 @charset "UTF-8";
+/* ===========================================================
+   _base.scss
+   Global Variables & Base Styles
+   -----------------------------------------------------------
+   - Defines global color palette, typography, and layout
+   - Resets default browser spacing
+   - Provides a base container for layout alignment
+   =========================================================== */
+/* ============================
+   🎨 COLOR VARIABLES
+   ============================ */
+/* ============================
+   🧩 BACKWARD-COMPATIBLE COLOR VARIABLES
+   ============================ */
+/* ============================
+   🎨 COLOR VARIABLES
+   ============================ */
+/* ============================
+   🧩 BACKWARD-COMPATIBLE COLOR VARIABLES
+   ------------------------------------------------------------
+   These variables map directly to the $colors map above.
+   They maintain support for legacy partials (footer, sliders,
+   services, etc.) that still reference $bg-color-* variables.
+   ------------------------------------------------------------ */
+/* ============================
+   🖋️ TYPOGRAPHY
+   ============================ */
+/* ============================
+   🔧 GLOBAL RESET
+   ============================ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* ============================
+   📐 GLOBAL LAYOUT
+   ============================ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
+/* ============================
+   🌍 BASE HTML & BODY STYLES
+   ============================ */
 html,
 body {
-  font-family: "poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   overflow-x: hidden;
+  color: #222;
+  background-color: #fff;
 }
 
+/* ===========================================================
+   _mixins.scss
+   Global Reusable Mixins
+   -----------------------------------------------------------
+   - Centralized mixin definitions for consistency and DRY use
+   - Covers buttons, grids, responsive utilities, and layout helpers
+   =========================================================== */
+/* ============================
+   🎨 BUTTON MIXINS
+   ============================ */
+/**
+ * Generic button mixin
+ * -----------------------------------------------------------
+ * Creates a styled button with customizable colors and padding.
+ * Automatically darkens on hover.
+ *
+ * @param {Color} $bg-color - Background color (default: footer dark)
+ * @param {Color} $text-color - Text color (default: white)
+ * @param {Length} $padding - Button padding (default: 0.75rem 1.5rem)
+ */
+/**
+ * Footer square button mixin
+ * -----------------------------------------------------------
+ * Used for footer social icons or small square CTAs.
+ *
+ * @param {Length} $size - Width/height of the square button
+ */
+/* ============================
+   🧩 GRID & LAYOUT MIXINS
+   ============================ */
+/**
+ * Two-column responsive grid
+ * -----------------------------------------------------------
+ * Automatically switches from 1 to 2 columns with variable gaps.
+ *
+ * @param {Length} $gap-mobile - Grid gap on mobile
+ * @param {Length} $gap-tablet - Grid gap on tablet
+ * @param {Length} $gap-desktop - Grid gap on desktop
+ * @param {Length} $gap-large - Grid gap on large displays
+ * @param {Number} $breakpoint - Minimum width to trigger 2 columns
+ */
+/**
+ * Full-width section container
+ * -----------------------------------------------------------
+ * Ensures consistent section width with optional background color.
+ *
+ * @param {Color} $bg-color - Background color (default: transparent)
+ */
+/* ============================
+   🧭 NAVIGATION ELEMENT MIXINS
+   ============================ */
+/**
+ * Responsive logo height
+ * -----------------------------------------------------------
+ * Dynamically adjusts logo height across common breakpoints.
+ *
+ * @param {Length} $desktop - Height for desktop
+ * @param {Length} $tablet - Height for tablets
+ * @param {Length} $mobile - Height for mobile
+ * @param {Length} $xsmall - Height for small mobile devices
+ */
+/**
+ * Square button (navigation icons)
+ * -----------------------------------------------------------
+ * Creates a perfect square for icons or circular buttons.
+ *
+ * @param {Length} $size - Width/height of the button
+ */
+/**
+ * Rectangle button (hamburger menu, etc.)
+ * -----------------------------------------------------------
+ * Creates a rectangular button with defined width & height.
+ *
+ * @param {Length} $w - Width of button
+ * @param {Length} $h - Height of button
+ */
+/**
+ * Button dimensions with vertical alignment
+ * -----------------------------------------------------------
+ * Sets width, height, and line-height for centered text/buttons.
+ *
+ * @param {Length} $w - Button width
+ * @param {Length} $h - Button height
+ */
+/* ===========================================================
+   _layout.scss
+   Global Layout & Container Utilities
+   -----------------------------------------------------------
+   - Defines global body reset and universal box-sizing
+   - Provides responsive container widths across breakpoints
+   =========================================================== */
+/* ============================
+   🧭 GLOBAL BASE
+   ============================ */
 body {
   margin: 0;
 }
@@ -27,11 +159,20 @@ body {
   box-sizing: border-box;
 }
 
+/* ============================
+   📦 CONTAINER
+   -----------------------------------------------------------
+   Centers and constrains page content.
+   Expands width responsively to fit layout needs.
+   =========================================================== */
 .container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
+  /* Tablet (≥768px): Standard content width */
+  /* Desktop (≥992px): Expanded width to accommodate 5-column layout */
+  /* Large Desktop (≥1260px): Maintain consistent max width */
 }
 
 @media (min-width: 768px) {
@@ -52,9 +193,17 @@ body {
   }
 }
 
-/* ==============================
-   Cookie Consent Modal (Final Style)
-   ============================== */
+/* ===========================================================
+   _cookie-modal.scss
+   Cookie Consent Modal
+   -----------------------------------------------------------
+   - Creates a centered modal informing users about cookie use
+   - Includes overlay, modal animation, and responsive layout
+   - Matches brand accent color and typography
+   =========================================================== */
+/* ============================
+   🔲 MODAL OVERLAY
+   ============================ */
 #cookie-modal-overlay {
   position: fixed;
   top: 0;
@@ -64,8 +213,8 @@ body {
   background: rgba(0, 0, 0, 0.6);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 9998;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 #cookie-modal-overlay.active {
@@ -73,6 +222,9 @@ body {
   visibility: visible;
 }
 
+/* ============================
+   💬 COOKIE MODAL WINDOW
+   ============================ */
 #cookie-modal {
   position: fixed;
   top: 50%;
@@ -85,12 +237,18 @@ body {
   border-radius: 10px;
   padding: 35px 40px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  z-index: 9999;
+  /* Animation states */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-  z-index: 9999;
-  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
-  /* ---------- Responsive Breakpoints ---------- */
+  /* ---- Heading ---- */
+  /* ---- Main Text ---- */
+  /* ---- Button Row ---- */
+  /* ============================
+     📱 RESPONSIVE ADJUSTMENTS
+     ============================ */
   /* ≤ 992px (tablet) */
   /* ≤ 767px (mobile) */
   /* ≤ 480px (x-small) */
@@ -118,6 +276,7 @@ body {
   padding: 15px 0;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
+  /* Privacy Policy Link */
 }
 
 #cookie-modal p a {
@@ -146,6 +305,8 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.25s ease;
+  /* Change Settings Button */
+  /* Accept Cookies Button */
 }
 
 #cookie-modal .btn-row button.btn-settings {
@@ -230,17 +391,37 @@ body {
   }
 }
 
+/* ===========================================================
+   _footer.scss
+   Footer Section
+   -----------------------------------------------------------
+   - Defines layout for footer content, logo, menus, and socials
+   - Includes responsive grid structure for all breakpoints
+   - Styled to match site’s color scheme and brand identity
+   =========================================================== */
 .footer {
   background-color: #323544;
   color: #fff;
   padding: 1.875rem 0 0;
   position: relative;
+  /* ============================
+     📦 FOOTER GRID LAYOUT
+     ============================ */
+  /* ============================
+     ⚫ FOOTER BOTTOM BAR
+     ============================ */
 }
 
 .footer .footer-row {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
+  /* ✅ Tablet (768px–991px): 2 columns, logo spans full width */
+  /* ✅ Small desktop (992px–1199px): 4 columns, logo on top */
+  /* ✅ Large desktop (≥1200px): 5 columns */
+  /* ============================
+       🧭 FOOTER MENU BLOCKS
+       ============================ */
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -277,6 +458,12 @@ body {
 .footer .footer-row .footer-menu {
   margin-bottom: 1.875rem;
   padding: 0 0.625rem;
+  /* ---- Menu Headings ---- */
+  /* ---- Menu Links ---- */
+  /* ---- Logo ---- */
+  /* ============================
+         🌐 SOCIAL ICONS
+         ============================ */
 }
 
 .footer .footer-row .footer-menu h3,
@@ -297,8 +484,9 @@ body {
 }
 
 .footer .footer-row .footer-menu ul a {
-  color: white;
+  color: #fff;
   text-decoration: none;
+  transition: text-decoration 0.3s ease;
 }
 
 .footer .footer-row .footer-menu ul a:hover {
@@ -324,6 +512,7 @@ body {
   justify-content: center;
   gap: 1rem;
   margin: 1.25rem 0;
+  /* ---- Icon Buttons ---- */
 }
 
 @media (min-width: 768px) {
@@ -343,6 +532,9 @@ body {
   background-color: #212330;
   border-radius: 0.25rem;
   transition: all 0.3s ease;
+  /* Reset link states to avoid default underline/visited colors */
+  /* Icon size + color */
+  /* ---- Hover Colors (per platform) ---- */
 }
 
 @media (min-width: 768px) {
@@ -373,7 +565,7 @@ body {
 
 .footer .footer-row .footer-menu .footer-social .icon-btn i.icon {
   font-size: 2.5rem;
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 @media (min-width: 1200px) {
@@ -421,6 +613,8 @@ body {
   padding: 1rem 0.9375rem;
   text-align: left;
   font-size: 0.95rem;
+  /* ---- Responsive Typography ---- */
+  /* ---- Footer Links ---- */
 }
 
 @media (max-width: 768px) {
@@ -439,6 +633,7 @@ body {
 .footer .footer-bottom .footer-bottom-content a {
   color: #fff;
   text-decoration: none;
+  transition: text-decoration 0.3s ease;
 }
 
 .footer .footer-bottom .footer-bottom-content a:hover {
@@ -447,12 +642,24 @@ body {
 
 @use 'base' as *;
 @use 'mixins' as *;
+/* ===========================================================
+   _welcome.scss
+   Welcome / Hero Section
+   -----------------------------------------------------------
+   - Contains introduction text and client testimonials
+   - Uses two-column responsive grid
+   - Includes review buttons and star testimonials
+   =========================================================== */
+/* ============================
+   🏠 SECTION WRAPPER
+   ============================ */
 .welcome-section {
   background-color: #323544;
   color: #fff;
   padding: 30px 0 0;
   position: relative;
-  font-family: "poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
+  /* ---- Background Wrapper ---- */
 }
 
 .welcome-section .welcome-bg {
@@ -483,6 +690,15 @@ body {
 .welcome-section .welcome-bg .container .welcome-grid .welcome-content,
 .welcome-section .welcome-bg .container .welcome-grid .client-thoughts {
   margin-bottom: 30px;
+  /* ============================
+             ✳️ HEADINGS & INTRO TEXT
+             ============================ */
+  /* ============================
+             🎯 BUTTON GROUP
+             ============================ */
+  /* ============================
+             💬 TESTIMONIAL STYLES
+             ============================ */
 }
 
 .welcome-section .welcome-bg .container .welcome-grid .welcome-content h2,
@@ -529,6 +745,8 @@ body {
   gap: 1rem;
   justify-content: center;
   margin: 1rem 0;
+  /* ---- Shared Button Base ---- */
+  /* ---- Brand-Specific Buttons ---- */
 }
 
 @media (min-width: 768px) {
@@ -552,7 +770,7 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
   border-radius: 8px;
-  font-family: "poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 20px;
   line-height: 35px;
   font-weight: 400;
@@ -565,7 +783,9 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   white-space: nowrap;
-  /* Prevent text and icon from wrapping */
+  /* ---- Icon adjustments ---- */
+  /* ---- Mobile Sizing ---- */
+  /* ---- Small Tablet Sizing ---- */
 }
 
 .welcome-section .welcome-bg .container .welcome-grid .welcome-content .welcome-buttons .btn:hover,
@@ -579,6 +799,14 @@ body {
   text-decoration: none;
 }
 
+.welcome-section .welcome-bg .container .welcome-grid .welcome-content .welcome-buttons .btn i.icon,
+.welcome-section .welcome-bg .container .welcome-grid .client-thoughts .welcome-buttons .btn i.icon {
+  margin-left: 8px;
+  font-size: 1.2em;
+  vertical-align: middle;
+  display: inline-block;
+}
+
 @media (max-width: 480px) {
   .welcome-section .welcome-bg .container .welcome-grid .welcome-content .welcome-buttons .btn,
   .welcome-section .welcome-bg .container .welcome-grid .client-thoughts .welcome-buttons .btn {
@@ -589,7 +817,6 @@ body {
   .welcome-section .welcome-bg .container .welcome-grid .welcome-content .welcome-buttons .btn i.icon,
   .welcome-section .welcome-bg .container .welcome-grid .client-thoughts .welcome-buttons .btn i.icon {
     font-size: 1em;
-    /* Smaller icon to fit */
   }
 }
 
@@ -599,21 +826,11 @@ body {
     font-size: 18px;
     line-height: 32px;
     padding: 0.5rem 1.2rem;
-    /* Slightly more horizontal padding */
   }
   .welcome-section .welcome-bg .container .welcome-grid .welcome-content .welcome-buttons .btn i.icon,
   .welcome-section .welcome-bg .container .welcome-grid .client-thoughts .welcome-buttons .btn i.icon {
     font-size: 1.1em;
-    /* Adjust icon size */
   }
-}
-
-.welcome-section .welcome-bg .container .welcome-grid .welcome-content .welcome-buttons .btn i.icon,
-.welcome-section .welcome-bg .container .welcome-grid .client-thoughts .welcome-buttons .btn i.icon {
-  margin-left: 8px;
-  font-size: 1.2em;
-  vertical-align: middle;
-  display: inline-block;
 }
 
 .welcome-section .welcome-bg .container .welcome-grid .welcome-content .welcome-buttons .btn-google,
@@ -636,6 +853,12 @@ body {
 .welcome-section .welcome-bg .container .welcome-grid .welcome-content .welcome-buttons .btn-trustpilot:hover,
 .welcome-section .welcome-bg .container .welcome-grid .client-thoughts .welcome-buttons .btn-trustpilot:hover {
   background-color: #006846;
+}
+
+.welcome-section .welcome-bg .container .welcome-grid .welcome-content .testimonial,
+.welcome-section .welcome-bg .container .welcome-grid .client-thoughts .testimonial {
+  /* ---- Testimonial Text ---- */
+  /* ---- Author / Company ---- */
 }
 
 .welcome-section .welcome-bg .container .welcome-grid .welcome-content .testimonial .stars,
@@ -687,7 +910,6 @@ body {
 
 .welcome-section .welcome-bg .container .welcome-grid .welcome-content .testimonial .author,
 .welcome-section .welcome-bg .container .welcome-grid .client-thoughts .testimonial .author {
-  font-style: normal;
   font-size: 1.1rem;
   color: #a3a8ac;
   text-align: left;
@@ -707,12 +929,18 @@ body {
 .banner {
   width: 100%;
   position: relative;
+  /* ============================
+     Banner Slide Wrapper
+     ============================ */
 }
 
-.banner .banner-slide {
+.banner .banner-slider {
   width: 100%;
   min-height: clamp(360px, 70vh, 550px);
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%), url("../assets/images/home-MSxH.webp");
+  background-color: #333;
+  /* Fallback to mask white space */
+  background-image: none;
+  /* Handled by .slide-background */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -721,96 +949,137 @@ body {
   justify-content: center;
   position: relative;
   overflow: hidden;
+  cursor: grab;
+  /* Current slide background */
+  /* ============================
+       Slide Animation Layer
+       ============================ */
+  /* Fades out text during transition */
+  /* ============================
+       Content Container
+       ============================ */
+  /* ============================
+       Navigation Dots
+       ============================ */
 }
 
-.banner .banner-slide:before {
-  content: '';
+.banner .banner-slider.is-dragging {
+  cursor: grabbing;
+}
+
+.banner .banner-slider.is-dragging .slide-image {
+  transition: none;
+  /* Disable transition during drag */
+}
+
+.banner .banner-slider.is-dragging .container {
+  visibility: hidden;
+  /* Hide text during drag to avoid overlap */
+}
+
+.banner .banner-slider .slide-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
   z-index: 1;
+  /* Below text and temporary images */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #333;
+  /* Fallback */
+  will-change: transform;
+  /* Optimize animation */
 }
 
-.banner .banner-slide .slide-image {
+.banner .banner-slider .slide-image {
   position: absolute;
   top: 0;
-  left: 100%;
+  left: 0;
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #333;
+  /* Fallback */
   z-index: 2;
-  transform: translateX(0);
+  /* Above slide-background, below text */
   transition: transform 0.35s ease-in-out;
+  will-change: transform;
+  /* Optimize animation */
 }
 
-.banner .banner-slide.is-sliding .slide-image {
+.banner .banner-slider.is-sliding .slide-image {
   transform: translateX(-100%);
 }
 
-.banner .banner-slide.hide-text .container {
+.banner .banner-slider.hide-text .container {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
-.banner .banner-slide .container {
+.banner .banner-slider .container {
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
   padding: 0 15px;
   position: relative;
   z-index: 3;
+  /* Above all images */
+  transition: transform 0.35s ease, visibility 0s, opacity 0.3s ease-in-out;
+  /* Smooth slide and visibility */
+  will-change: transform;
+  /* Optimize animation */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   min-height: 450px;
   text-align: left;
-  align-items: flex-start;
 }
 
 @media (min-width: 1200px) {
-  .banner .banner-slide .container {
+  .banner .banner-slider .container {
     padding-left: 30px;
   }
 }
 
-.banner .banner-slide .container h1 {
+.banner .banner-slider .container h1 {
   font-size: 64px;
   line-height: 100px;
   font-weight: 600;
   letter-spacing: 0.4px;
-  color: #ffffff;
+  color: #fff;
   margin-bottom: 1.5rem;
 }
 
 @media (max-width: 991px) {
-  .banner .banner-slide .container h1 {
+  .banner .banner-slider .container h1 {
     font-size: 36px;
     line-height: 44px;
     text-align: center;
   }
 }
 
-.banner .banner-slide .container p {
+.banner .banner-slider .container p {
   font-size: 1.7rem;
   font-weight: 500;
-  color: #ffffff;
+  color: #fff;
   margin-bottom: 2rem;
   line-height: 1.5;
 }
 
 @media (max-width: 991px) {
-  .banner .banner-slide .container p {
+  .banner .banner-slider .container p {
     text-align: center;
     font-size: 1.2rem;
   }
 }
 
-.banner .banner-slide .container .btn {
+.banner .banner-slider .container .btn {
   --btn-color: #e80a42;
   display: inline-block;
   width: 224.891px;
@@ -819,7 +1088,7 @@ body {
   line-height: 62px;
   border-radius: 3px;
   background-color: var(--btn-color);
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
   font-size: clamp(16px, 2vw, 20px);
   font-weight: 500;
@@ -828,24 +1097,24 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.banner .banner-slide .container .btn:hover {
+.banner .banner-slider .container .btn:hover {
   background-color: color-mix(in srgb, var(--btn-color), black 15%);
 }
 
 @media (max-width: 991px) {
-  .banner .banner-slide .container .btn {
+  .banner .banner-slider .container .btn {
     align-self: center;
   }
 }
 
 @media (max-width: 991px) {
-  .banner .banner-slide .container {
+  .banner .banner-slider .container {
     align-items: center;
     text-align: center;
   }
 }
 
-.banner .banner-slide .owl-dots {
+.banner .banner-slider .owl-dots {
   position: absolute;
   bottom: 51px;
   left: 50%;
@@ -856,54 +1125,72 @@ body {
   z-index: 4;
 }
 
-.banner .banner-slide .owl-dots .owl-dot span {
+.banner .banner-slider .owl-dots .owl-dot span {
   display: block;
   width: 15px;
   height: 15px;
   border-radius: 50%;
   background-color: #869791;
-  transition: all 0.3s ease;
   border: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 
-.banner .banner-slide .owl-dots .owl-dot span.active {
+.banner .banner-slider .owl-dots .owl-dot span.active {
   background-color: #fff;
-  border: 2px solid #869791;
+  border-color: #869791;
 }
 
 @media (max-width: 768px) {
-  .banner .banner-slide .owl-dots {
+  .banner .banner-slider .owl-dots {
     bottom: 20px;
     gap: 6px;
   }
-  .banner .banner-slide .owl-dots .owl-dot span {
+  .banner .banner-slider .owl-dots .owl-dot span {
     width: 10px;
     height: 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .banner .banner-slide .owl-dots {
+  .banner .banner-slider .owl-dots {
     bottom: 20px;
     gap: 4px;
   }
-  .banner .banner-slide .owl-dots .owl-dot span {
+  .banner .banner-slider .owl-dots .owl-dot span {
     width: 8px;
     height: 8px;
   }
 }
 
-/* ==============================
+/* ===========================================================
+   _latest-news.scss
    Latest News Section
-   ============================== */
+   -----------------------------------------------------------
+   - Responsive news grid with cards, overlay labels, and metadata
+   - Includes “View All” link variations for desktop & mobile
+   - Matches brand color scheme and typography standards
+   =========================================================== */
 .latest-news {
   padding: 2rem 0;
   background-color: #fff;
-  /* --- Header --- */
-  /* --- View All Links --- */
-  /* --- News Grid --- */
-  /* --- Responsive Grid --- */
-  /* --- Responsive View All --- */
+  /* ============================
+     📰 SECTION HEADER
+     ============================ */
+  /* ============================
+     🔗 VIEW ALL LINK
+     ============================ */
+  /* ============================
+     🧩 NEWS GRID LAYOUT
+     ============================ */
+  /* ============================
+     📱 RESPONSIVE GRID BREAKPOINTS
+     ============================ */
+  /* Tablet (2-column layout) */
+  /* Desktop (3-column layout) */
+  /* Mobile adjustments */
+  /* ============================
+     🔁 RESPONSIVE “VIEW ALL” LINKS
+     ============================ */
 }
 
 .latest-news .news-header {
@@ -938,32 +1225,37 @@ body {
   gap: 1.5rem;
   justify-content: center;
   margin-bottom: 2rem;
+  /* ---- Individual News Item ---- */
 }
 
 .latest-news .news-grid .news-item {
   display: flex;
   flex-direction: column;
   background: #fff;
-  border: 0.0625rem solid #e0e0e0;
+  border: 1px solid #e0e0e0;
   border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   width: 100%;
   max-width: 23.75rem;
   position: relative;
-  /* --- Responsive Overlay --- */
+  /* ---- Overlay Label ---- */
+  /* ---- Image ---- */
+  /* ============================
+         📝 NEWS CONTENT
+         ============================ */
 }
 
 .latest-news .news-grid .news-item:hover {
-  transform: translateY(-0.3125rem);
+  transform: translateY(-5px);
 }
 
 .latest-news .news-grid .news-item .news-overlay {
   position: absolute;
   top: 0.75rem;
   right: 0;
-  background-color: #67809f;
+  background-color: #4183d7;
   color: #fff;
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
@@ -971,8 +1263,8 @@ body {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   z-index: 2;
-  line-height: 1;
   border-radius: 0.25rem;
+  line-height: 1;
 }
 
 .latest-news .news-grid .news-item .news-overlay:hover {
@@ -1010,6 +1302,10 @@ body {
 .latest-news .news-grid .news-item .news-content {
   padding: 2rem;
   flex: 1;
+  /* ---- Headline ---- */
+  /* ---- Excerpt ---- */
+  /* ---- Read More Buttons ---- */
+  /* ---- Meta Information ---- */
 }
 
 .latest-news .news-grid .news-item .news-content h3 {
@@ -1068,7 +1364,7 @@ body {
   font-size: 1rem;
   color: #666;
   padding-top: 1rem;
-  border-top: 0.0625rem solid #ccc;
+  border-top: 1px solid #ccc;
 }
 
 .latest-news .news-grid .news-item .news-content .news-meta .meta-top {
@@ -1161,9 +1457,16 @@ body {
   }
 }
 
-/* -------------------------
-   Partners Sliders
-   ------------------------- */
+/* ===========================================================
+   _sliders.scss
+   Partners / Clients Logo Sliders
+   -----------------------------------------------------------
+   - Displays two horizontal scrolling logo strips
+   - Includes hover-to-color effect and tooltip descriptions
+   =========================================================== */
+/* ============================
+   🎞️ BASE SLIDER STYLES
+   ============================ */
 .partners-slideshow {
   width: 100%;
   background-color: #fff;
@@ -1176,12 +1479,23 @@ body {
   margin: 0 auto;
   padding: 0 15px;
   height: auto;
+  /* ---- Horizontal Scroll Wrapper ---- */
+  /* ---- Logo Track (row of partner logos) ---- */
+  /* ---- Individual Logo Items ---- */
 }
 
 .partners-slideshow .partners-strip .scroll-wrapper {
   width: 100%;
   overflow-x: hidden;
   overflow-y: visible;
+  /* ---------------------------------------------------------
+         ✅ Added for smooth JavaScript-controlled transitions
+         ---------------------------------------------------------
+         Enables smooth horizontal scrolling when JS calls
+         scrollTo({ behavior: "smooth" }). Without this, the
+         logos would jump instead of sliding fluidly.
+      --------------------------------------------------------- */
+  scroll-behavior: smooth;
 }
 
 .partners-slideshow .partners-strip .logo-track {
@@ -1190,12 +1504,19 @@ body {
   align-items: center;
   gap: 5rem;
   width: max-content;
+  /* ---------------------------------------------------------
+         🧠 Performance Hint (optional but recommended)
+         ---------------------------------------------------------
+         Informs the browser that this element will frequently
+         change its position or transform property due to JS
+         scrolling/animation — helps rendering stay smooth.
+      --------------------------------------------------------- */
+  will-change: transform;
 }
 
 .partners-slideshow .partners-strip .logo-item {
   flex: 0 0 auto;
   width: clamp(100px, 18vw, 180px);
-  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1215,9 +1536,9 @@ body {
   filter: grayscale(0%);
 }
 
-/* -------------------------
-   Top Slider (no tooltips)
-   ------------------------- */
+/* ============================
+   ⬆️ TOP STRIP (STATIC)
+   ============================ */
 .partners-slideshow:first-of-type {
   overflow: hidden;
 }
@@ -1226,9 +1547,9 @@ body {
   animation: none;
 }
 
-/* -------------------------
-   Bottom Slider (with tooltips)
-   ------------------------- */
+/* ============================
+   ⬇️ BOTTOM STRIP (WITH TOOLTIPS)
+   ============================ */
 .partners-slideshow:last-of-type {
   position: relative;
   overflow: visible !important;
@@ -1243,6 +1564,9 @@ body {
 
 .partners-slideshow:last-of-type .logo-item {
   position: relative;
+  /* ---- Tooltip Card ---- */
+  /* ---- Tooltip Triangle ---- */
+  /* ---- Reveal Tooltip on Hover ---- */
 }
 
 .partners-slideshow:last-of-type .logo-item .tooltip {
@@ -1260,20 +1584,19 @@ body {
   visibility: hidden;
   transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 9999;
+  /* ---- Tooltip CTA ---- */
 }
 
 .partners-slideshow:last-of-type .logo-item .tooltip h4 {
   margin: 0 0 0.5rem;
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
 }
 
 .partners-slideshow:last-of-type .logo-item .tooltip p {
   margin: 0 0 0.75rem;
   font-size: 0.9rem;
   line-height: 1.4;
-  color: #fff;
 }
 
 .partners-slideshow:last-of-type .logo-item .tooltip .btn {
@@ -1299,8 +1622,6 @@ body {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
-  height: 0;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
   border-top: 40px solid #323544;
@@ -1316,9 +1637,9 @@ body {
   visibility: visible;
 }
 
-/* -------------------------
-   Responsive Tweaks
-   ------------------------- */
+/* ============================
+   📱 RESPONSIVE TWEAKS
+   ============================ */
 @media (max-width: 991px) {
   .partners-slideshow .logo-item {
     width: clamp(80px, 25vw, 140px);
@@ -1346,15 +1667,27 @@ body {
   }
 }
 
-/* Basic Styling */
+/* ===========================================================
+   _services.scss
+   Our Services Section
+   -----------------------------------------------------------
+   - Displays service cards with icons, descriptions, and CTAs
+   - Fully responsive grid layout with hover color inversion
+   - Applies DRY principles via Sass map for service colors
+   =========================================================== */
+/* ============================
+   📦 SECTION WRAPPER
+   ============================ */
 .our-services {
   padding: 60px 0;
 }
 
+/* ============================
+   🏷️ HEADER
+   ============================ */
 .services-header {
   display: flex;
   justify-content: space-between;
-  /* h2 left, view-all right */
   align-items: center;
   margin-bottom: 40px;
 }
@@ -1366,7 +1699,7 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* View All button */
+/* ---- "View All" Buttons ---- */
 .view-all {
   display: inline-flex;
   align-items: center;
@@ -1385,7 +1718,6 @@ body {
   text-decoration: underline;
 }
 
-/* Desktop (≥992px): inline beside heading */
 .view-all-desktop {
   display: inline-flex;
 }
@@ -1396,7 +1728,7 @@ body {
   text-align: center;
 }
 
-/* Mobile (≤991px): below the grid */
+/* ---- Mobile header adjustments ---- */
 @media (max-width: 991px) {
   .services-header {
     flex-direction: column;
@@ -1411,19 +1743,21 @@ body {
   }
 }
 
-/* Grid Layout */
+/* ============================
+   🧱 GRID LAYOUT
+   ============================ */
 .services-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 40px;
   align-items: stretch;
-  /* equal row heights */
 }
 
 .top-row {
   margin-bottom: 40px;
 }
 
+/* ---- Large Desktop (≥1261px) ---- */
 @media (min-width: 1261px) {
   .top-row {
     grid-template-columns: repeat(3, 1fr);
@@ -1436,6 +1770,7 @@ body {
   }
 }
 
+/* ---- Small Desktop (992px–1260px) ---- */
 @media (max-width: 1260px) and (min-width: 992px) {
   .top-row {
     grid-template-columns: repeat(3, 1fr);
@@ -1448,12 +1783,12 @@ body {
   }
 }
 
+/* ---- Mobile (≤991px) ---- */
 @media (max-width: 991px) {
   .top-row,
   .bottom-row {
     grid-template-columns: 1fr;
   }
-  /* Center bottom-row cards on mobile */
   .bottom-row .service-item {
     display: flex;
     justify-content: center;
@@ -1462,7 +1797,9 @@ body {
   }
 }
 
-/* Shared Service Box Styling */
+/* ============================
+   🎨 SERVICE CARD BASE STYLE
+   ============================ */
 .service-item {
   position: relative;
   background: #fff;
@@ -1471,16 +1808,17 @@ body {
   padding: 30px 20px 80px;
   display: flex;
   flex-direction: column;
-  /* fill box */
   align-items: center;
   justify-content: flex-start;
   text-align: center;
   min-height: 300px;
   height: 100%;
-  /* equal grid row height */
-  box-sizing: border-box;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  /* ---- Service Content ---- */
+  /* ---- Service Icon ---- */
+  /* ---- "Learn More" Button ---- */
 }
 
 .service-item:hover {
@@ -1489,75 +1827,80 @@ body {
   color: #fff;
 }
 
-.service-content {
+.service-item:hover h3,
+.service-item:hover p {
+  color: #fff;
+}
+
+.service-item .service-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* vertical centering */
   flex-grow: 1;
   width: 100%;
   max-width: 260px;
   margin: 0 auto;
-  letter-spacing: 0.5px;
   font-size: 1.2rem;
+  letter-spacing: 0.5px;
   text-align: center;
 }
 
-/* Service icon circle */
-.service-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px auto;
-  font-size: 2rem;
-  color: #fff;
-  transition: all 0.3s ease;
-}
-
-/* Headings and paragraphs */
-.service-content h3 {
+.service-item .service-content h3 {
   margin: 0 0 20px;
   font-size: 1.6rem;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 
-.service-content p {
+.service-item .service-content p {
   margin: 0 0 16px;
-  color: #555;
   font-size: 1.1rem;
+  color: #555;
   letter-spacing: 0.5px;
   line-height: 1.6;
 }
 
-/* Buttons */
-.learn-more {
+.service-item .service-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.service-item .learn-more {
   position: absolute;
   bottom: 31px;
   left: 50%;
   transform: translateX(-50%);
-  border: none;
   width: 150px;
   border-radius: 3px;
-  font-size: 1rem;
-  letter-spacing: 1.2px;
   padding: 14px 22px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: 500;
   text-transform: uppercase;
+  letter-spacing: 1.2px;
   color: #fff;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
-/* --- Service-Specific Colors with Icon Inversion --- */
-/* Consultancy */
+/* ===========================================================
+   🧩 SERVICE COLOR THEMES
+   -----------------------------------------------------------
+   - Uses a Sass map to apply consistent color rules
+   - Handles icon, button, hover background, and inversion
+   =========================================================== */
 .service-item.consultancy .service-icon {
   background-color: #84858f;
-  color: #fff;
 }
 
 .service-item.consultancy .learn-more {
@@ -1578,8 +1921,10 @@ body {
   color: #84858f;
 }
 
-/* IT Support */
-.service-item.it-support .service-icon,
+.service-item.it-support .service-icon {
+  background-color: #4183d7;
+}
+
 .service-item.it-support .learn-more {
   background-color: #4183d7;
 }
@@ -1598,8 +1943,10 @@ body {
   color: #4183d7;
 }
 
-/* Digital Marketing */
-.service-item.digital-marketing .service-icon,
+.service-item.digital-marketing .service-icon {
+  background-color: #2ecc71;
+}
+
 .service-item.digital-marketing .learn-more {
   background-color: #2ecc71;
 }
@@ -1618,8 +1965,10 @@ body {
   color: #2ecc71;
 }
 
-/* Developer Training */
-.service-item.developer-training .service-icon,
+.service-item.developer-training .service-icon {
+  background-color: #d66049;
+}
+
 .service-item.developer-training .learn-more {
   background-color: #d66049;
 }
@@ -1638,8 +1987,10 @@ body {
   color: #d66049;
 }
 
-/* Cyber Security */
-.service-item.cyber-security .service-icon,
+.service-item.cyber-security .service-icon {
+  background-color: #f62459;
+}
+
 .service-item.cyber-security .learn-more {
   background-color: #f62459;
 }
@@ -1658,8 +2009,10 @@ body {
   color: #f62459;
 }
 
-/* Web Design */
-.service-item.web-design .service-icon,
+.service-item.web-design .service-icon {
+  background-color: #926fb1;
+}
+
 .service-item.web-design .learn-more {
   background-color: #926fb1;
 }
@@ -1678,8 +2031,10 @@ body {
   color: #926fb1;
 }
 
-/* Telecoms Services */
-.service-item.telecoms-services .service-icon,
+.service-item.telecoms-services .service-icon {
+  background-color: #d64541;
+}
+
 .service-item.telecoms-services .learn-more {
   background-color: #d64541;
 }
@@ -1698,20 +2053,27 @@ body {
   color: #d64541;
 }
 
-/* Make all text white on hover */
-.service-item:hover h3,
-.service-item:hover p {
-  color: #fff;
-}
-
+/* ===========================================================
+   _services-menu.scss
+   Main Services Mega Menu
+   -----------------------------------------------------------
+   - Displays top-level services with icons and mega dropdowns
+   - Includes sticky positioning and hover transitions
+   - Hides completely below 992px (mobile view)
+   =========================================================== */
 .services-menu {
   position: relative;
   width: 100%;
-  background: #2c2f38;
-  border-radius: 0;
   height: 8rem;
+  background: #2c2f38;
   font-family: 'Poppins', sans-serif;
+  border-radius: 0;
   z-index: 1000;
+  /* ===== Sticky + Visibility States ===== */
+  /* ============================
+     🧩 INNER STRUCTURE
+     ============================ */
+  /* Hide menu on mobile/tablet */
 }
 
 .services-menu.sticky {
@@ -1744,14 +2106,13 @@ body {
 
 .services-menu .services-menu-inner > ul {
   display: flex;
-  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: stretch;
+  flex-wrap: nowrap;
+  height: 100%;
   margin: 0;
   padding: 0;
   list-style: none;
-  height: 100%;
-  overflow: visible;
 }
 
 .services-menu .services-menu-inner > ul > li {
@@ -1761,7 +2122,13 @@ body {
   text-align: center;
   position: static;
   transition: background-color 0.3s ease;
-  /* Only top-level <a> */
+  /* ---- Top-level link ---- */
+  /* ---- Text layout ---- */
+  /* ---- Hover state ---- */
+  /* ============================
+           📂 MEGA PANEL DROPDOWN
+           ============================ */
+  /* ---- Show dropdown on hover ---- */
 }
 
 .services-menu .services-menu-inner > ul > li > a {
@@ -1771,11 +2138,12 @@ body {
   /* icon above text */
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  color: #fff;
   height: 100%;
   padding: 1rem 0;
+  color: #fff;
+  text-decoration: none;
   text-transform: uppercase;
+  /* Triangle indicator */
 }
 
 .services-menu .services-menu-inner > ul > li > a i {
@@ -1792,13 +2160,10 @@ body {
   height: 40px;
   background: transparent;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  z-index: 2100;
-  border: none !important;
-  box-shadow: none !important;
-  filter: none !important;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease, background 0.25s ease;
+  z-index: 2100;
 }
 
 .services-menu .services-menu-inner > ul > li .first-word {
@@ -1810,9 +2175,9 @@ body {
 .services-menu .services-menu-inner > ul > li .second-word {
   font-size: 1.3rem;
   font-weight: 400;
-  display: block;
   margin-top: 0.25rem;
   line-height: 1;
+  display: block;
 }
 
 .services-menu .services-menu-inner > ul > li:hover > a .triangle {
@@ -1836,16 +2201,16 @@ body {
 .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner {
   max-width: 87.5rem;
   margin: 0 auto;
-  padding: 2rem 2rem 3rem 2rem;
+  padding: 2rem 2rem 3rem;
+  /* ---- 3-column layout ---- */
 }
 
 .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner h3 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
   font-size: 2rem;
   font-weight: 600;
-  text-transform: none;
+  margin: 1.5rem 0;
   text-align: left;
+  text-transform: none;
 }
 
 .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list {
@@ -1858,26 +2223,20 @@ body {
 }
 
 .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li {
-  height: auto !important;
-  flex: initial !important;
-  min-width: 0;
   text-align: left;
-  position: static;
+  min-width: 0;
 }
 
 .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a {
   display: inline-flex;
-  /* icon + text inline */
   align-items: center;
   gap: 0.5rem;
+  color: #fff;
   font-size: 1.2rem;
   line-height: 1.5;
   letter-spacing: 0.03em;
-  margin: 0;
-  padding: 0;
-  color: #fff;
   text-decoration: none;
-  /* Underline only the text, not the icon */
+  /* Underline only text on hover */
 }
 
 .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a i {
@@ -1887,10 +2246,6 @@ body {
 
 .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a:hover span {
   text-decoration: underline;
-}
-
-.services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a:hover i {
-  text-decoration: none;
 }
 
 .services-menu .services-menu-inner > ul > li:hover .mega-panel,
@@ -1905,129 +2260,188 @@ body {
   }
 }
 
-/* Icon colors */
+/* ===========================================================
+   🎨 THEME COLORS
+   -----------------------------------------------------------
+   Icon, hover, and mega-panel colors for each service type
+   =========================================================== */
+/* Loop through each service for color consistency */
+.services-menu li.consultancy {
+  /* Darker background for dropdown panels */
+}
+
 .services-menu li.consultancy i {
   color: #84858f;
+}
+
+.services-menu li.consultancy:hover {
+  background: #84858f;
+}
+
+.services-menu li.consultancy:hover i {
+  color: #fff;
+}
+
+.services-menu li.consultancy:hover a .triangle {
+  background: #84858f;
+}
+
+.services-menu li.consultancy .mega-panel {
+  background: #5f5f68;
+}
+
+.services-menu li.it-support {
+  /* Darker background for dropdown panels */
 }
 
 .services-menu li.it-support i {
   color: #4183d7;
 }
 
-.services-menu li.digital-marketing i {
-  color: #2ecc71;
-}
-
-.services-menu li.telecoms-services i {
-  color: #d64541;
-}
-
-.services-menu li.web-design i {
-  color: #926fb1;
-}
-
-.services-menu li.cyber-security i {
-  color: #f62459;
-}
-
-.services-menu li.developer-training i {
-  color: #d66049;
-}
-
-/* Hover background + icon turns white */
-.services-menu li.consultancy:hover {
-  background: #84858f;
-}
-
 .services-menu li.it-support:hover {
   background: #4183d7;
 }
 
-.services-menu li.digital-marketing:hover {
-  background: #2ecc71;
-}
-
-.services-menu li.telecoms-services:hover {
-  background: #d64541;
-}
-
-.services-menu li.web-design:hover {
-  background: #926fb1;
-}
-
-.services-menu li.cyber-security:hover {
-  background: #f62459;
-}
-
-.services-menu li.developer-training:hover {
-  background: #d66049;
-}
-
-.services-menu li:hover i {
+.services-menu li.it-support:hover i {
   color: #fff;
-}
-
-/* Mega-panel background colors (15% darker) */
-.services-menu li.consultancy .mega-panel {
-  background: #5f5f68;
-}
-
-.services-menu li.it-support .mega-panel {
-  background: #235ea8;
-}
-
-.services-menu li.digital-marketing .mega-panel {
-  background: #208e4e;
-}
-
-.services-menu li.telecoms-services .mega-panel {
-  background: #a72724;
-}
-
-.services-menu li.web-design .mega-panel {
-  background: #6c4a89;
-}
-
-.services-menu li.cyber-security .mega-panel {
-  background: #c50838;
-}
-
-.services-menu li.developer-training .mega-panel {
-  background: #ac3c27;
-}
-
-/* Triangle colors (same as li background) */
-.services-menu li.consultancy:hover a .triangle {
-  background: #84858f;
 }
 
 .services-menu li.it-support:hover a .triangle {
   background: #4183d7;
 }
 
+.services-menu li.it-support .mega-panel {
+  background: #235ea8;
+}
+
+.services-menu li.digital-marketing {
+  /* Darker background for dropdown panels */
+}
+
+.services-menu li.digital-marketing i {
+  color: #2ecc71;
+}
+
+.services-menu li.digital-marketing:hover {
+  background: #2ecc71;
+}
+
+.services-menu li.digital-marketing:hover i {
+  color: #fff;
+}
+
 .services-menu li.digital-marketing:hover a .triangle {
   background: #2ecc71;
+}
+
+.services-menu li.digital-marketing .mega-panel {
+  background: #208e4e;
+}
+
+.services-menu li.telecoms-services {
+  /* Darker background for dropdown panels */
+}
+
+.services-menu li.telecoms-services i {
+  color: #d64541;
+}
+
+.services-menu li.telecoms-services:hover {
+  background: #d64541;
+}
+
+.services-menu li.telecoms-services:hover i {
+  color: #fff;
 }
 
 .services-menu li.telecoms-services:hover a .triangle {
   background: #d64541;
 }
 
+.services-menu li.telecoms-services .mega-panel {
+  background: #a72724;
+}
+
+.services-menu li.web-design {
+  /* Darker background for dropdown panels */
+}
+
+.services-menu li.web-design i {
+  color: #926fb1;
+}
+
+.services-menu li.web-design:hover {
+  background: #926fb1;
+}
+
+.services-menu li.web-design:hover i {
+  color: #fff;
+}
+
 .services-menu li.web-design:hover a .triangle {
   background: #926fb1;
+}
+
+.services-menu li.web-design .mega-panel {
+  background: #6c4a89;
+}
+
+.services-menu li.cyber-security {
+  /* Darker background for dropdown panels */
+}
+
+.services-menu li.cyber-security i {
+  color: #f62459;
+}
+
+.services-menu li.cyber-security:hover {
+  background: #f62459;
+}
+
+.services-menu li.cyber-security:hover i {
+  color: #fff;
 }
 
 .services-menu li.cyber-security:hover a .triangle {
   background: #f62459;
 }
 
+.services-menu li.cyber-security .mega-panel {
+  background: #c50838;
+}
+
+.services-menu li.developer-training {
+  /* Darker background for dropdown panels */
+}
+
+.services-menu li.developer-training i {
+  color: #d66049;
+}
+
+.services-menu li.developer-training:hover {
+  background: #d66049;
+}
+
+.services-menu li.developer-training:hover i {
+  color: #fff;
+}
+
 .services-menu li.developer-training:hover a .triangle {
   background: #d66049;
 }
 
-/* ====================== 
-   NAVBAR (Top Header)
-   ====================== */
+.services-menu li.developer-training .mega-panel {
+  background: #ac3c27;
+}
+
+/* ===========================================================
+   _nav-bar.scss
+   Main Navigation Bar (Top Header)
+   -----------------------------------------------------------
+   - Handles site branding, buttons, and search actions
+   - Includes hamburger toggle and sticky header behavior
+   - Fully responsive across mobile, tablet, and desktop
+   =========================================================== */
 .navbar {
   position: relative;
   width: 100%;
@@ -2036,9 +2450,20 @@ body {
   border-bottom: 1px solid #ddd;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   z-index: 1300;
-  /* Logo */
-  /* Buttons */
-  /* Actions */
+  /* ===== Sticky State ===== */
+  /* ===== Visibility States ===== */
+  /* ============================
+     🔹 NAV CONTAINER
+     ============================ */
+  /* ============================
+     🏷️ LOGO
+     ============================ */
+  /* ============================
+     🔘 NAVBAR BUTTONS (CTA)
+     ============================ */
+  /* ============================
+     ⚙️ ACTIONS (Search, Icons, Hamburger)
+     ============================ */
 }
 
 .navbar.sticky {
@@ -2128,15 +2553,15 @@ body {
   font-size: 1.25rem;
   font-weight: 400;
   text-align: center;
-  text-decoration: none;
   color: #fff;
-  transition: background 0.3s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
   gap: 0.75rem;
   line-height: 1;
+  text-decoration: none;
+  transition: background 0.3s ease;
 }
 
 .navbar .navbar-buttons .btn i {
@@ -2165,8 +2590,11 @@ body {
   align-items: center;
   gap: 1rem;
   margin-left: auto;
+  /* ---- Search Form ---- */
+  /* ---- Collapsed Search Button ---- */
+  /* ---- Telephone Icon ---- */
   /* ============================
-       FIXED CENTERED HAMBURGER/X ICON
+       🍔 HAMBURGER / CLOSE ICON
        ============================ */
 }
 
@@ -2199,7 +2627,6 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  flex-shrink: 0;
 }
 
 .navbar .navbar-actions .search-form button i {
@@ -2211,13 +2638,13 @@ body {
 .navbar .navbar-actions .search-icon-btn {
   width: 4rem;
   height: 4rem;
-  border: none;
-  border-radius: 0.1875rem;
   background: #84858f;
+  border-radius: 0.1875rem;
+  border: none;
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  display: none;
 }
 
 .navbar .navbar-actions .search-icon-btn i {
@@ -2245,14 +2672,12 @@ body {
   width: 4rem;
   height: 4rem;
   position: relative;
-  /* anchor for absolute spans */
   display: inline-block;
   cursor: pointer;
   flex-shrink: 0;
   transition: background 0.3s ease;
   z-index: 13002;
-  /* bars */
-  /* active state → X */
+  /* Active state transforms into X */
 }
 
 .navbar .navbar-actions .hamburger span {
@@ -2306,9 +2731,12 @@ body.menu-open .navbar .hamburger span {
   background: #fff;
 }
 
-/* ======================
-   Responsive rules
-   ====================== */
+/* ===========================================================
+   📱 RESPONSIVE BEHAVIOR
+   -----------------------------------------------------------
+   Adjusts visibility and layout across devices
+   =========================================================== */
+/* 🔸 993px–1262px: Show compact search icon instead of full search */
 @media (max-width: 1262px) and (min-width: 993px) {
   .navbar .navbar-actions .search-form {
     display: none;
@@ -2318,6 +2746,7 @@ body.menu-open .navbar .hamburger span {
   }
 }
 
+/* 🔸 768px–992px: Hide CTAs, adjust search field width */
 @media (max-width: 992px) and (min-width: 768px) {
   .navbar .navbar-buttons {
     display: none !important;
@@ -2333,7 +2762,7 @@ body.menu-open .navbar .hamburger span {
   }
 }
 
-/* <767px → mobile full search */
+/* 🔸 ≤767px: Mobile layout (hamburger, telephone, minimal search) */
 @media (max-width: 767px) {
   .navbar .navbar-buttons {
     display: none !important;
@@ -2343,9 +2772,7 @@ body.menu-open .navbar .hamburger span {
     justify-content: flex-end;
     gap: 0.5rem;
   }
-  .navbar .navbar-actions .search-form {
-    display: none;
-  }
+  .navbar .navbar-actions .search-form,
   .navbar .navbar-actions .search-icon-btn {
     display: none;
   }
@@ -2354,7 +2781,6 @@ body.menu-open .navbar .hamburger span {
     color: #323544;
     width: 2rem;
     height: 2rem;
-    flex-shrink: 0;
   }
   .navbar .navbar-actions .hamburger {
     flex-shrink: 0;
@@ -2367,16 +2793,14 @@ body.menu-open .navbar .hamburger span {
   .navbar .top-nav .navbar-brand {
     flex-shrink: 0;
   }
-  /* New mobile search */
+  /* Mobile full search (revealed when toggled) */
   .mobile-full-search {
     display: flex !important;
     width: 100%;
-    max-width: 100%;
-    padding: 0rem 1rem 1rem;
+    padding: 0 1rem 1rem;
     background: #fff;
     position: relative;
     z-index: 1200;
-    border-top: none;
     box-shadow: none;
   }
   .mobile-full-search form {
@@ -2411,6 +2835,7 @@ body.menu-open .navbar .hamburger span {
   }
 }
 
+/* General padding tweaks for mobile viewports */
 @media (max-width: 992px) {
   .navbar .top-nav {
     padding: 0 1rem;
@@ -2423,11 +2848,22 @@ body.menu-open .navbar .hamburger span {
   }
 }
 
-/* Default: hide mobile full search */
+/* Default state: hide full mobile search bar */
 .mobile-full-search {
   display: none;
 }
 
+/* ===========================================================
+   _side-menu.scss
+   Mobile / Overlay Side Navigation
+   -----------------------------------------------------------
+   - Handles slide-in menu from the right
+   - Integrates with Services Menu for mobile
+   - Includes overlay, scroll lock, and hamburger animation
+   =========================================================== */
+/* ============================
+   📱 SIDE MENU CONTAINER
+   ============================ */
 .side-menu {
   position: fixed;
   top: 0;
@@ -2445,8 +2881,15 @@ body.menu-open .navbar .hamburger span {
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.4);
   padding-bottom: 2rem;
   background-clip: padding-box;
-  /* === Services Menu Integration (Injected) === */
-  /* Disable hover highlights from original services menu */
+  /* ---- Active (open) state ---- */
+  /* ---- Close Button ---- */
+  /* ============================
+     📋 MENU CONTENT
+     ============================ */
+  /* ============================
+     🧩 SERVICES MENU (INTEGRATED)
+     ============================ */
+  /* Disable original hover highlights inside the side menu */
 }
 
 .side-menu.open {
@@ -2469,7 +2912,6 @@ body.menu-open .navbar .hamburger span {
   list-style: none;
   padding: 0;
   margin: 0;
-  /* Remove bottom border and gap before services-menu */
 }
 
 .side-menu .side-menu-inner .side-menu-list .menu-section {
@@ -2480,13 +2922,13 @@ body.menu-open .navbar .hamburger span {
 
 .side-menu .side-menu-inner .side-menu-list .menu-section h3 {
   background: #323544;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   color: #fff;
-  font-size: 1.2rem;
-  font-weight: 600;
   margin: 0;
   padding: 1rem 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -2514,12 +2956,12 @@ body.menu-open .navbar .hamburger span {
   position: relative;
   display: block;
   color: #ccc;
-  text-decoration: none;
   font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: color 0.2s ease;
+  text-decoration: none;
   padding-left: 1.25rem;
+  transition: color 0.2s ease;
 }
 
 .side-menu .side-menu-inner .side-menu-list .menu-section ul li a::before {
@@ -2547,18 +2989,11 @@ body.menu-open .navbar .hamburger span {
   display: block !important;
   height: auto;
   background: #323544;
-  /* lighter section, consistent with headers */
-  border-left: none;
-  border-right: none;
-  border-top: none !important;
-  /* 🔧 remove line above */
+  border: none;
   border-bottom: 1px solid #101118;
   border-radius: 0;
-  margin-top: 0 !important;
-  /* 🔧 remove dark gap completely */
-  margin-bottom: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1.5rem;
+  margin: 0 0 1rem;
+  padding: 1rem 0 1.5rem;
 }
 
 .side-menu .services-menu .services-menu-inner {
@@ -2573,20 +3008,22 @@ body.menu-open .navbar .hamburger span {
 .side-menu .services-menu .services-menu-inner > ul > li {
   height: auto;
   margin-bottom: 0.5rem;
-  /* CONTACT US button */
-  /* Main heading items (Consultancy, IT Support, etc.) */
+  /* ---- Contact Us Button ---- */
+  /* ---- Service Headings ---- */
+  /* ---- Submenu Panels ---- */
 }
 
 .side-menu .services-menu .services-menu-inner > ul > li.contact-us > a {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  margin: 0.5rem 1.5rem;
   color: #fff;
   background: #272a39;
   border: 1px solid #0c0d12;
   border-radius: 0.5rem;
-  margin: 0.5rem 1.5rem;
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -2600,46 +3037,45 @@ body.menu-open .navbar .hamburger span {
 }
 
 .side-menu .services-menu .services-menu-inner > ul > li > a {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  margin: 0 1.5rem;
   color: #fff;
   background: #323544;
   border: 1px solid #0c0d12;
   border-radius: 0.5rem;
-  margin: 0rem 1.5rem;
   text-transform: uppercase;
-}
-
-.side-menu .services-menu .services-menu-inner > ul > li > a.consultancy i,
-.side-menu .services-menu .services-menu-inner > ul > li > a.it-support i {
-  color: #4183d7;
+  /* Color-coded icons */
 }
 
 .side-menu .services-menu .services-menu-inner > ul > li > a i {
   margin-bottom: 0.75rem;
-  margin-right: 0;
   font-size: 1.5rem;
 }
 
 .side-menu .services-menu .services-menu-inner > ul > li > a .text-block {
   display: flex;
   flex-direction: column;
-  text-align: center;
   gap: 0.25rem;
+  text-align: center;
 }
 
 .side-menu .services-menu .services-menu-inner > ul > li > a .first-word,
 .side-menu .services-menu .services-menu-inner > ul > li > a .second-word {
-  display: block;
-  margin: 0;
   font-size: 0.95rem;
   line-height: 1.2;
 }
 
 .side-menu .services-menu .services-menu-inner > ul > li > a .triangle {
   display: none;
+}
+
+.side-menu .services-menu .services-menu-inner > ul > li > a.consultancy i,
+.side-menu .services-menu .services-menu-inner > ul > li > a.it-support i {
+  color: #4183d7;
 }
 
 .side-menu .services-menu .services-menu-inner > ul > li:hover > a,
@@ -2650,17 +3086,16 @@ body.menu-open .navbar .hamburger span {
 .side-menu .services-menu .services-menu-inner > ul > li .mega-panel {
   position: static;
   width: auto;
+  background: transparent;
   box-shadow: none;
   opacity: 1;
   visibility: visible;
   max-height: none;
   overflow: visible;
-  background: transparent;
   padding: 0;
 }
 
 .side-menu .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner {
-  max-width: none;
   padding: 0;
   background: transparent;
 }
@@ -2674,36 +3109,24 @@ body.menu-open .navbar .hamburger span {
   gap: 0.025rem;
 }
 
-.side-menu .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li {
-  border-top: none;
-}
-
 .side-menu .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a {
   display: block;
+  padding: 0.75rem;
+  margin: 0 1.5rem;
   font-size: 0.9rem;
-  padding: 0.75rem 0.75rem;
   color: #ccc;
-  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   background: #212330;
   border: 1px solid #0c0d12;
   border-radius: 0.1rem;
-  margin: 0rem 1.5rem;
   text-align: center;
-  position: relative;
+  text-decoration: none;
 }
 
-.side-menu .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a::before {
-  display: none;
-}
-
+.side-menu .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a::before,
 .side-menu .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a i {
   display: none !important;
-}
-
-.side-menu .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a span {
-  text-align: center;
 }
 
 .side-menu .services-menu .services-menu-inner > ul > li .mega-panel .mega-panel-inner .mega-list li a:hover span {
@@ -2715,13 +3138,7 @@ body.menu-open .navbar .hamburger span {
 }
 
 .side-menu .services-menu > ul > li:hover,
-.side-menu .services-menu li.consultancy:hover,
-.side-menu .services-menu li.it-support:hover,
-.side-menu .services-menu li.digital-marketing:hover,
-.side-menu .services-menu li.telecoms-services:hover,
-.side-menu .services-menu li.web-design:hover,
-.side-menu .services-menu li.cyber-security:hover,
-.side-menu .services-menu li.developer-training:hover {
+.side-menu .services-menu li:hover {
   background: none !important;
 }
 
@@ -2729,18 +3146,18 @@ body.menu-open .navbar .hamburger span {
   color: inherit !important;
 }
 
-/* Keep site scrollable while menu stays fixed */
+/* ===========================================================
+   🌒 OVERLAY & BODY BEHAVIOR
+   =========================================================== */
+/* Prevent scroll lock (keep vertical scroll allowed) */
 body.no-scroll {
   overflow-y: auto !important;
 }
 
-/* Optional overlay when menu opens */
+/* ---- Dimmed overlay behind side menu ---- */
 .page-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
@@ -2753,7 +3170,9 @@ body.no-scroll {
   visibility: visible;
 }
 
-/* Hamburger animation */
+/* ===========================================================
+   🍔 HAMBURGER ANIMATION
+   =========================================================== */
 .hamburger span {
   transition: all 0.3s ease-in-out;
 }
@@ -2770,7 +3189,9 @@ body.no-scroll {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Site shell slide animation */
+/* ===========================================================
+   🧱 SITE SHELL TRANSITION
+   =========================================================== */
 .site-shell {
   position: relative;
   width: 100%;
@@ -2779,25 +3200,34 @@ body.no-scroll {
   transition: transform 0.4s ease-in-out;
 }
 
+/* Slide site content left when menu opens */
 body.menu-open .site-shell {
   transform: translateX(calc(-1 * clamp(280px, 30%, 400px)));
 }
 
-/* When the side menu is open, make sure the X stays white */
+/* Ensure hamburger stays visible on dark background */
 body.menu-open .hamburger span {
   background: #fff !important;
 }
 
-/* Prevent horizontal scrollbars */
+/* Prevent horizontal scrollbars globally */
 html,
 body {
   width: 100%;
   overflow-x: hidden;
 }
 
-/* ================================
-   Sticky Header & Services Menu Fix
-   ================================ */
+/* ===========================================================
+   _header-fix.scss
+   Sticky Header & Services Menu Sync
+   -----------------------------------------------------------
+   - Handles visibility and transitions of the navbar and services menu
+   - Ensures both move smoothly together on scroll
+   - Maintains consistent spacing alignment via --navbar-offset variable
+   =========================================================== */
+/* ============================
+   🎯 Shared Transition Setup
+   ============================ */
 header.navbar,
 .services-menu {
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
@@ -2805,7 +3235,10 @@ header.navbar,
   backface-visibility: hidden;
 }
 
-/* Clean hide/show */
+/* ============================
+   🧭 Visibility States
+   ============================ */
+/* Hidden: moves upward out of view */
 header.navbar.hidden,
 .services-menu.hidden {
   transform: translateY(-100%) !important;
@@ -2813,6 +3246,7 @@ header.navbar.hidden,
   visibility: hidden !important;
 }
 
+/* Visible: returns to normal position */
 header.navbar.visible,
 .services-menu.visible {
   transform: translateY(0) !important;
@@ -2820,42 +3254,35 @@ header.navbar.visible,
   visibility: visible !important;
 }
 
-/* Services bar follows navbar height */
+/* ============================
+   📐 Positioning & Scroll State
+   ============================ */
+/* Services bar follows navbar height dynamically */
 .services-menu.sticky {
   top: var(--navbar-offset, 7.5rem) !important;
 }
 
-/* Always use smooth transitions even with active-scroll */
+/* Always maintain smooth transition when scrolling */
 header.navbar.active-scroll,
 .services-menu.active-scroll {
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
 }
 
+/* ============================
+   💻 Desktop Consistency (≥993px)
+   -----------------------------------------------------------
+   The same logic applies to desktop, but included for clarity
+   and browser safety. Keeps header/menu in sync with scroll.
+   ============================ */
 @media (min-width: 993px) {
   header.navbar,
   .services-menu {
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
-  header.navbar.hidden,
-  .services-menu.hidden {
-    transform: translateY(-100%) !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-  }
-  header.navbar.visible,
-  .services-menu.visible {
-    transform: translateY(0) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
+  /* Ensure consistent sticky offset */
   .services-menu.sticky {
     top: var(--navbar-offset, 7.5rem) !important;
-  }
-  header.navbar.active-scroll,
-  .services-menu.active-scroll {
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
   }
 }
 

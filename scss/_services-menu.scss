@@ -1,12 +1,22 @@
+/* ===========================================================
+   _services-menu.scss
+   Main Services Mega Menu
+   -----------------------------------------------------------
+   - Displays top-level services with icons and mega dropdowns
+   - Includes sticky positioning and hover transitions
+   - Hides completely below 992px (mobile view)
+   =========================================================== */
+
 .services-menu {
   position: relative;
   width: 100%;
-  background: #2c2f38;
-  border-radius: 0;
   height: 8rem;
+  background: #2c2f38;
   font-family: 'Poppins', sans-serif;
+  border-radius: 0;
   z-index: 1000;
 
+  /* ===== Sticky + Visibility States ===== */
   &.sticky {
     position: fixed;
     top: var(--navbar-offset, 7.5rem);
@@ -29,6 +39,9 @@
     visibility: visible;
   }
 
+  /* ============================
+     🧩 INNER STRUCTURE
+     ============================ */
   .services-menu-inner {
     max-width: 87.5rem;
     margin: 0 auto;
@@ -36,14 +49,13 @@
 
     > ul {
       display: flex;
-      flex-wrap: nowrap;
       justify-content: space-between;
       align-items: stretch;
+      flex-wrap: nowrap;
+      height: 100%;
       margin: 0;
       padding: 0;
       list-style: none;
-      height: 100%;
-      overflow: visible;
 
       > li {
         flex: 1 1 auto;
@@ -53,17 +65,17 @@
         position: static;
         transition: background-color 0.3s ease;
 
-        /* Only top-level <a> */
+        /* ---- Top-level link ---- */
         > a {
           position: relative;
           display: flex;
           flex-direction: column; /* icon above text */
           align-items: center;
           justify-content: center;
-          text-decoration: none;
-          color: #fff;
           height: 100%;
           padding: 1rem 0;
+          color: #fff;
+          text-decoration: none;
           text-transform: uppercase;
 
           i {
@@ -72,6 +84,7 @@
             transition: color 0.3s ease;
           }
 
+          /* Triangle indicator */
           .triangle {
             position: absolute;
             top: calc(100% - 1px);
@@ -80,37 +93,38 @@
             height: 40px;
             background: transparent;
             clip-path: polygon(0 0, 100% 0, 50% 100%);
-            z-index: 2100;
-
-            border: none !important;
-            box-shadow: none !important;
-            filter: none !important;
-
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.25s ease, visibility 0.25s ease,
               background 0.25s ease;
+            z-index: 2100;
           }
         }
 
+        /* ---- Text layout ---- */
         .first-word {
           font-size: 0.9rem;
           font-weight: 400;
           line-height: 1.1;
         }
+
         .second-word {
           font-size: 1.3rem;
           font-weight: 400;
-          display: block;
           margin-top: 0.25rem;
           line-height: 1;
+          display: block;
         }
 
+        /* ---- Hover state ---- */
         &:hover > a .triangle {
           opacity: 1;
           visibility: visible;
         }
 
+        /* ============================
+           📂 MEGA PANEL DROPDOWN
+           ============================ */
         .mega-panel {
           position: absolute;
           top: 100%;
@@ -126,17 +140,17 @@
           .mega-panel-inner {
             max-width: 87.5rem;
             margin: 0 auto;
-            padding: 2rem 2rem 3rem 2rem;
+            padding: 2rem 2rem 3rem;
 
             h3 {
-              margin-top: 1.5rem;
-              margin-bottom: 1.5rem;
               font-size: 2rem;
               font-weight: 600;
-              text-transform: none;
+              margin: 1.5rem 0;
               text-align: left;
+              text-transform: none;
             }
 
+            /* ---- 3-column layout ---- */
             .mega-list {
               display: grid;
               grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -146,22 +160,17 @@
               padding: 0;
 
               li {
-                height: auto !important;
-                flex: initial !important;
-                min-width: 0;
                 text-align: left;
-                position: static;
+                min-width: 0;
 
                 a {
-                  display: inline-flex; /* icon + text inline */
+                  display: inline-flex;
                   align-items: center;
                   gap: 0.5rem;
+                  color: #fff;
                   font-size: 1.2rem;
                   line-height: 1.5;
                   letter-spacing: 0.03em;
-                  margin: 0;
-                  padding: 0;
-                  color: #fff;
                   text-decoration: none;
 
                   i {
@@ -169,12 +178,9 @@
                     flex-shrink: 0;
                   }
 
-                  /* Underline only the text, not the icon */
+                  /* Underline only text on hover */
                   &:hover span {
                     text-decoration: underline;
-                  }
-                  &:hover i {
-                    text-decoration: none;
                   }
                 }
               }
@@ -182,6 +188,7 @@
           }
         }
 
+        /* ---- Show dropdown on hover ---- */
         &:hover .mega-panel,
         .mega-panel:hover {
           opacity: 1;
@@ -191,102 +198,50 @@
     }
   }
 
+  /* Hide menu on mobile/tablet */
   @media (max-width: 992px) {
     display: none !important;
   }
 }
 
-/* Icon colors */
-.services-menu li.consultancy i {
-  color: $bg-color-grey;
-}
-.services-menu li.it-support i {
-  color: $bg-color-blue;
-}
-.services-menu li.digital-marketing i {
-  color: $bg-color-green;
-}
-.services-menu li.telecoms-services i {
-  color: $bg-color-red;
-}
-.services-menu li.web-design i {
-  color: $bg-color-purp;
-}
-.services-menu li.cyber-security i {
-  color: $bg-color-pink;
-}
-.services-menu li.developer-training i {
-  color: $bg-color-brown;
-}
+/* ===========================================================
+   🎨 THEME COLORS
+   -----------------------------------------------------------
+   Icon, hover, and mega-panel colors for each service type
+   =========================================================== */
 
-/* Hover background + icon turns white */
-.services-menu li.consultancy:hover {
-  background: $bg-color-grey;
-}
-.services-menu li.it-support:hover {
-  background: $bg-color-blue;
-}
-.services-menu li.digital-marketing:hover {
-  background: $bg-color-green;
-}
-.services-menu li.telecoms-services:hover {
-  background: $bg-color-red;
-}
-.services-menu li.web-design:hover {
-  background: $bg-color-purp;
-}
-.services-menu li.cyber-security:hover {
-  background: $bg-color-pink;
-}
-.services-menu li.developer-training:hover {
-  background: $bg-color-brown;
-}
-.services-menu li:hover i {
-  color: #fff;
-}
+$services: (
+  consultancy: $bg-color-grey,
+  it-support: $bg-color-blue,
+  digital-marketing: $bg-color-green,
+  telecoms-services: $bg-color-red,
+  web-design: $bg-color-purp,
+  cyber-security: $bg-color-pink,
+  developer-training: $bg-color-brown,
+);
 
-/* Mega-panel background colors (15% darker) */
-.services-menu li.consultancy .mega-panel {
-  background: darken($bg-color-grey, 15%);
-}
-.services-menu li.it-support .mega-panel {
-  background: darken($bg-color-blue, 15%);
-}
-.services-menu li.digital-marketing .mega-panel {
-  background: darken($bg-color-green, 15%);
-}
-.services-menu li.telecoms-services .mega-panel {
-  background: darken($bg-color-red, 15%);
-}
-.services-menu li.web-design .mega-panel {
-  background: darken($bg-color-purp, 15%);
-}
-.services-menu li.cyber-security .mega-panel {
-  background: darken($bg-color-pink, 15%);
-}
-.services-menu li.developer-training .mega-panel {
-  background: darken($bg-color-brown, 15%);
-}
+/* Loop through each service for color consistency */
+@each $name, $color in $services {
+  .services-menu li.#{$name} {
+    i {
+      color: $color;
+    }
 
-/* Triangle colors (same as li background) */
-.services-menu li.consultancy:hover a .triangle {
-  background: $bg-color-grey;
-}
-.services-menu li.it-support:hover a .triangle {
-  background: $bg-color-blue;
-}
-.services-menu li.digital-marketing:hover a .triangle {
-  background: $bg-color-green;
-}
-.services-menu li.telecoms-services:hover a .triangle {
-  background: $bg-color-red;
-}
-.services-menu li.web-design:hover a .triangle {
-  background: $bg-color-purp;
-}
-.services-menu li.cyber-security:hover a .triangle {
-  background: $bg-color-pink;
-}
-.services-menu li.developer-training:hover a .triangle {
-  background: $bg-color-brown;
+    &:hover {
+      background: $color;
+
+      i {
+        color: #fff;
+      }
+
+      a .triangle {
+        background: $color;
+      }
+    }
+
+    /* Darker background for dropdown panels */
+    .mega-panel {
+      background: darken($color, 15%);
+    }
+  }
 }

@@ -1,25 +1,45 @@
+/* ===========================================================
+   _layout.scss
+   Global Layout & Container Utilities
+   -----------------------------------------------------------
+   - Defines global body reset and universal box-sizing
+   - Provides responsive container widths across breakpoints
+   =========================================================== */
+
+/* ============================
+   🧭 GLOBAL BASE
+   ============================ */
 body {
-  margin: 0;
+  margin: 0; // Remove default browser margin
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box; // Include padding & borders in element width
 }
 
+/* ============================
+   📦 CONTAINER
+   -----------------------------------------------------------
+   Centers and constrains page content.
+   Expands width responsively to fit layout needs.
+   =========================================================== */
 .container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
 
+  /* Tablet (≥768px): Standard content width */
   @media (min-width: 768px) {
     max-width: 750px;
   }
 
+  /* Desktop (≥992px): Expanded width to accommodate 5-column layout */
   @media (min-width: 992px) {
-    max-width: 1400px; // Increased to 1400px for 5 columns + padding + gaps
+    max-width: 1400px;
   }
 
+  /* Large Desktop (≥1260px): Maintain consistent max width */
   @media (min-width: 1260px) {
     max-width: 1400px;
   }

@@ -1,20 +1,32 @@
+/* ===========================================================
+   _footer.scss
+   Footer Section
+   -----------------------------------------------------------
+   - Defines layout for footer content, logo, menus, and socials
+   - Includes responsive grid structure for all breakpoints
+   - Styled to match site’s color scheme and brand identity
+   =========================================================== */
+
 .footer {
   background-color: $bg-color-footer;
   color: #fff;
   padding: 1.875rem 0 0;
   position: relative;
 
+  /* ============================
+     📦 FOOTER GRID LAYOUT
+     ============================ */
   .footer-row {
     display: grid;
-    grid-template-columns: 1fr; // default mobile single col
+    grid-template-columns: 1fr; // default: single column on mobile
     gap: 1.25rem;
 
-    // ✅ Tablets: 2 columns, logo spans full width
+    /* ✅ Tablet (768px–991px): 2 columns, logo spans full width */
     @media (min-width: 768px) and (max-width: 991px) {
       grid-template-columns: repeat(2, 1fr);
 
       .footer-menu:first-child {
-        grid-column: 1 / -1; // spans both columns
+        grid-column: 1 / -1;
         text-align: left;
         margin-bottom: 5rem;
 
@@ -24,26 +36,30 @@
       }
     }
 
-    // ✅ Small desktops: 4 columns, logo on top
+    /* ✅ Small desktop (992px–1199px): 4 columns, logo on top */
     @media (min-width: 992px) and (max-width: 1199px) {
       grid-template-columns: repeat(4, 1fr);
 
       .footer-menu:first-child {
-        grid-column: 1 / -1; // logo still full width on its own
+        grid-column: 1 / -1;
         margin-bottom: 3rem;
       }
     }
 
-    // ✅ Large desktops: 5 columns
+    /* ✅ Large desktop (≥1200px): 5 columns */
     @media (min-width: 1200px) {
       grid-template-columns: repeat(5, 1fr);
       gap: 5rem;
     }
 
+    /* ============================
+       🧭 FOOTER MENU BLOCKS
+       ============================ */
     .footer-menu {
       margin-bottom: 1.875rem;
       padding: 0 0.625rem;
 
+      /* ---- Menu Headings ---- */
       h3,
       h4 {
         text-transform: uppercase;
@@ -52,6 +68,7 @@
         margin-bottom: 1.875rem;
       }
 
+      /* ---- Menu Links ---- */
       ul {
         list-style: none;
         padding: 0;
@@ -61,8 +78,9 @@
         }
 
         a {
-          color: white;
+          color: #fff;
           text-decoration: none;
+          transition: text-decoration 0.3s ease;
 
           &:hover {
             text-decoration: underline;
@@ -70,6 +88,7 @@
         }
       }
 
+      /* ---- Logo ---- */
       .footer-logo img {
         max-width: 25rem;
         width: 100%;
@@ -81,6 +100,9 @@
         }
       }
 
+      /* ============================
+         🌐 SOCIAL ICONS
+         ============================ */
       .footer-social {
         display: flex;
         flex-wrap: wrap;
@@ -89,14 +111,15 @@
         margin: 1.25rem 0;
 
         @media (min-width: 768px) {
-          flex-wrap: nowrap; // always in a row on larger screens
+          flex-wrap: nowrap;
           justify-content: flex-start;
           gap: 0.75rem;
         }
 
+        /* ---- Icon Buttons ---- */
         .icon-btn {
           @include square-btn-footer(6rem);
-          background-color: #212330;
+          background-color: $bg-color-footer-dark;
           border-radius: 0.25rem;
           transition: all 0.3s ease;
 
@@ -108,7 +131,7 @@
             @include square-btn-footer(5rem);
           }
 
-          // ✅ Reset link states (fix purple underline issue)
+          /* Reset link states to avoid default underline/visited colors */
           &,
           &:hover,
           &:focus,
@@ -119,17 +142,19 @@
             outline: none;
           }
 
+          /* Icon size + color */
           i.icon {
             font-size: 2.5rem;
-            color: #ffffff !important;
+            color: #fff !important;
 
             @media (min-width: 1200px) {
               font-size: 2.1875rem;
             }
           }
 
+          /* ---- Hover Colors (per platform) ---- */
           &:hover {
-            background-color: #003087;
+            background-color: #003087; // fallback default
           }
           &:hover:has(i.icon-facebook2) {
             background-color: #3b5998;
@@ -148,6 +173,9 @@
     }
   }
 
+  /* ============================
+     ⚫ FOOTER BOTTOM BAR
+     ============================ */
   .footer-bottom {
     position: relative;
     background-color: $bg-color-footer-dark;
@@ -167,6 +195,7 @@
       text-align: left;
       font-size: 0.95rem;
 
+      /* ---- Responsive Typography ---- */
       @media (max-width: 768px) {
         font-size: 0.85rem;
       }
@@ -176,9 +205,12 @@
         line-height: 1.4;
       }
 
+      /* ---- Footer Links ---- */
       a {
         color: #fff;
         text-decoration: none;
+        transition: text-decoration 0.3s ease;
+
         &:hover {
           text-decoration: underline;
         }

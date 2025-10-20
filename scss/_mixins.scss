@@ -1,8 +1,25 @@
-// ======================================
-// MIXINS
-// ======================================
+/* ===========================================================
+   _mixins.scss
+   Global Reusable Mixins
+   -----------------------------------------------------------
+   - Centralized mixin definitions for consistency and DRY use
+   - Covers buttons, grids, responsive utilities, and layout helpers
+   =========================================================== */
 
-// Button mixin
+/* ============================
+   🎨 BUTTON MIXINS
+   ============================ */
+
+/**
+ * Generic button mixin
+ * -----------------------------------------------------------
+ * Creates a styled button with customizable colors and padding.
+ * Automatically darkens on hover.
+ *
+ * @param {Color} $bg-color - Background color (default: footer dark)
+ * @param {Color} $text-color - Text color (default: white)
+ * @param {Length} $padding - Button padding (default: 0.75rem 1.5rem)
+ */
 @mixin button(
   $bg-color: $bg-color-footer-dark,
   $text-color: white,
@@ -23,36 +40,13 @@
   }
 }
 
-// Responsive two-column grid mixin
-@mixin two-column-grid(
-  $gap-mobile: 10px,
-  $gap-tablet: 20px,
-  $gap-desktop: 30px,
-  $gap-large: 40px,
-  $breakpoint: 990px // updated breakpoint
-) {
-  display: grid;
-  grid-template-columns: 1fr; // default single column
-  gap: $gap-mobile;
-
-  @media (min-width: $breakpoint) {
-    grid-template-columns: repeat(2, 1fr); // two columns on tablet+
-    gap: $gap-tablet;
-  }
-
-  @media (min-width: 1260px) {
-    gap: $gap-large;
-  }
-}
-
-// Full width section mixin
-@mixin full-width($bg-color: transparent) {
-  width: 100%;
-  background-color: $bg-color;
-  margin: 0 auto;
-}
-
-// Footer button mixin
+/**
+ * Footer square button mixin
+ * -----------------------------------------------------------
+ * Used for footer social icons or small square CTAs.
+ *
+ * @param {Length} $size - Width/height of the square button
+ */
 @mixin square-btn-footer($size) {
   width: $size;
   height: $size;
@@ -61,37 +55,118 @@
   justify-content: center;
 }
 
-// ======================================
-// Nav-Bar Top
+/* ============================
+   🧩 GRID & LAYOUT MIXINS
+   ============================ */
 
-// ✅ Responsive logo heights at breakpoints
+/**
+ * Two-column responsive grid
+ * -----------------------------------------------------------
+ * Automatically switches from 1 to 2 columns with variable gaps.
+ *
+ * @param {Length} $gap-mobile - Grid gap on mobile
+ * @param {Length} $gap-tablet - Grid gap on tablet
+ * @param {Length} $gap-desktop - Grid gap on desktop
+ * @param {Length} $gap-large - Grid gap on large displays
+ * @param {Number} $breakpoint - Minimum width to trigger 2 columns
+ */
+@mixin two-column-grid(
+  $gap-mobile: 10px,
+  $gap-tablet: 20px,
+  $gap-desktop: 30px,
+  $gap-large: 40px,
+  $breakpoint: 990px
+) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $gap-mobile;
+
+  @media (min-width: $breakpoint) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $gap-tablet;
+  }
+
+  @media (min-width: 1260px) {
+    gap: $gap-large;
+  }
+}
+
+/**
+ * Full-width section container
+ * -----------------------------------------------------------
+ * Ensures consistent section width with optional background color.
+ *
+ * @param {Color} $bg-color - Background color (default: transparent)
+ */
+@mixin full-width($bg-color: transparent) {
+  width: 100%;
+  background-color: $bg-color;
+  margin: 0 auto;
+}
+
+/* ============================
+   🧭 NAVIGATION ELEMENT MIXINS
+   ============================ */
+
+/**
+ * Responsive logo height
+ * -----------------------------------------------------------
+ * Dynamically adjusts logo height across common breakpoints.
+ *
+ * @param {Length} $desktop - Height for desktop
+ * @param {Length} $tablet - Height for tablets
+ * @param {Length} $mobile - Height for mobile
+ * @param {Length} $xsmall - Height for small mobile devices
+ */
 @mixin responsive-logo($desktop, $tablet, $mobile, $xsmall) {
   height: $desktop;
 
   @media (max-width: 992px) {
     height: $tablet;
   }
+
   @media (max-width: 767px) {
     height: $mobile;
   }
+
   @media (max-width: 480px) {
     height: $xsmall;
   }
 }
 
-// ✅ Creates a square button (used for icons)
+/**
+ * Square button (navigation icons)
+ * -----------------------------------------------------------
+ * Creates a perfect square for icons or circular buttons.
+ *
+ * @param {Length} $size - Width/height of the button
+ */
 @mixin square-btn-nav($size) {
   width: $size;
   height: $size;
 }
 
-// ✅ Creates a rectangle button (e.g., hamburger)
+/**
+ * Rectangle button (hamburger menu, etc.)
+ * -----------------------------------------------------------
+ * Creates a rectangular button with defined width & height.
+ *
+ * @param {Length} $w - Width of button
+ * @param {Length} $h - Height of button
+ */
 @mixin rectangle-btn($w, $h) {
   width: $w;
   height: $h;
 }
 
-// ✅ Sets button width + height + line-height
+/**
+ * Button dimensions with vertical alignment
+ * -----------------------------------------------------------
+ * Sets width, height, and line-height for centered text/buttons.
+ *
+ * @param {Length} $w - Button width
+ * @param {Length} $h - Button height
+ */
 @mixin button-dimensions($w, $h) {
   width: $w;
   height: $h;

@@ -1,6 +1,14 @@
-/* -------------------------
-   Partners Sliders
-   ------------------------- */
+/* ===========================================================
+   _sliders.scss
+   Partners / Clients Logo Sliders
+   -----------------------------------------------------------
+   - Displays two horizontal scrolling logo strips
+   - Includes hover-to-color effect and tooltip descriptions
+   =========================================================== */
+
+/* ============================
+   🎞️ BASE SLIDER STYLES
+   ============================ */
 .partners-slideshow {
   width: 100%;
   background-color: #fff;
@@ -13,24 +21,44 @@
     padding: 0 15px;
     height: auto;
 
+    /* ---- Horizontal Scroll Wrapper ---- */
     .scroll-wrapper {
       width: 100%;
-      overflow-x: hidden; // ✅ only show one row, hide overflow logos
-      overflow-y: visible; // ✅ allow tooltips above
+      overflow-x: hidden; // Only one visible row
+      overflow-y: visible; // Allow tooltips to show above
+
+      /* ---------------------------------------------------------
+         ✅ Added for smooth JavaScript-controlled transitions
+         ---------------------------------------------------------
+         Enables smooth horizontal scrolling when JS calls
+         scrollTo({ behavior: "smooth" }). Without this, the
+         logos would jump instead of sliding fluidly.
+      --------------------------------------------------------- */
+      scroll-behavior: smooth;
     }
 
+    /* ---- Logo Track (row of partner logos) ---- */
     .logo-track {
       display: flex;
-      flex-wrap: nowrap; // ✅ single row only
+      flex-wrap: nowrap; // Single continuous row
       align-items: center;
       gap: 5rem;
-      width: max-content; // ✅ track expands with logos
+      width: max-content; // Track expands with content
+
+      /* ---------------------------------------------------------
+         🧠 Performance Hint (optional but recommended)
+         ---------------------------------------------------------
+         Informs the browser that this element will frequently
+         change its position or transform property due to JS
+         scrolling/animation — helps rendering stay smooth.
+      --------------------------------------------------------- */
+      will-change: transform;
     }
 
+    /* ---- Individual Logo Items ---- */
     .logo-item {
       flex: 0 0 auto;
       width: clamp(100px, 18vw, 180px);
-      height: auto;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -53,22 +81,23 @@
   }
 }
 
-/* -------------------------
-   Top Slider (no tooltips)
-   ------------------------- */
+/* ============================
+   ⬆️ TOP STRIP (STATIC)
+   ============================ */
 .partners-slideshow:first-of-type {
-  overflow: hidden; // ✅ keep tidy
+  overflow: hidden; // Keep tidy edges
+
   .logo-track {
-    animation: none; // static for now
+    animation: none; // No scroll animation
   }
 }
 
-/* -------------------------
-   Bottom Slider (with tooltips)
-   ------------------------- */
+/* ============================
+   ⬇️ BOTTOM STRIP (WITH TOOLTIPS)
+   ============================ */
 .partners-slideshow:last-of-type {
   position: relative;
-  overflow: visible !important; // ✅ tooltips not clipped
+  overflow: visible !important; // Allow tooltips to extend beyond bounds
   z-index: 500;
 
   .partners-strip,
@@ -80,13 +109,14 @@
   .logo-item {
     position: relative;
 
+    /* ---- Tooltip Card ---- */
     .tooltip {
       position: absolute;
-      bottom: calc(100% + 25px); // ✅ sits above triangle
+      bottom: calc(100% + 25px);
       left: 50%;
       transform: translateX(-50%);
       width: 280px;
-      background: $bg-color-footer; // ✅ footer background
+      background: $bg-color-footer;
       color: #fff;
       padding: 1rem;
       border-radius: 4px;
@@ -100,21 +130,20 @@
         margin: 0 0 0.5rem;
         font-size: 1rem;
         font-weight: 600;
-        color: #fff;
       }
 
       p {
         margin: 0 0 0.75rem;
         font-size: 0.9rem;
         line-height: 1.4;
-        color: #fff;
       }
 
+      /* ---- Tooltip CTA ---- */
       .btn {
         display: inline-block;
         margin-top: 0.5rem;
         padding: 0.4rem 0.8rem;
-        background: $bg-color-gold; // ✅ gold button
+        background: $bg-color-gold;
         color: #000;
         text-decoration: none;
         font-size: 0.85rem;
@@ -129,22 +158,22 @@
       }
     }
 
+    /* ---- Tooltip Triangle ---- */
     .triangle {
       position: absolute;
       bottom: 100%;
       left: 50%;
       transform: translateX(-50%);
-      width: 0;
-      height: 0;
       border-left: 30px solid transparent;
       border-right: 30px solid transparent;
-      border-top: 40px solid $bg-color-footer; // ✅ matches tooltip bg
+      border-top: 40px solid $bg-color-footer;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s ease;
       z-index: 9998;
     }
 
+    /* ---- Reveal Tooltip on Hover ---- */
     &:hover .tooltip,
     &:hover .triangle {
       opacity: 1;
@@ -153,9 +182,9 @@
   }
 }
 
-/* -------------------------
-   Responsive Tweaks
-   ------------------------- */
+/* ============================
+   📱 RESPONSIVE TWEAKS
+   ============================ */
 @media (max-width: 991px) {
   .partners-slideshow .logo-item {
     width: clamp(80px, 25vw, 140px);

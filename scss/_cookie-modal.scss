@@ -1,6 +1,15 @@
-/* ==============================
-   Cookie Consent Modal (Final Style)
-   ============================== */
+/* ===========================================================
+   _cookie-modal.scss
+   Cookie Consent Modal
+   -----------------------------------------------------------
+   - Creates a centered modal informing users about cookie use
+   - Includes overlay, modal animation, and responsive layout
+   - Matches brand accent color and typography
+   =========================================================== */
+
+/* ============================
+   🔲 MODAL OVERLAY
+   ============================ */
 #cookie-modal-overlay {
   position: fixed;
   top: 0;
@@ -10,8 +19,8 @@
   background: rgba(0, 0, 0, 0.6);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 9998;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 
   &.active {
     opacity: 1;
@@ -19,6 +28,9 @@
   }
 }
 
+/* ============================
+   💬 COOKIE MODAL WINDOW
+   ============================ */
 #cookie-modal {
   position: fixed;
   top: 50%;
@@ -31,11 +43,13 @@
   border-radius: 10px;
   padding: 35px 40px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  z-index: 9999;
+
+  /* Animation states */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-  z-index: 9999;
-  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
 
   &.active {
     opacity: 1;
@@ -43,13 +57,15 @@
     transform: translate(-50%, -50%) scale(1);
   }
 
+  /* ---- Heading ---- */
   h2 {
     font-size: 1.6rem;
-    font-weight: 500; // less bold
+    font-weight: 500; // softer, less bold
     margin-bottom: 15px;
     color: #222;
   }
 
+  /* ---- Main Text ---- */
   p {
     font-size: 1rem;
     line-height: 1.6;
@@ -60,20 +76,22 @@
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 
+    /* Privacy Policy Link */
     a {
-      color: #555; // match text color
-      text-decoration: none; // remove default underline
+      color: #555; // same as text
+      text-decoration: none;
       transition: text-decoration 0.3s ease;
 
       &:hover {
-        text-decoration: underline; // underline on hover only
+        text-decoration: underline; // only underline on hover
       }
     }
   }
 
+  /* ---- Button Row ---- */
   .btn-row {
     display: flex;
-    justify-content: center; // buttons centered only
+    justify-content: center; // only center buttons
     align-items: center;
     gap: 15px;
     margin-top: 20px;
@@ -87,6 +105,7 @@
       cursor: pointer;
       transition: background-color 0.25s ease;
 
+      /* Change Settings Button */
       &.btn-settings {
         background: #c5c5c5;
         color: #333;
@@ -96,8 +115,9 @@
         }
       }
 
+      /* Accept Cookies Button */
       &.btn-accept {
-        background: #7e57a0; // your brand accent
+        background: #7e57a0; // brand accent
         color: #fff;
 
         &:hover {
@@ -107,7 +127,9 @@
     }
   }
 
-  /* ---------- Responsive Breakpoints ---------- */
+  /* ============================
+     📱 RESPONSIVE ADJUSTMENTS
+     ============================ */
 
   /* ≤ 992px (tablet) */
   @media (max-width: 992px) {

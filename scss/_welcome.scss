@@ -1,9 +1,18 @@
 @use 'base' as *;
 @use 'mixins' as *;
 
-// ======================================
-// WELCOME SECTION STYLES
-// ======================================
+/* ===========================================================
+   _welcome.scss
+   Welcome / Hero Section
+   -----------------------------------------------------------
+   - Contains introduction text and client testimonials
+   - Uses two-column responsive grid
+   - Includes review buttons and star testimonials
+   =========================================================== */
+
+/* ============================
+   🏠 SECTION WRAPPER
+   ============================ */
 .welcome-section {
   background-color: $bg-color-footer;
   color: #fff;
@@ -11,23 +20,21 @@
   position: relative;
   font-family: $primary-font;
 
+  /* ---- Background Wrapper ---- */
   .welcome-bg {
     @include full-width($bg-color-footer);
 
     .container {
       .welcome-grid {
-        @include two-column-grid(
-          10px,
-          20px,
-          30px,
-          40px,
-          990px
-        ); // breakpoint updated
+        @include two-column-grid(10px, 20px, 30px, 40px, 990px);
 
         .welcome-content,
         .client-thoughts {
           margin-bottom: 30px;
 
+          /* ============================
+             ✳️ HEADINGS & INTRO TEXT
+             ============================ */
           h2,
           h3,
           h4 {
@@ -57,6 +64,9 @@
             font-weight: normal;
           }
 
+          /* ============================
+             🎯 BUTTON GROUP
+             ============================ */
           .welcome-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -70,6 +80,7 @@
               gap: 1.5rem;
             }
 
+            /* ---- Shared Button Base ---- */
             .btn {
               @include button($bg-color-footer-dark, #fff, 0.75rem 1.5rem);
               border-radius: 8px;
@@ -85,42 +96,49 @@
               box-sizing: border-box;
               transition: all 0.3s ease;
               box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-              white-space: nowrap; /* Prevent text and icon from wrapping */
+              white-space: nowrap;
 
               &:hover {
                 filter: brightness(0.9);
                 text-decoration: none;
               }
 
-              @media (max-width: 480px) {
-                font-size: 16px;
-                line-height: 28px;
-                padding: 0.5rem 1rem;
-                i.icon {
-                  font-size: 1em; /* Smaller icon to fit */
-                }
-              }
-
-              @media (min-width: 481px) and (max-width: 767px) {
-                font-size: 18px;
-                line-height: 32px;
-                padding: 0.5rem 1.2rem; /* Slightly more horizontal padding */
-                i.icon {
-                  font-size: 1.1em; /* Adjust icon size */
-                }
-              }
-
+              /* ---- Icon adjustments ---- */
               i.icon {
                 margin-left: 8px;
                 font-size: 1.2em;
                 vertical-align: middle;
                 display: inline-block;
               }
+
+              /* ---- Mobile Sizing ---- */
+              @media (max-width: 480px) {
+                font-size: 16px;
+                line-height: 28px;
+                padding: 0.5rem 1rem;
+
+                i.icon {
+                  font-size: 1em;
+                }
+              }
+
+              /* ---- Small Tablet Sizing ---- */
+              @media (min-width: 481px) and (max-width: 767px) {
+                font-size: 18px;
+                line-height: 32px;
+                padding: 0.5rem 1.2rem;
+
+                i.icon {
+                  font-size: 1.1em;
+                }
+              }
             }
 
+            /* ---- Brand-Specific Buttons ---- */
             .btn-google {
               background-color: #166af4;
               color: #fff;
+
               &:hover {
                 background-color: darken(#166af4, 10%);
               }
@@ -129,20 +147,21 @@
             .btn-trustpilot {
               background-color: #009b69;
               color: #fff;
+
               &:hover {
                 background-color: darken(#009b69, 10%);
               }
             }
           }
 
-          // ======================================
-          // TESTIMONIAL STYLES
-          // ======================================
+          /* ============================
+             💬 TESTIMONIAL STYLES
+             ============================ */
           .testimonial {
             .stars {
               display: flex;
               gap: 5px;
-              margin: 1rem 0 1.5rem 0; // added bottom margin for spacing
+              margin: 1rem 0 1.5rem 0;
 
               i {
                 font-family: 'icomoon' !important;
@@ -167,6 +186,7 @@
               }
             }
 
+            /* ---- Testimonial Text ---- */
             p {
               font-size: 1.3rem;
               font-style: italic;
@@ -177,8 +197,8 @@
               line-height: 1.8;
             }
 
+            /* ---- Author / Company ---- */
             .author {
-              font-style: normal;
               font-size: 1.1rem;
               color: #a3a8ac;
               text-align: left;

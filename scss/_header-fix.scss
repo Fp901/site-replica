@@ -1,17 +1,30 @@
-/* ================================
-   Sticky Header & Services Menu Fix
-   ================================ */
+/* ===========================================================
+   _header-fix.scss
+   Sticky Header & Services Menu Sync
+   -----------------------------------------------------------
+   - Handles visibility and transitions of the navbar and services menu
+   - Ensures both move smoothly together on scroll
+   - Maintains consistent spacing alignment via --navbar-offset variable
+   =========================================================== */
 
+/* ============================
+   🎯 Shared Transition Setup
+   ============================ */
 header.navbar,
 .services-menu {
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
     opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
     visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+
   will-change: transform, opacity;
   backface-visibility: hidden;
 }
 
-/* Clean hide/show */
+/* ============================
+   🧭 Visibility States
+   ============================ */
+
+/* Hidden: moves upward out of view */
 header.navbar.hidden,
 .services-menu.hidden {
   transform: translateY(-100%) !important;
@@ -19,6 +32,7 @@ header.navbar.hidden,
   visibility: hidden !important;
 }
 
+/* Visible: returns to normal position */
 header.navbar.visible,
 .services-menu.visible {
   transform: translateY(0) !important;
@@ -26,12 +40,16 @@ header.navbar.visible,
   visibility: visible !important;
 }
 
-/* Services bar follows navbar height */
+/* ============================
+   📐 Positioning & Scroll State
+   ============================ */
+
+/* Services bar follows navbar height dynamically */
 .services-menu.sticky {
   top: var(--navbar-offset, 7.5rem) !important;
 }
 
-/* Always use smooth transitions even with active-scroll */
+/* Always maintain smooth transition when scrolling */
 header.navbar.active-scroll,
 .services-menu.active-scroll {
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
@@ -39,38 +57,21 @@ header.navbar.active-scroll,
     visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
 }
 
+/* ============================
+   💻 Desktop Consistency (≥993px)
+   -----------------------------------------------------------
+   The same logic applies to desktop, but included for clarity
+   and browser safety. Keeps header/menu in sync with scroll.
+   ============================ */
 @media (min-width: 993px) {
   header.navbar,
   .services-menu {
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-      opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-      visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
 
-  header.navbar.hidden,
-  .services-menu.hidden {
-    transform: translateY(-100%) !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-  }
-
-  header.navbar.visible,
-  .services-menu.visible {
-    transform: translateY(0) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-
+  /* Ensure consistent sticky offset */
   .services-menu.sticky {
     top: var(--navbar-offset, 7.5rem) !important;
-  }
-
-  header.navbar.active-scroll,
-  .services-menu.active-scroll {
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-      opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-      visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
   }
 }
