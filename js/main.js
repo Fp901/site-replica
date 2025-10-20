@@ -1,9 +1,21 @@
+/**
+ * ==========================================================
+ * main.js
+ * ----------------------------------------------------------
+ * Handles:
+ * 1️⃣ Banner Slider
+ * 2️⃣ Side Menu (Push Effect)
+ * 3️⃣ Sticky Header (Navbar + Services Menu)
+ * 4️⃣ Cookie Consent Modal
+ * ==========================================================
+ */
+
 $(function () {
   console.log('main.js loaded, jQuery version:', $.fn.jquery);
 
-  // ==============================
-  // 1. Banner Slider
-  // ==============================
+  /* ==========================================================
+     1️⃣ BANNER SLIDER
+     ========================================================== */
   const slides = [
     {
       title: 'The East Of Englands Leading Technology Company',
@@ -52,7 +64,7 @@ $(function () {
       text: 'Keeping businesses and their customers<br>sensitive information protected.',
       btnText: 'Find out more',
       img: 'assets/images/banner_slider/cyber_sec.webp',
-      btnColor: '#E80A42', // Verify path
+      btnColor: '#E80A42',
     },
   ];
 
@@ -60,13 +72,18 @@ $(function () {
   const banner = $('.banner-slide');
   const dots = $('.owl-dot span');
 
+  /**
+   * Updates the banner with the selected slide content
+   * @param {number} index - The index of the slide to display
+   */
   function showSlide(index) {
     const slide = slides[index];
     banner.addClass('hide-text');
 
-    // Immediately change the button color
+    // Immediately update button color via CSS variable
     $('.banner-slide .btn').css('--btn-color', slide.btnColor);
 
+    // Create temporary overlay image for smooth transition
     const nextImage = $('<div class="slide-image"></div>')
       .css(
         'background-image',
@@ -74,8 +91,10 @@ $(function () {
       )
       .appendTo(banner);
 
+    // Apply transition class slightly delayed
     setTimeout(() => banner.addClass('is-sliding'), 10);
 
+    // After transition, update main banner contents
     setTimeout(() => {
       banner
         .removeClass('is-sliding')
@@ -94,6 +113,7 @@ $(function () {
 
       banner.removeClass('hide-text');
 
+      // Update dot indicator
       if (dots.length) {
         dots.removeClass('active');
         dots.eq(index).addClass('active');
@@ -101,11 +121,13 @@ $(function () {
     }, 350);
   }
 
+  /** Cycles to the next slide automatically */
   function nextSlide() {
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
   }
 
+  // Manual slide navigation via dot indicators
   dots.each(function (i) {
     $(this).on('click', function () {
       if (i !== currentSlide) {
@@ -115,12 +137,13 @@ $(function () {
     });
   });
 
+  // Initialize slider
   showSlide(currentSlide);
   setInterval(nextSlide, 6000);
 
-  // ==============================
-  // 2. Side Menu (Right Push Effect)
-  // ==============================
+  /* ==========================================================
+     2️⃣ SIDE MENU (RIGHT PUSH EFFECT)
+     ========================================================== */
   const $sideMenu = $('.side-menu');
   const $body = $('body');
   const $overlay = $('<div class="page-overlay"></div>').appendTo('body');
@@ -129,6 +152,7 @@ $(function () {
   let $servicesPlaceholder = null;
   let isMenuOpen = false;
 
+  /** Injects the services menu into the mobile side panel */
   function injectServicesMenu() {
     if ($servicesMenu.length && !$sideMenu.find('.services-menu').length) {
       $servicesPlaceholder = $(
@@ -138,6 +162,7 @@ $(function () {
     }
   }
 
+  /** Restores the services menu to its original position (desktop view) */
   function restoreServicesMenu() {
     if (
       $servicesPlaceholder &&
@@ -150,52 +175,44 @@ $(function () {
     }
   }
 
+  /** Utility: debounce for resize performance */
   function debounce(func, wait) {
     let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
+    return function (...args) {
       clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
+      timeout = setTimeout(() => func(...args), wait);
     };
   }
 
+  /** Handles responsive placement of services menu */
   function checkViewport() {
     const width = window.innerWidth;
     if (width < 992) {
       injectServicesMenu();
-      if (isMenuOpen) {
-        $sideMenu.addClass('open');
-        $overlay.addClass('active');
-        $body.addClass('menu-open');
-        $hamburger.addClass('active');
-      }
     } else {
       restoreServicesMenu();
-      if (isMenuOpen) {
-        $sideMenu.addClass('open');
-        $overlay.addClass('active');
-        $body.addClass('menu-open');
-        $hamburger.addClass('active');
-      }
+    }
+
+    // Maintain menu open state on resize
+    if (isMenuOpen) {
+      $sideMenu.addClass('open');
+      $overlay.addClass('active');
+      $body.addClass('menu-open');
+      $hamburger.addClass('active');
     }
   }
 
   const debouncedCheckViewport = debounce(checkViewport, 100);
   checkViewport();
 
+  /** Toggle menu open/close on hamburger click */
   $(document).on('click', '.hamburger', function () {
     $(this).toggleClass('active');
     isMenuOpen = $(this).hasClass('active');
-    if (isMenuOpen) {
-      openSideMenu();
-    } else {
-      closeSideMenu();
-    }
+    isMenuOpen ? openSideMenu() : closeSideMenu();
   });
 
+  /** Opens side menu with overlay */
   function openSideMenu() {
     $sideMenu.addClass('open');
     $overlay.addClass('active');
@@ -203,6 +220,7 @@ $(function () {
     isMenuOpen = true;
   }
 
+  /** Closes side menu and overlay */
   function closeSideMenu() {
     $hamburger.removeClass('active');
     $sideMenu.removeClass('open');
@@ -211,79 +229,72 @@ $(function () {
     isMenuOpen = false;
   }
 
+  // Close menu when clicking outside
   $(document).on('click', function (e) {
-    if ($(e.target).closest('.side-menu, .hamburger').length === 0) {
+    if ($(e.target).closest('.side-menu, .hamburger').length === 0)
       closeSideMenu();
-    }
   });
-  $overlay.on('click', function () {
-    closeSideMenu();
-  });
+  $overlay.on('click', closeSideMenu);
 
+  // Listen for resize events
   $(window).on('resize', debouncedCheckViewport);
 
-  // ==============================
-  // 3. Unified Sticky Header (Navbar + Services Menu)
-  // ==============================
+  /* ==========================================================
+     3️⃣ STICKY HEADER (NAVBAR + SERVICES MENU)
+     ========================================================== */
   const $navbar = $('header.navbar');
   const $servicesBar = $('.services-menu');
   let lastScrollTop = 0;
-  let isHeaderVisible = true; // Start visible at top
-  const threshold = 100; // Fixed threshold for scroll behavior
+  let isHeaderVisible = true;
+  const threshold = 100;
 
+  /** Handles scroll visibility for navbar & services bar */
   function updateHeader() {
     const scrollTop = $(window).scrollTop();
     const scrollingDown = scrollTop > lastScrollTop;
     const isDesktop = window.innerWidth >= 992;
 
-    // Always ensure natural visible state near top
+    // Near top → always visible
     if (scrollTop <= threshold) {
       $navbar.removeClass('sticky hidden').addClass('visible');
-      if (isDesktop) {
+      if (isDesktop)
         $servicesBar.removeClass('sticky hidden').addClass('visible');
-      }
       isHeaderVisible = true;
-    } else if (scrollingDown && isHeaderVisible) {
-      // Scrolling down: hide both
+    }
+    // Scroll down → hide
+    else if (scrollingDown && isHeaderVisible) {
       $navbar.addClass('sticky hidden').removeClass('visible');
-      if (isDesktop) {
+      if (isDesktop)
         $servicesBar.addClass('sticky hidden').removeClass('visible');
-      }
       isHeaderVisible = false;
-    } else if (!scrollingDown && !isHeaderVisible) {
-      // Scrolling up: show both
+    }
+    // Scroll up → show
+    else if (!scrollingDown && !isHeaderVisible) {
       $navbar.addClass('sticky visible').removeClass('hidden');
-      if (isDesktop) {
+      if (isDesktop)
         $servicesBar.addClass('sticky visible').removeClass('hidden');
-      }
       isHeaderVisible = true;
     }
 
-    // Log state for debugging
+    // Debug log (safe to remove for production)
     console.log(
-      'Scroll position:',
+      'Scroll:',
       scrollTop,
-      'Scrolling down:',
+      '| Down:',
       scrollingDown,
-      'Header visible:',
+      '| Visible:',
       isHeaderVisible,
-      'Threshold:',
-      threshold,
-      'Is desktop:',
-      isDesktop,
-      'Navbar classes:',
-      $navbar.attr('class'),
-      'Services classes:',
-      $servicesBar.attr('class')
+      '| Desktop:',
+      isDesktop
     );
 
-    lastScrollTop = Math.max(scrollTop, 0); // Prevent negatives
+    lastScrollTop = Math.max(scrollTop, 0);
   }
 
-  // Throttle scroll event for performance
+  /** Utility: throttle to reduce scroll calls */
   function throttle(func, wait) {
     let timeout;
-    return function executedFunction(...args) {
+    return function (...args) {
       if (!timeout) {
         timeout = setTimeout(() => {
           timeout = null;
@@ -296,10 +307,10 @@ $(function () {
   const throttledUpdateHeader = throttle(updateHeader, 100);
   $(window).on('scroll', throttledUpdateHeader);
 
-  // Initial check
+  // Initial header state
   updateHeader();
 
-  // keep services menu aligned below current navbar height
+  // Keep services bar aligned below current navbar height
   $(window)
     .on('resize', () => {
       document.documentElement.style.setProperty(
@@ -309,21 +320,21 @@ $(function () {
     })
     .trigger('resize');
 
-  // ==============================
-  // 4. Cookie Consent Pop-Up
-  // ==============================
+  /* ==========================================================
+     4️⃣ COOKIE CONSENT POPUP
+     ========================================================== */
   (function handleCookieModal() {
     const cookieKey = 'cookiesAccepted';
 
-    // Modal + overlay HTML
+    // Create modal markup dynamically
     const cookieModal = $(`
       <div id="cookie-modal">
         <h2>Cookies Policy</h2>
         <p>
           Our website uses cookies. This helps us provide you with a good experience on our website.
           To see what cookies we use and what they do, and to opt-in on non-essential cookies click 
-          "Change Settings". For a detailed explanation, click on "<a href="#">Privacy Policy</a>"; otherwise, click 
-          "Accept Cookies" to continue.
+          "Change Settings". For a detailed explanation, click on "<a href="#">Privacy Policy</a>"; 
+          otherwise, click "Accept Cookies" to continue.
         </p>
         <div class="btn-row">
           <button class="btn-settings">Change Settings</button>
@@ -333,10 +344,9 @@ $(function () {
     `);
 
     const overlay = $('<div id="cookie-modal-overlay"></div>');
-
     $('body').append(overlay, cookieModal);
 
-    // Show only if not accepted
+    // Show modal only if not yet accepted
     if (!localStorage.getItem(cookieKey)) {
       setTimeout(() => {
         $('#cookie-modal, #cookie-modal-overlay').addClass('active');
@@ -349,9 +359,9 @@ $(function () {
       $('#cookie-modal, #cookie-modal-overlay').removeClass('active');
     });
 
-    // Change Settings button (demo action)
+    // Change Settings button (placeholder)
     $(document).on('click', '.btn-settings', function () {
       alert('Settings page or preferences modal could open here.');
     });
   })();
-}); // ✅ closing brace added to fix syntax
+});
