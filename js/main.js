@@ -10,42 +10,49 @@ $(function () {
       text: 'Performance-driven digital and technology services<br>with complete transparency.',
       btnText: 'Find out more',
       img: 'assets/images/banner_slider/leading_company.webp',
+      btnColor: '#7E57A0',
     },
     {
       title: 'Bespoke Software',
       text: 'Delivering expert bespoke software<br>solutions across a range of industries.',
       btnText: 'Find out more',
       img: 'assets/images/banner_slider/bespoke_software.jpg',
+      btnColor: '#E8A008',
     },
     {
       title: 'IT Support',
       text: 'Fast and cost-effective IT support<br>services for your business.',
       btnText: 'Find out more',
       img: 'assets/images/banner_slider/IT_support.webp',
+      btnColor: '#2A6EC6',
     },
     {
       title: 'Digital Marketing',
       text: 'Generating your new business through<br>results-driven marketing activities.',
       btnText: 'Find out more',
       img: 'assets/images/banner_slider/marketing.webp',
+      btnColor: '#26AB5F',
     },
     {
       title: 'Telecoms Services',
       text: 'A new approach to connectivity, see<br>how we can help your business.',
       btnText: 'Find out more',
       img: 'assets/images/banner_slider/telecoms.webp',
+      btnColor: '#C42E2A',
     },
     {
       title: 'Web Design',
       text: 'For businesses looking to make a strong<br>and effective first impression.',
       btnText: 'Find out more',
       img: 'assets/images/banner_slider/web_design.webp',
+      btnColor: '#7E57A0',
     },
     {
       title: 'Cyber Security',
       text: 'Keeping businesses and their customers<br>sensitive information protected.',
       btnText: 'Find out more',
-      img: 'assets/images/banner_slider/cyber_security.jpg', // Verify path
+      img: 'assets/images/banner_slider/cyber_sec.webp',
+      btnColor: '#E80A42', // Verify path
     },
   ];
 
@@ -56,6 +63,9 @@ $(function () {
   function showSlide(index) {
     const slide = slides[index];
     banner.addClass('hide-text');
+
+    // Immediately change the button color
+    $('.banner-slide .btn').css('--btn-color', slide.btnColor);
 
     const nextImage = $('<div class="slide-image"></div>')
       .css(
@@ -302,21 +312,46 @@ $(function () {
   // ==============================
   // 4. Cookie Consent Pop-Up
   // ==============================
-  const cookiePopup = $(`
-    <div id="cookie-popup">
-      <p>This website uses cookies to ensure you get the best experience.</p>
-      <button id="accept-cookies">Got it!</button>
-    </div>
-  `);
+  (function handleCookieModal() {
+    const cookieKey = 'cookiesAccepted';
 
-  $('body').append(cookiePopup);
+    // Modal + overlay HTML
+    const cookieModal = $(`
+      <div id="cookie-modal">
+        <h2>Cookies Policy</h2>
+        <p>
+          Our website uses cookies. This helps us provide you with a good experience on our website.
+          To see what cookies we use and what they do, and to opt-in on non-essential cookies click 
+          "Change Settings". For a detailed explanation, click on "<a href="#">Privacy Policy</a>"; otherwise, click 
+          "Accept Cookies" to continue.
+        </p>
+        <div class="btn-row">
+          <button class="btn-settings">Change Settings</button>
+          <button class="btn-accept">Accept Cookies</button>
+        </div>
+      </div>
+    `);
 
-  if (!localStorage.getItem('cookiesAccepted')) {
-    $('#cookie-popup').fadeIn();
-  }
+    const overlay = $('<div id="cookie-modal-overlay"></div>');
 
-  $('#accept-cookies').on('click', function () {
-    localStorage.setItem('cookiesAccepted', 'true');
-    $('#cookie-popup').fadeOut();
-  });
-});
+    $('body').append(overlay, cookieModal);
+
+    // Show only if not accepted
+    if (!localStorage.getItem(cookieKey)) {
+      setTimeout(() => {
+        $('#cookie-modal, #cookie-modal-overlay').addClass('active');
+      }, 500);
+    }
+
+    // Accept button
+    $(document).on('click', '.btn-accept', function () {
+      localStorage.setItem(cookieKey, 'true');
+      $('#cookie-modal, #cookie-modal-overlay').removeClass('active');
+    });
+
+    // Change Settings button (demo action)
+    $(document).on('click', '.btn-settings', function () {
+      alert('Settings page or preferences modal could open here.');
+    });
+  })();
+}); // ✅ closing brace added to fix syntax

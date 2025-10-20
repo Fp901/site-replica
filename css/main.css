@@ -52,6 +52,184 @@ body {
   }
 }
 
+/* ==============================
+   Cookie Consent Modal (Final Style)
+   ============================== */
+#cookie-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 9998;
+}
+
+#cookie-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#cookie-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  background: #fff;
+  color: #333;
+  width: 95%;
+  max-width: 600px;
+  border-radius: 10px;
+  padding: 35px 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 9999;
+  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  /* ---------- Responsive Breakpoints ---------- */
+  /* ≤ 992px (tablet) */
+  /* ≤ 767px (mobile) */
+  /* ≤ 480px (x-small) */
+}
+
+#cookie-modal.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#cookie-modal h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+#cookie-modal p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  text-align: left;
+  margin: 20px 0;
+  padding: 15px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+#cookie-modal p a {
+  color: #555;
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+#cookie-modal p a:hover {
+  text-decoration: underline;
+}
+
+#cookie-modal .btn-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+#cookie-modal .btn-row button {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+#cookie-modal .btn-row button.btn-settings {
+  background: #c5c5c5;
+  color: #333;
+}
+
+#cookie-modal .btn-row button.btn-settings:hover {
+  background: color-mix(in srgb, #c5c5c5, black 15%);
+}
+
+#cookie-modal .btn-row button.btn-accept {
+  background: #7e57a0;
+  color: #fff;
+}
+
+#cookie-modal .btn-row button.btn-accept:hover {
+  background: color-mix(in srgb, #7e57a0, black 15%);
+}
+
+@media (max-width: 992px) {
+  #cookie-modal {
+    max-width: 520px;
+    padding: 30px;
+  }
+  #cookie-modal h2 {
+    font-size: 1.45rem;
+  }
+  #cookie-modal p {
+    font-size: 0.95rem;
+    padding: 12px 0;
+  }
+  #cookie-modal .btn-row {
+    gap: 12px;
+  }
+  #cookie-modal .btn-row button {
+    padding: 10px 22px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 767px) {
+  #cookie-modal {
+    width: 92%;
+    padding: 26px;
+  }
+  #cookie-modal h2 {
+    font-size: 1.3rem;
+  }
+  #cookie-modal p {
+    font-size: 0.9rem;
+  }
+  #cookie-modal .btn-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  #cookie-modal .btn-row button {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  #cookie-modal {
+    width: 94%;
+    padding: 22px 20px;
+    border-radius: 8px;
+  }
+  #cookie-modal h2 {
+    font-size: 1.15rem;
+  }
+  #cookie-modal p {
+    font-size: 0.85rem;
+  }
+  #cookie-modal .btn-row {
+    gap: 8px;
+  }
+  #cookie-modal .btn-row button {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 10px 16px;
+  }
+}
+
 .footer {
   background-color: #323544;
   color: #fff;
@@ -633,13 +811,14 @@ body {
 }
 
 .banner .banner-slide .container .btn {
+  --btn-color: #e80a42;
   display: inline-block;
   width: 224.891px;
   height: 62px;
   padding: 0;
   line-height: 62px;
   border-radius: 3px;
-  background-color: #e80a42;
+  background-color: var(--btn-color);
   color: #ffffff;
   text-decoration: none;
   font-size: clamp(16px, 2vw, 20px);
@@ -650,7 +829,7 @@ body {
 }
 
 .banner .banner-slide .container .btn:hover {
-  background-color: #b70834;
+  background-color: color-mix(in srgb, var(--btn-color), black 15%);
 }
 
 @media (max-width: 991px) {
@@ -2614,6 +2793,70 @@ html,
 body {
   width: 100%;
   overflow-x: hidden;
+}
+
+/* ================================
+   Sticky Header & Services Menu Fix
+   ================================ */
+header.navbar,
+.services-menu {
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Clean hide/show */
+header.navbar.hidden,
+.services-menu.hidden {
+  transform: translateY(-100%) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+header.navbar.visible,
+.services-menu.visible {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Services bar follows navbar height */
+.services-menu.sticky {
+  top: var(--navbar-offset, 7.5rem) !important;
+}
+
+/* Always use smooth transitions even with active-scroll */
+header.navbar.active-scroll,
+.services-menu.active-scroll {
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+}
+
+@media (min-width: 993px) {
+  header.navbar,
+  .services-menu {
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+  header.navbar.hidden,
+  .services-menu.hidden {
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  header.navbar.visible,
+  .services-menu.visible {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .services-menu.sticky {
+    top: var(--navbar-offset, 7.5rem) !important;
+  }
+  header.navbar.active-scroll,
+  .services-menu.active-scroll {
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), visibility 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  }
 }
 
 body {

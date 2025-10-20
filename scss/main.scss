@@ -1,7 +1,7 @@
 @import './base';
 @import './mixins';
 @import './layout';
-@import './components';
+@import './cookie-modal';
 @import './footer';
 @import './welcome';
 @import './banner';
@@ -11,6 +11,7 @@
 @import './services-menu';
 @import './nav-bar';
 @import './side-menu';
+@import './header-fix';
 
 body {
   margin: 0;

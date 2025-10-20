@@ -1,0 +1,184 @@
+/* ==============================
+   Cookie Consent Modal (Final Style)
+   ============================== */
+#cookie-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 9998;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+#cookie-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  background: #fff;
+  color: #333;
+  width: 95%;
+  max-width: 600px;
+  border-radius: 10px;
+  padding: 35px 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 9999;
+  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 500; // less bold
+    margin-bottom: 15px;
+    color: #222;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    text-align: left;
+    margin: 20px 0;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+    a {
+      color: #555; // match text color
+      text-decoration: none; // remove default underline
+      transition: text-decoration 0.3s ease;
+
+      &:hover {
+        text-decoration: underline; // underline on hover only
+      }
+    }
+  }
+
+  .btn-row {
+    display: flex;
+    justify-content: center; // buttons centered only
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+
+    button {
+      padding: 12px 28px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.25s ease;
+
+      &.btn-settings {
+        background: #c5c5c5;
+        color: #333;
+
+        &:hover {
+          background: color-mix(in srgb, #c5c5c5, black 15%);
+        }
+      }
+
+      &.btn-accept {
+        background: #7e57a0; // your brand accent
+        color: #fff;
+
+        &:hover {
+          background: color-mix(in srgb, #7e57a0, black 15%);
+        }
+      }
+    }
+  }
+
+  /* ---------- Responsive Breakpoints ---------- */
+
+  /* ≤ 992px (tablet) */
+  @media (max-width: 992px) {
+    max-width: 520px;
+    padding: 30px;
+
+    h2 {
+      font-size: 1.45rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      padding: 12px 0;
+    }
+
+    .btn-row {
+      gap: 12px;
+
+      button {
+        padding: 10px 22px;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  /* ≤ 767px (mobile) */
+  @media (max-width: 767px) {
+    width: 92%;
+    padding: 26px;
+
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+
+    .btn-row {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+
+      button {
+        width: 80%;
+      }
+    }
+  }
+
+  /* ≤ 480px (x-small) */
+  @media (max-width: 480px) {
+    width: 94%;
+    padding: 22px 20px;
+    border-radius: 8px;
+
+    h2 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+
+    .btn-row {
+      gap: 8px;
+
+      button {
+        width: 100%;
+        font-size: 0.85rem;
+        padding: 10px 16px;
+      }
+    }
+  }
+}
